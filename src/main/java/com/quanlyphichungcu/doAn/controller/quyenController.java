@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.quanlyphichungcu.doAn.repository.quyenRepository;
@@ -17,8 +16,11 @@ public class quyenController {
 	@Autowired
 	private quyenRepository repository;
 	
+	@GetMapping("TestQuyen")
+	public String in() {
+		return "test";
+	}
 	@GetMapping("/Test-Quyen")
-	@ResponseBody
 	public List<com.quanlyphichungcu.doAn.entity.quyen> quyen() {
 		return repository.findAll();
 	}
