@@ -15,8 +15,9 @@ public class PhongBan {
 	private String ma_phong_ban;
 	private String ten_phong_ban;
 	
-//	@OneToMany(mappedBy = "ma_nhan_vien", fetch = FetchType.EAGER)
-	List<String> nhan_vien; 
+	@OneToMany(mappedBy = "ma_nhan_vien", fetch = FetchType.EAGER)
+	private List<nhan_vien> nhan_vien; 
+	
 	@Override
 	public String toString() {
 		return "PhongBan [ma_phong_ban=" + ma_phong_ban + ", ten_phong_ban=" + ten_phong_ban + "]";
