@@ -8,12 +8,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Table(name="NHAN_VIEN")
@@ -36,7 +36,9 @@ public class nhan_vien {
 	@JoinColumn(name="ten_dang_nhap")
 	private dang_nhap dangNhap;
 	
-	private String ma_phong_ban;
+	@ManyToOne
+	@JoinColumn(name="ma_phong_ban")
+	private PhongBan phongBan;
 
 	public String getMa_nhan_vien() {
 		return ma_nhan_vien;
@@ -86,16 +88,16 @@ public class nhan_vien {
 		this.dangNhap = dangNhap;
 	}
 
-	public String getMa_phong_ban() {
-		return ma_phong_ban;
+	public PhongBan getPhongBan() {
+		return phongBan;
 	}
 
-	public void setMa_phong_ban(String ma_phong_ban) {
-		this.ma_phong_ban = ma_phong_ban;
+	public void setPhongBan(PhongBan phongBan) {
+		this.phongBan = phongBan;
 	}
 
 	public nhan_vien(String ma_nhan_vien, String ho_ten, String sdt, String cccd, Date ngay_sinh, dang_nhap dangNhap,
-			String ma_phong_ban) {
+			PhongBan phongBan) {
 		super();
 		this.ma_nhan_vien = ma_nhan_vien;
 		this.ho_ten = ho_ten;
@@ -103,7 +105,9 @@ public class nhan_vien {
 		this.cccd = cccd;
 		this.ngay_sinh = ngay_sinh;
 		this.dangNhap = dangNhap;
-		this.ma_phong_ban = ma_phong_ban;
+		this.phongBan = phongBan;
 	}
+
+	
 	
 }

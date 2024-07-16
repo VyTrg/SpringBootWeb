@@ -7,14 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
 @Table(name="DANG_NHAP")
-@Getter
-@Setter
+
 public class dang_nhap {
 	@Id private String ten_dang_nhap;
 	private String mat_khau;
@@ -25,24 +22,24 @@ public class dang_nhap {
 	private quyen Quyen;
 	
 	//getter setter
-//	public quyen getQuyen() {
-//		return Quyen;
-//	}
-//	public void setQuyen(quyen quyen) {
-//		Quyen = quyen;
-//	}
-//	public String getTen_dang_nhap() {
-//		return ten_dang_nhap;
-//	}
-//	public void setTen_dang_nhap(String ten_dang_nhap) {
-//		this.ten_dang_nhap = ten_dang_nhap;
-//	}
-//	public String getMat_khau() {
-//		return mat_khau;
-//	}
-//	public void setMat_khau(String ma_khau) {
-//		this.mat_khau = ma_khau;
-//	}
+	public quyen getQuyen() {
+		return Quyen;
+	}
+	public void setQuyen(quyen quyen) {
+		Quyen = quyen;
+	}
+	public String getTen_dang_nhap() {
+		return ten_dang_nhap;
+	}
+	public void setTen_dang_nhap(String ten_dang_nhap) {
+		this.ten_dang_nhap = ten_dang_nhap;
+	}
+	public String getMat_khau() {
+		return mat_khau;
+	}
+	public void setMat_khau(String ma_khau) {
+		this.mat_khau = ma_khau;
+	}
 	
 	public dang_nhap(String ten_dang_nhap, quyen quyen) {
 		super();
