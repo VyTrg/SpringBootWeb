@@ -14,6 +14,7 @@ public class PhongBan {
 	@Id
 	private String ma_phong_ban;
 	private String ten_phong_ban;
+	
 //	@OneToMany(mappedBy = "ma_nhan_vien", fetch = FetchType.EAGER)
 	List<String> nhan_vien; 
 	@Override

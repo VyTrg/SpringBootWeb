@@ -1,4 +1,15 @@
 <factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/servlet/jsp/jstl/jakarta.servlet.jsp.jstl-api/3.0.0/jakarta.servlet.jsp.jstl-api-3.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/el/jakarta.el-api/5.0.0/jakarta.el-api-5.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/glassfish/web/jakarta.servlet.jsp.jstl/3.0.1/jakarta.servlet.jsp.jstl-3.0.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/taglibs/taglibs-standard-spec/1.2.5/taglibs-standard-spec-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/taglibs/taglibs-standard-impl/1.2.5/taglibs-standard-impl-1.2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-jasper/10.1.25/tomcat-embed-jasper-10.1.25.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-core/10.1.25/tomcat-embed-core-10.1.25.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/tomcat-annotations-api/10.1.25/tomcat-annotations-api-10.1.25.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-el/10.1.25/tomcat-embed-el-10.1.25.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/eclipse/jdt/ecj/3.33.0/ecj-3.33.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-data-jpa/3.3.1/spring-boot-starter-data-jpa-3.3.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-aop/3.3.1/spring-boot-starter-aop-3.3.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/6.1.10/spring-aop-6.1.10.jar" enabled="true" runInBatchMode="false"/>
@@ -47,8 +58,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-tomcat/3.3.1/spring-boot-starter-tomcat-3.3.1.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-core/10.1.25/tomcat-embed-core-10.1.25.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-el/10.1.25/tomcat-embed-el-10.1.25.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.25/tomcat-embed-websocket-10.1.25.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-web/6.1.10/spring-web-6.1.10.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/io/micrometer/micrometer-observation/1.13.1/micrometer-observation-1.13.1.jar" enabled="true" runInBatchMode="false"/>
