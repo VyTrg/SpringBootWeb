@@ -5,26 +5,29 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Getter;
 import lombok.Setter;
+import lombok.Getter;
 
 @Setter
 @Getter
+
 @Entity
 @Table(name="DICH_VU_CAN_HO")
 
 public class dich_vu_can_ho {
 	
-
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "ma_can_ho")
 	private can_ho can_ho;
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "ma_dich_vu")
 	private dich_vu dich_vu;

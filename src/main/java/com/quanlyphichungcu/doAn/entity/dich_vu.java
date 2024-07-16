@@ -18,7 +18,7 @@ public class dich_vu {
 	private int don_gia;
 	private int don_vi;
 	
-	@OneToMany(mappedBy = "ma_dich_vu")
+	@OneToMany(mappedBy = "dich_vu")
 	private List<dich_vu_can_ho> ds_dich_vu_can_ho; 
 	
 	
