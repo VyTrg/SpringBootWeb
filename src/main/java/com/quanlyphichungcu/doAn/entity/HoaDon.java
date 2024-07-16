@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -22,9 +24,9 @@ public class HoaDon {
 //	@JoinColumn(name = "ma_can_ho")
 	private String ma_can_ho;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "ma_nhan_vien")
-	private String ma_nhan_vien;
+	@ManyToOne
+	@JoinColumn(name = "ma_nhan_vien")
+	private nhan_vien nhanVien;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String ngay_tao;
@@ -38,22 +40,26 @@ public class HoaDon {
 	@Override
 	public String toString() {
 		return "HoaDon [ma_hoa_don=" + ma_hoa_don + ", thang=" + thang + ", nam=" + nam + ", ma_can_ho=" + ma_can_ho
-				+ ", ma_nhan_vien=" + ma_nhan_vien + ", ngay_tao=" + ngay_tao + ", ngay_dong_tien=" + ngay_dong_tien
+				+ ", nhanVien=" + nhanVien + ", ngay_tao=" + ngay_tao + ", ngay_dong_tien=" + ngay_dong_tien
 				+ ", tien_thang=" + tien_thang + ", tien_no=" + tien_no + "]";
 	}
-	public HoaDon(String ma_hoa_don, String thang, String nam, String ma_can_ho, String ma_nhan_vien, String ngay_tao,
+	
+	
+	public HoaDon(String ma_hoa_don, String thang, String nam, String ma_can_ho, nhan_vien nhanVien, String ngay_tao,
 			String ngay_dong_tien, String tien_thang, String tien_no) {
 		super();
 		this.ma_hoa_don = ma_hoa_don;
 		this.thang = thang;
 		this.nam = nam;
 		this.ma_can_ho = ma_can_ho;
-		this.ma_nhan_vien = ma_nhan_vien;
+		this.nhanVien = nhanVien;
 		this.ngay_tao = ngay_tao;
 		this.ngay_dong_tien = ngay_dong_tien;
 		this.tien_thang = tien_thang;
 		this.tien_no = tien_no;
 	}
+
+
 	public HoaDon() {
 		super();
 	}
@@ -81,11 +87,12 @@ public class HoaDon {
 	public void setMa_can_ho(String ma_can_ho) {
 		this.ma_can_ho = ma_can_ho;
 	}
-	public String getMa_nhan_vien() {
-		return ma_nhan_vien;
+	public nhan_vien getNhanVien() {
+		return nhanVien;
 	}
-	public void setMa_nhan_vien(String ma_nhan_vien) {
-		this.ma_nhan_vien = ma_nhan_vien;
+
+	public void setNhanVien(nhan_vien nhanVien) {
+		this.nhanVien = nhanVien;
 	}
 	public String getNgay_tao() {
 		return ngay_tao;
@@ -111,5 +118,8 @@ public class HoaDon {
 	public void setTien_no(String tien_no) {
 		this.tien_no = tien_no;
 	}
+	
+
+	
 
 }
