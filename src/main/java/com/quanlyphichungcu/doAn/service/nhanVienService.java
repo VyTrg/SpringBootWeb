@@ -11,7 +11,7 @@ public class nhanVienService {
 	@Autowired
 	private nhanVienRepository Repository;
 	
-	public nhan_vien findByUserName(String ten_dang_nhap) {
-		return ((nhanVienService) Repository).findByUserName(ten_dang_nhap);
-	}
+//	public nhan_vien findByUserName(String ten_dang_nhap) {
+//		return ((nhanVienService) Repository).findByUserName(ten_dang_nhap);
+//	}
 }

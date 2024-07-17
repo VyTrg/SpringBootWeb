@@ -109,7 +109,11 @@ public class nhan_vien {
 	}
 
 	public nhan_vien() {
+
 		
+
+		super();
+
 	}
 	
 }

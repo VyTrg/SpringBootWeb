@@ -1,6 +1,10 @@
 package com.quanlyphichungcu.doAn.entity;
 
+
 import java.util.Date;
+
+
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,7 +25,9 @@ public class ChuSoHuu {
 	private String phai;
 	
 	@Temporal(TemporalType.DATE)
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+
 	private Date ngay_sinh;
 	private String cccd;
 //	Chu so huu join voi bang dang nhap kieu tra ve la Entity dang nhap
@@ -99,7 +105,16 @@ public class ChuSoHuu {
 	}
 
 	public ChuSoHuu() {
-		
+
+		super();
 	}
+
+	@Override
+	public String toString() {
+		return "ChuSoHuu [ma_chu_so_huu=" + ma_chu_so_huu + ", ho_ten=" + ho_ten + ", sdt=" + sdt + ", phai=" + phai
+				+ ", ngay_sinh=" + ngay_sinh + ", cccd=" + cccd + ", dangNhap=" + dangNhap + "]";
+	}
+
+
 	
 }
