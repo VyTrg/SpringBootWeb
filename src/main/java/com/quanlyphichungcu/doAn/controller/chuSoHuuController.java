@@ -4,19 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
+import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.quanlyphichungcu.doAn.repository.dangNhapRepository;
 
 @Controller
-public class dangNhapController {
-	@Autowired
-	private dangNhapRepository repository;
+public class chuSoHuuController {
+	@Autowired chuSoHuuRepository repository;
 	
-	@GetMapping("/Test-Login")
+	@GetMapping("/ChuSoHuu")
 	@ResponseBody
-	public List<com.quanlyphichungcu.doAn.entity.dang_nhap> dang_nhap() {
-		return repository.findAll();
+	public List<ChuSoHuu> getMethodName() {
+		return repository.findBySdt("222222");
 	}
 }
