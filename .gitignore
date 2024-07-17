@@ -1,0 +1,11 @@
+.idea
+.settings
+.classpath
+.project
+.factorypath
+/build/
+
+doAn.iml
+target/** 
+bin/**
+
