@@ -16,13 +16,13 @@ public class dich_vu {
 	private String ten_dich_vu;
 	private int vat;
 	private int don_gia;
-	private int don_vi;
+	private String don_vi;
 	
 	@OneToMany(mappedBy = "dich_vu")
 	private List<dich_vu_can_ho> ds_dich_vu_can_ho; 
 	
 	
-	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, int don_vi) {
+	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi) {
 		super();
 		this.ma_dich_vu = ma_dich_vu;
 		this.ten_dich_vu = ten_dich_vu;
@@ -36,6 +36,14 @@ public class dich_vu {
 	}
 	
 	
+	public String getMa_dich_vu() {
+		return ma_dich_vu;
+	}
+
+	public String getTen_dich_vu() {
+		return ten_dich_vu;
+	}
+
 	public void setMa_dich_vu(String ma_dich_vu) {
 		this.ma_dich_vu = ma_dich_vu;
 	}
@@ -54,10 +62,10 @@ public class dich_vu {
 	public int getDon_gia() {
 		return don_gia;
 	}
-	public int getDon_vi() {
+	public String getDon_vi() {
 		return don_vi;
 	}
-	public void setDon_vi(int don_vi) {
+	public void setDon_vi(String don_vi) {
 		this.don_vi = don_vi;
 	}
 
