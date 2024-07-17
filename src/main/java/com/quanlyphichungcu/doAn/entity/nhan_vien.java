@@ -108,6 +108,8 @@ public class nhan_vien {
 		this.phongBan = phongBan;
 	}
 
-	
+	public nhan_vien() {
+		
+	}
 	
 }

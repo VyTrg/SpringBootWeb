@@ -1,20 +1,28 @@
 package com.quanlyphichungcu.doAn.entity;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name="CHU_SO_HUU")
 public class ChuSoHuu {
-	@Id
-	private String ma_chu_so_huu;
+	@Id private String ma_chu_so_huu;
 	private String ho_ten;
 	private String sdt;
 	private String phai;
-	private String ngay_sinh;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date ngay_sinh;
 	private String cccd;
 //	Chu so huu join voi bang dang nhap kieu tra ve la Entity dang nhap
 	
@@ -54,11 +62,11 @@ public class ChuSoHuu {
 		this.phai = phai;
 	}
 
-	public String getNgay_sinh() {
+	public Date getNgay_sinh() {
 		return ngay_sinh;
 	}
 
-	public void setNgay_sinh(String ngay_sinh) {
+	public void setNgay_sinh(Date ngay_sinh) {
 		this.ngay_sinh = ngay_sinh;
 	}
 
@@ -78,7 +86,7 @@ public class ChuSoHuu {
 		this.dangNhap = dangNhap;
 	}
 
-	public ChuSoHuu(String ma_chu_so_huu, String ho_ten, String sdt, String phai, String ngay_sinh, String cccd,
+	public ChuSoHuu(String ma_chu_so_huu, String ho_ten, String sdt, String phai, Date ngay_sinh, String cccd,
 			dang_nhap dangNhap) {
 		super();
 		this.ma_chu_so_huu = ma_chu_so_huu;
@@ -88,6 +96,10 @@ public class ChuSoHuu {
 		this.ngay_sinh = ngay_sinh;
 		this.cccd = cccd;
 		this.dangNhap = dangNhap;
+	}
+
+	public ChuSoHuu() {
+		
 	}
 	
 }
