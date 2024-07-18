@@ -6,20 +6,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Setter;
-import lombok.Getter;
-
-@Setter
-@Getter
 
 @Entity
 @Table(name="DICH_VU_CAN_HO")
-
+@IdClass(dich_vu_can_ho_prikey.class)
 public class dich_vu_can_ho {
 	
 	@Id
@@ -54,6 +50,46 @@ public class dich_vu_can_ho {
 
 	public dich_vu_can_ho() {
 		super();
+	}
+
+	public can_ho getCan_ho() {
+		return can_ho;
+	}
+
+	public void setCan_ho(can_ho can_ho) {
+		this.can_ho = can_ho;
+	}
+
+	public dich_vu getDich_vu() {
+		return dich_vu;
+	}
+
+	public void setDich_vu(dich_vu dich_vu) {
+		this.dich_vu = dich_vu;
+	}
+
+	public int getSo_luong() {
+		return so_luong;
+	}
+
+	public void setSo_luong(int so_luong) {
+		this.so_luong = so_luong;
+	}
+
+	public Date getNgay_bat_dau() {
+		return ngay_bat_dau;
+	}
+
+	public void setNgay_bat_dau(Date ngay_bat_dau) {
+		this.ngay_bat_dau = ngay_bat_dau;
+	}
+
+	public Date getNgay_ket_thuc() {
+		return ngay_ket_thuc;
+	}
+
+	public void setNgay_ket_thuc(Date ngay_ket_thuc) {
+		this.ngay_ket_thuc = ngay_ket_thuc;
 	}
 	
 }
