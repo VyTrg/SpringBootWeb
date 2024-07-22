@@ -22,20 +22,6 @@ public class dich_vu {
 	private List<dich_vu_can_ho> ds_dich_vu_can_ho; 
 	
 	
-	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi) {
-		super();
-		this.ma_dich_vu = ma_dich_vu;
-		this.ten_dich_vu = ten_dich_vu;
-		this.vat = vat;
-		this.don_gia = don_gia;
-		this.don_vi = don_vi;
-	}
-	
-	public dich_vu() {
-		super();
-	}
-	
-	
 	public String getMa_dich_vu() {
 		return ma_dich_vu;
 	}
@@ -67,6 +53,21 @@ public class dich_vu {
 	}
 	public void setDon_vi(String don_vi) {
 		this.don_vi = don_vi;
+	}
+
+	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi,
+			List<dich_vu_can_ho> ds_dich_vu_can_ho) {
+		super();
+		this.ma_dich_vu = ma_dich_vu;
+		this.ten_dich_vu = ten_dich_vu;
+		this.vat = vat;
+		this.don_gia = don_gia;
+		this.don_vi = don_vi;
+		this.ds_dich_vu_can_ho = ds_dich_vu_can_ho;
+	}
+
+	public dich_vu() {
+		super();
 	}
 
 }
