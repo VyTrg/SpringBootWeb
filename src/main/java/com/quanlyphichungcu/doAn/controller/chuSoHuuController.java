@@ -19,10 +19,10 @@ import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 public class chuSoHuuController {
 	@Autowired chuSoHuuRepository repository;
 	
-	@GetMapping("/thongtincanho")
+	@GetMapping("/user/thongtincanho")
 	public String getMethodName(Model model) {
 		model.addAttribute("chusohuu", repository.findAll());
-		return "layout";
+		return "layout/thongtincanho";
 	}
 
 }
