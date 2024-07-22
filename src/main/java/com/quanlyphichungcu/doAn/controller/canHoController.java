@@ -13,12 +13,12 @@ import com.quanlyphichungcu.doAn.repository.canHoRepository;
 
 @Controller
 public class canHoController {
-//	@Autowired
-//	private canHoRepository repository;
-//	
-//	@GetMapping("/testcanho")
-//	@ResponseBody
-//	public List<com.quanlyphichungcu.doAn.entity.can_ho> can_ho() {
-//		return repository.findAll();
-//	}
+	@Autowired
+	private canHoRepository repository;
+	
+	@GetMapping("/testcanho")
+	@ResponseBody
+	public List<com.quanlyphichungcu.doAn.entity.can_ho> can_ho() {
+		return repository.findAll();
+	}
 }
