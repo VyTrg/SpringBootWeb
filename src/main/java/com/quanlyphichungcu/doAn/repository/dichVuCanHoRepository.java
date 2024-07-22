@@ -1,7 +1,5 @@
 package com.quanlyphichungcu.doAn.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,8 @@ import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu;
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho_prikey;
+import com.quanlyphichungcu.doAn.repository.canHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
-import com.quanlyphichungcu.doAn.service.dichVuCanHoService;
 
 //@Controller
 //public class dichVuCanHoController {
@@ -35,9 +36,6 @@ public class dichVuCanHoController {
 	@Autowired
 	private dichVuCanHoRepository repository;
 	
-	@Autowired
-	private dichVuCanHoService service;
-	
 	@GetMapping
 	public List<dich_vu_can_ho> getAlldich_vu_can_ho() {
 		return repository.findAll();
@@ -49,11 +47,15 @@ public class dichVuCanHoController {
 	 return repository.findById(id); 
 	 }
 	 
-//	 @GetMapping("/{Can_Ho}") 
-//	 public List<dich_vu_can_ho>
-//	 getEnrollmentById(@PathVariable String Can_Ho) {
-//	 return service.findDichVuByIdCanHo(Can_Ho);
-//	 }
+	 @Autowired
+	 private canHoRepository CanHoRepository;
+	 
+	 @GetMapping("/{Can_Ho}") 
+	 public List<dich_vu_can_ho>
+	 getEnrollmentById(Model model, @PathVariable String Can_Ho) {
+		 can_ho CanHo = CanHoRepository.findById("Can_Ho").get();
+	 return CanHo.getDs_dich_vu_can_ho();
+	 }
 	 
 
 //    @PostMapping

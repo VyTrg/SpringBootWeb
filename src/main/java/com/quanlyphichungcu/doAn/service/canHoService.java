@@ -11,9 +11,9 @@ import com.quanlyphichungcu.doAn.repository.canHoRepository;
 @Service
 public class canHoService {
 	
-//	@Autowired
-//	private canHoRepository CanHoRepository;
-//	
+	@Autowired
+	private canHoRepository CanHoRepository;
+	
 //	public List<can_ho> findAll() {
 //		return CanHoRepository.findAll();
 //	}
