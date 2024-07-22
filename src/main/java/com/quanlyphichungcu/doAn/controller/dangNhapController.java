@@ -30,9 +30,9 @@ public class dangNhapController {
 							Model model) {
 		dang_nhap dangNhap = this.dang_nhap_repo.findByDangNhap(ten_dang_nhap, mat_khau);
 		if(dangNhap != null && quyen.equals("NV") && dangNhap.getQuyen().getMa_quyen().trim().equals("NV"))
-			return "redirect:/test";
+			return "admin/canho";
 		else if (dangNhap != null && quyen.equals("CSH") && dangNhap.getQuyen().getMa_quyen().trim().equals("CSH"))
-			return  "redirect:/layout";
+			return  "user/thongtincanho";
 		else{
 			model.addAttribute("message", "Sai thông tin đăng nhập. Vui lòng nhập lại.");
 			return "login";

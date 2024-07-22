@@ -32,17 +32,9 @@
                         <option value="CSH">Cư dân</option>
                         </select>
                         <div class="d-grid">	
-                         <button onclick="errorFunction()" id="btn_submit" type="submit" class="btn btn-primary" >Đăng nhập</button>
+                         <button id="btn_submit" type="submit" class="btn btn-primary" >Đăng nhập</button>
                         </div>
                     </div>
-                    <span style="display: block" class="password__text--error">${message}</span>
-                    <!-- <span class="password__text--error"></span>
-                    <div class="form-login__group">
-                        <div class="form-login__icon">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <input name="password" class="form-login__password" type="password"
-                            placeholder="Mật khẩu"> -->
                     </div>
                     </form>
                 </div>
@@ -60,7 +52,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span id="errorMessage">Sai thông tin đăng nhập. Vui lòng nhập lại.</span>
+                    <span id="errorMessage"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
