@@ -1,0 +1,86 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="vn">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+	<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Đăng nhập</h5>
+                    <form action="/login" method="post" object="dang_nhap" id="loginForm">
+                        <div class="mb-3">
+                            <!-- name: data after submit, value: data send -->
+                            <label for="username" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="ten_dang_nhap">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="mat_khau" >
+                        </div>
+                        <select class="role-select mb-3" arial-label="Default select example" id="quyen" name="quyen">
+                        <option selected>Chọn quyền</option>
+                        <option value="NV">Nhân viên</option>
+                        <option value="CSH">Cư dân</option>
+                        </select>
+                        <div class="d-grid">	
+                         <button onclick="errorFunction()" id="btn_submit" type="submit" class="btn btn-primary" >Đăng nhập</button>
+                        </div>
+                    </div>
+                    <span style="display: block" class="password__text--error">${message}</span>
+                    <!-- <span class="password__text--error"></span>
+                    <div class="form-login__group">
+                        <div class="form-login__icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <input name="password" class="form-login__password" type="password"
+                            placeholder="Mật khẩu"> -->
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="errorMessage">Sai thông tin đăng nhập. Vui lòng nhập lại.</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <!-- Popper.js (required for Bootstrap) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- <script>
+       window.onload = function(){
+        var errorMessage = '<%= request.getAttribute("errorMessage") %>';
+        if (errorMessage) {
+            document.getElementById("errorMessage").innerText = errorMessage;
+            $('#errorModal').modal('show');
+        }
+      } 
+    </script> -->
+  </body>
+</html>

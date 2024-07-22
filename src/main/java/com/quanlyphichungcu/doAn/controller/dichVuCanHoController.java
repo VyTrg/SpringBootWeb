@@ -49,11 +49,11 @@ public class dichVuCanHoController {
 	 return repository.findById(id); 
 	 }
 	 
-	 @GetMapping("/{Can_Ho}") 
-	 public List<dich_vu_can_ho>
-	 getEnrollmentById(@PathVariable String Can_Ho) {
-	 return service.findDichVuByIdCanHo(Can_Ho);
-	 }
+//	 @GetMapping("/{Can_Ho}") 
+//	 public List<dich_vu_can_ho>
+//	 getEnrollmentById(@PathVariable String Can_Ho) {
+//	 return service.findDichVuByIdCanHo(Can_Ho);
+//	 }
 	 
 
 //    @PostMapping
