@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
+import com.quanlyphichungcu.doAn.entity.can_ho;
 
 
 @Controller
@@ -21,18 +22,6 @@ public class canHoController {
 //	@Autowired
 //	private dichVuCanHoRepository dvch_repository;
 	
-	@GetMapping("/canho1")
-	@ResponseBody
-	public List<can_ho> can_ho() {
-		return canho_repository.findAll();
-	}
-	
-	@RequestMapping("/canho")
-	public String listCanHo(Model model) {
-		List<can_ho> list = canho_repository.findAll();
-		model.addAttribute("list", list);
-		return "admin/canho";
-	}
 	
 //	@RequestMapping("/canho/{id}")
 //	public String getCTCanHo(Model model, @PathVariable("id") String id) {
@@ -45,4 +34,13 @@ public class canHoController {
 //		
 //		return "admin/ctcanho";
 //	}
+
+	private canHoRepository repository;
+	
+	@GetMapping("/testcanho")
+	@ResponseBody
+	public List<can_ho> can_ho() {
+		return repository.findAll();
+	}
+
 }

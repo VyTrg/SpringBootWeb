@@ -32,7 +32,7 @@ public class dangNhapController {
 		if(dangNhap != null && quyen.equals("NV") && dangNhap.getQuyen().getMa_quyen().trim().equals("NV"))
 			return "admin/canho";
 		else if (dangNhap != null && quyen.equals("CSH") && dangNhap.getQuyen().getMa_quyen().trim().equals("CSH"))
-			return  "user/thongtincanho";
+			return  "user/dangkidichvu";
 		else{
 			model.addAttribute("message", "Sai thông tin đăng nhập. Vui lòng nhập lại.");
 			return "login";
