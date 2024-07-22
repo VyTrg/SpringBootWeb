@@ -1,5 +1,21 @@
+<<<<<<< HEAD
+<%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <title>test</title>
+   </head>
+   <body>
+   </body>
+=======
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,10 +27,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style type="text/css">
+    	h2 {
+			font-family: 
+		}
+    </style>
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <h2>hello</h2>
+    <h2>Xin Chào</h2>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">@</span>
       <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
@@ -31,4 +52,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
   </body>
+>>>>>>> be96b90e06f6d6b0c4c26df3f1e82712a116b2ee
 </html>

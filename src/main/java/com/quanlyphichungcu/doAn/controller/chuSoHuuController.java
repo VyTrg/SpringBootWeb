@@ -2,10 +2,15 @@ package com.quanlyphichungcu.doAn.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 
 
@@ -14,9 +19,10 @@ import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 public class chuSoHuuController {
 	@Autowired chuSoHuuRepository repository;
 	
-//	@GetMapping("/ChuSoHuu")
-//	@ResponseBody
-//	public List<ChuSoHuu> getMethodName() {
-//		//return repository.findBySdt("222222");
-//	}
+	@GetMapping("/user/thongtincanho")
+	public String getMethodName(Model model) {
+		model.addAttribute("chusohuu", repository.findAll());
+		return "layout/thongtincanho";
+	}
+
 }
