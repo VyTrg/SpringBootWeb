@@ -38,7 +38,7 @@ public class HoaDon {
 	private Integer tien_thang;
 	private Integer tien_no;
 	
-
+	
 	@Override
 	public String toString() {
 		return "HoaDon [ma_hoa_don=" + ma_hoa_don + ", thang=" + thang + ", nam=" + nam + ", maCanHo=" + maCanHo
