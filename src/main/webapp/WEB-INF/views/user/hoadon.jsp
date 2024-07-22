@@ -46,19 +46,17 @@
 	    	
 		    <!-- Main Content -->
 		    <div id="content" class="p-3">
-		    	<c:set var="thang" value="${ttHoaDon.thang}"/>
-		    	<c:set var="nam" value="${ttHoaDon.nam}"/>
 				<h3 class="mb-0 mt-5">THÔNG BÁO HOÁ ĐƠN</h3>
-                <p>Tên hoá đơn: Hoá đơn tháng ${thang} - năm ${nam}</p>
+                <p>Tên hoá đơn: Hoá đơn tháng ${thongTinHoaDon.get(0).thang} - năm ${thongTinHoaDon.get(0).nam} </p>
                 <hr class="my-4" />
                 <strong class="mb-0">Thông tin hoá đơn:</strong>
-                <p>Ngày lập: ${ttHoaDon.ngay_tao}</p>
+                <p>Ngày lập: ${thongTinHoaDon.get(0).ngayTao} </p>
                 <div class="d-flex">
                     <div class="list-group mb-5 shadow col-lg-5">
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Thông tin khách hàng:</strong>
-                                <p class="text-muted mb-0">${ttKhachHang.ho_ten}</p>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).hoTenKhachHang}</p>
                             </div>
                         </div>
                         <div class="list-group-item">
@@ -72,13 +70,13 @@
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Căn hộ số:</strong>
-                                <p class="text-muted mb-0">${ttHoaDon.maCanHo.ma_can_ho}</p>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).CanHoSo}</p>
                             </div>
                         </div>
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Khu - tầng:</strong>
-                                <p class="text-muted mb-0">Khu ${ttHoaDon.maCanHo.khu} - tầng ${ttHoaDon.maCanHo.tang}</p>
+                                <p class="text-muted mb-0">Khu ${thongTinHoaDon.get(0).khu} - tầng ${thongTinHoaDon.get(0).tang}</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +86,7 @@
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Thông tin thanh toán:</strong>
-                                <p class="text-muted mb-0">Thanh toán hoá đơn tháng ...</p>
+                                <p class="text-muted mb-0">Thanh toán hoá đơn tháng ${thongTinHoaDon.get(0).thang} - ${thongTinHoaDon.get(0).nam}</p>
                             </div>
                         </div>
                         <div class="list-group-item">
@@ -144,15 +142,19 @@
 			                                    </tr>
 			                                </thead>
 			                                <tbody>
-			                                    <tr class="odd">
-			                                        <td class="sorting_1">1</td>
-			                                        <td>Phi quan li</td>
-			                                        <td>20-3-2023</td>
-			                                        <td>1</td>
-			                                        <td>1000000</td>
-			                                        <td>2</td>
-			                                        <td>2000000</td>
-			                                    </tr>
+		                                		<c:set var="count" value="1" scope="session" /> 
+			                                	<c:forEach var="i" items="${listDichVu}">
+				                                    <tr class="odd">
+				                                        <td>${count}</td>
+				                                        <td>${i.dich_vu.ten_dich_vu}</td>
+				                                        <td>${i.ngay_bat_dau} - ${thongTinHoaDon.get(0).ngayTao}</td>
+				                                        <td>${i.so_luong}</td>
+				                                        <td>${i.dich_vu.don_gia}</td>
+				                                        <td>${i.dich_vu.vat}</td>
+				                                        <td>${i.dich_vu.ten_dich_vu}</td>
+				                                    </tr>
+				                                    <c:set var="count" value="${count = count + 1}" scope="session" />
+			                                	</c:forEach>
 			                                    
 			                                </tbody>
 			                            </table>
