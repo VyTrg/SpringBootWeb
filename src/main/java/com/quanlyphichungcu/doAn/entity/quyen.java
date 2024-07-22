@@ -1,6 +1,7 @@
 package com.quanlyphichungcu.doAn.entity;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.Id;
@@ -12,7 +13,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="QUYEN")
 public class quyen {
-	@Id private String ma_quyen;
+	@Id 
+	@Column(name="ma_quyen")
+	private String ma_quyen;
+	
+	@Column(name="ten_quyen")
 	private String ten_quyen;
 	
 	//getter setter

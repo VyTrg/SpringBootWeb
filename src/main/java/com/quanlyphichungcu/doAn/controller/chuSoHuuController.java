@@ -12,11 +12,11 @@ import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 
 @Controller
 public class chuSoHuuController {
-	@Autowired chuSoHuuRepository repository;
-	
-//	@GetMapping("/ChuSoHuu")
-//	@ResponseBody
-//	public List<ChuSoHuu> getMethodName() {
-//		//return repository.findBySdt("222222");
-//	}
+////	@Autowired chuSoHuuRepository repository;
+//	
+////	@GetMapping("/ChuSoHuu")
+////	@ResponseBody
+////	public List<ChuSoHuu> getMethodName() {
+////		//return repository.findBySdt("222222");
+////	}
 }

@@ -2,6 +2,9 @@ package com.quanlyphichungcu.doAn.entity;
 
 
 
+import org.hibernate.annotations.DialectOverride.Formula;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -13,13 +16,18 @@ import jakarta.persistence.Table;
 @Table(name="DANG_NHAP")
 
 public class dang_nhap {
-	@Id private String ten_dang_nhap;
+	@Id
+	@Column(name="ten_dang_nhap")
+	private String ten_dang_nhap;
+	
+	@Column(name="mat_khau")
 	private String mat_khau;
 	//private String ma_quyen;
 	
 	@ManyToOne
 	@JoinColumn(name="ma_quyen")
 	private quyen Quyen;
+//	@Formula("select ten_quyen from QUYEN where ")
 	
 	//getter setter
 	public quyen getQuyen() {
