@@ -45,7 +45,7 @@
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->
-		    <div id="content" class="p-3">
+		    <div id="content" class="p-4">
 				<h3 class="mb-0 mt-5">THÔNG BÁO HOÁ ĐƠN</h3>
                 <p>Tên hoá đơn: Hoá đơn tháng ${thongTinHoaDon.get(0).thang} - năm ${thongTinHoaDon.get(0).nam} </p>
                 <hr class="my-4" />
@@ -146,12 +146,12 @@
 			                                	<c:forEach var="i" items="${listDichVu}">
 				                                    <tr class="odd">
 				                                        <td>${count}</td>
-				                                        <td>${i.dich_vu.ten_dich_vu}</td>
-				                                        <td>${i.ngay_bat_dau} - ${thongTinHoaDon.get(0).ngayTao}</td>
-				                                        <td>${i.so_luong}</td>
-				                                        <td>${i.dich_vu.don_gia}</td>
-				                                        <td>${i.dich_vu.vat}</td>
-				                                        <td>${i.dich_vu.ten_dich_vu}</td>
+				                                        <td>${i.tenDichVu}</td>
+				                                        <td>${i.thoiGian}</td>
+				                                        <td>${i.soLuong}</td>
+				                                        <td>${i.donGia}</td>
+				                                        <td>${i.thue}</td>
+				                                        <td>${i.tong}</td>
 				                                    </tr>
 				                                    <c:set var="count" value="${count = count + 1}" scope="session" />
 			                                	</c:forEach>

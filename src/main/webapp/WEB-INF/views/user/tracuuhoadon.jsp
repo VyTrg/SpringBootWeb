@@ -41,15 +41,105 @@
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->
-		    <div id="content">
-				
+		    <div id="content" class="p-4">
+		    	<h3 class="mb-0 mt-5">TRA CỨU HOÁ ĐƠN</h3>
+                <p>Thông tin hoá đơn</p>
+                <hr class="my-4" />
+                <strong class="mb-0">Thông tin khách hàng:</strong>
+                <p>Mã khách hàng: ${thongTinHoaDon.get(0).maKhachHang}</p>
+                <div class="d-flex">
+                    <div class="list-group mb-5 shadow col-lg-5">
+                        <div class="list-group-item">
+                            <div class="col align-items-center">
+                                <strong class="mb-0">Tên khách hàng:</strong>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).hoTenKhachHang}</p>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="col align-items-center">
+                                <strong class="mb-0">Số điện thoại:</strong>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).soDienThoai}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group mb-5 shadow ml-auto col-lg-6">
+                        <div class="list-group-item">
+                            <div class="col align-items-center">
+                                <strong class="mb-0">Mã căn hộ:</strong>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).maCanHo}</p>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="col align-items-center">
+                                <strong class="mb-0">Khu - tầng:</strong>
+                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).khu} - ${thongTinHoaDon.get(0).tang}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Hoá đơn:</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+                                            aria-describedby="dataTable_info" style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending" style="width: 10px;">Stt</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Tên hoá đơn</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending" style="width: 100px;">Số tiền</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Age: activate to sort column ascending" style="width: 150px;">Ngày đóng</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending" style="width: 150px;">Ngày lập</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Tiền tháng</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 90px;">Trạng thái</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Nợ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+	                                		<c:set var="count" value="1" scope="session" />  
+                                            <c:forEach var="i" items="${danhSachHoaDon}">
+                                                <tr class="odd">
+                                                    <td class="sorting_1">${count}</td>
+                                                    <td>${i.tenHoaDon}</td>
+                                                    <td>${i.soTien}</td>
+                                                    <td>${i.ngayDong}</td>
+                                                    <td>${i.ngayLap}</td>
+                                                    <td>${i.tienThang}</td>
+                                                    <td>${i.trangThai}</td>
+                                                    <td>${i.tienNo}</td>
+                                                    
+                                                </tr>
+				                                    <c:set var="count" value="${count = count + 1}" scope="session" />                                                
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+	        </div>
 		    <!-- End of Main Content -->
 		    
-		    <!-- Footer -->
-		    <%@ include file="../layout/footer.jsp" %>
-		    <!-- End of Footer -->
-	        </div>
-	    	<!-- End of Content Wrapper -->
+	    
+    	</div>
+    	<!-- End of Content Wrapper -->
+	    <!-- Footer -->
+	    <%@ include file="../layout/footer.jsp" %>
+	    <!-- End of Footer -->
     </div>
     <!-- End of Page Wrapper -->
 </body>

@@ -41,68 +41,92 @@
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->
-		    <div id="content">
-				<div _ngcontent-riq-c12="" class="card mb-4">
-			<div class="card-header">DataTable Example</div>
-			<div class="card-body"><sb-ng-bootstrap-table>
-					<form novalidate="" class="ng-untouched ng-pristine ng-valid">
-						<div class="form-group form-inline">Full text search: <input
-								class="form-control ml-2 ng-untouched ng-pristine ng-valid" name="searchTerm"
-								type="text"><!----></div>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th sbsortable="name" scope="col"><span>Mã căn hộ</span><!----></th>
-									<th sbsortable="area" scope="col"><span>Chủ sở hữu</span><!----></th>
-									<th sbsortable="population" scope="col"><span>Diện tích</span><!----></th>
-									<th sbsortable="population" scope="col"><span>Khu</span><!----></th>
-									<th sbsortable="population" scope="col"><span>Tầng</span><!----></th>
-								</tr>
-							</thead>
-							<tbody><!---->
-								<c:forEach var="i" items="${chusohuu}">
-								<tr>
-								<td><ngb-highlight>${i.ma_can_ho}</ngb-highlight></td>
-								<td><ngb-highlight>${i.ma_chu_so_huu}</ngb-highlight></td>
-								<td><ngb-highlight>${i.dien_tich}</ngb-highlight></td>
-								<td><ngb-highlight>${i.khu}</ngb-highlight></td>
-								<td><ngb-highlight>${i.tang}</ngb-highlight></td>
-								</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<div class="d-flex justify-content-between p-2"><ngb-pagination
-							 role="navigation"><!----><!----><!----><!----><!----><!---->
-								<ul class="pagination"><!----><!---->
-									<li class="page-item disabled"><a aria-label="Previous" class="page-link" href=""
-											tabindex="-1" aria-disabled="true"><!----><span aria-hidden="true">«</span></a></li>
-									<!---->
-									<li class="page-item active" aria-current="page"><!----><!----><a class="page-link"
-											href=""><!----> 1 <!----><span class="sr-only">(current)</span><!----></a></li>
-									<li class="page-item"><!----><!----><a class="page-link" href=""><!----> 2
-											<!----><!----></a></li>
-									<li class="page-item"><!----><!----><a class="page-link" href=""><!----> 3
-											<!----><!----></a></li><!---->
-									<li class="page-item"><a aria-label="Next" class="page-link" href=""><!----><span
-												aria-hidden="true">»</span></a></li><!---->
-								</ul>
-							</ngb-pagination><select
-								class="custom-select ng-untouched ng-pristine ng-valid" name="pageSize" style="width: auto">
-								<option value="0: 2">2 items per page</option>
-								<option value="1: 4">4 items per page</option>
-								<option value="2: 6">6 items per page</option>
-							</select></div>
-					</form>
-				</sb-ng-bootstrap-table></div>
-		</div>
-		    </div>
+		    <div id="content" class="p-4">
+			    <h3 class="mb-0 mt-5">Thông tin chủ sở hữu</h3>
+	                <hr class="my-4" />
+	                <div>
+	                    <div class="list-group mb-5 shadow col-lg-8 col-sm-12">
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Thông tin khách hàng:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.ho_ten}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Mã khách hàng:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.ma_chu_so_huu}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Số điện thoại:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.sdt}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Giới tính:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.phai}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Ngày sinh:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.ngay_sinh}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Căn cước công dân:</strong>
+	                                <p class="text-muted mb-0">${thongtinkhachhang.cccd}</p>
+	                            </div>
+	                        </div>
+	                        <div class="list-group-item">
+	                            <div class="col align-items-center">
+	                                <strong class="mb-0">Trạng thái:</strong>
+	                                <p class="text-muted mb-0">Đang hoạt động</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                   </div>
+	                <hr class="my-4" />
+					<div _ngcontent-riq-c12="" class="card mb-4">
+						<div class="card-header">Căn hộ đang sở hữu:</div>
+						<div class="card-body"><sb-ng-bootstrap-table>
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th sbsortable="name" scope="col"><span>Mã căn hộ</span><!----></th>
+												<th sbsortable="area" scope="col"><span>Chủ sở hữu</span><!----></th>
+												<th sbsortable="population" scope="col"><span>Diện tích</span><!----></th>
+												<th sbsortable="population" scope="col"><span>Khu</span><!----></th>
+												<th sbsortable="population" scope="col"><span>Tầng</span><!----></th>
+											</tr>
+										</thead>
+										<tbody><!---->
+											<c:forEach var="i" items="${danhsachcanho}">
+											<tr>
+											<td><ngb-highlight>${i.ma_can_ho}</ngb-highlight></td>
+											<td><ngb-highlight>${i.ma_chu_so_huu}</ngb-highlight></td>
+											<td><ngb-highlight>${i.dien_tich}</ngb-highlight></td>
+											<td><ngb-highlight>${i.khu}</ngb-highlight></td>
+											<td><ngb-highlight>${i.tang}</ngb-highlight></td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+							</sb-ng-bootstrap-table>
+						</div>
+				</div>
+			</div>
 		    <!-- End of Main Content -->
 		    
 		    <!-- Footer -->
 		    <%@ include file="../layout/footer.jsp" %>
 		    <!-- End of Footer -->
-	        </div>
-	    	<!-- End of Content Wrapper -->
+	    </div>
+	   <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
 </body>
