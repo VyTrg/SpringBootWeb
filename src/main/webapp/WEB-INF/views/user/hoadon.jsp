@@ -41,7 +41,7 @@
 	    <!-- Content Wrapper -->
 	    <div id="content-wrapper" class="d-flex flex-column">
 	    	<!-- Topbar -->
-				<%@ include file="../layout/head.jsp" %>
+			<%@ include file="../layout/head.jsp" %>
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->
