@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	
 	<!-- add script in dangkidichvu -->
-    <script src="../../../../assets/js/dangkidichvu.js"></script>
+   	<script src="../../../assets/js/dangkidichvu.js"></script>
 </head>
 <body>
     <!-- Page Wrapper -->
@@ -50,31 +50,31 @@
 				<div class="card card-header-actions mb-4">
 					<div class="card-header">
 						Đăng kí dịch vụ
-						<button class="btn btn-sm btn-primary" type="button">Thêm</button>
 					</div>
 					<div class="card-body px-0">
 						<!-- Detail Service-->
 						<c:forEach var="i" items="${dichvu}">
-							<div class="d-flex align-items-center justify-content-between px-4 detail-service">
+							<div class="d-flex align-items-center justify-content-between px-4 detail-service" id="${i.ma_dich_vu}">
 								<div class="ms-4">
 									<div class="text-xs text-muted">Tên dịch vụ:</div>
-									<div class="small">${i.ten_dich_vu}</div>
+									<div class="small name-service">${i.ten_dich_vu}</div>
 								</div>
 								<div class="ms-4">
 									<div class="text-xs text-muted">Đơn giá:</div>
-									<div class="small">${i.don_gia}</div>
+									<div class="small price-service">${i.don_gia}</div>
 								</div>
 								<div class="ms-4">
 									<div class="text-xs text-muted">Thuế:</div>
-									<div class="small">${i.vat}</div>
+									<div class="small vat-service">${i.vat}</div>
 								</div>
 								<div class="ms-4">
 									<div class="text-xs text-muted">Số lượng:</div>
-									<input type="number" class="form-range js-count" id="customRange" min="0" max="50" value="0">
+									<input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1">
+									
 								</div>
 								<div class="ms-4">
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+										<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
 										<label class="form-check-label" for="flexCheckDefault">
 										  Chọn
 										</label>
@@ -104,7 +104,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="card-footer d-flex flex-row-reverse"><button type="button" class="btn btn-primary">Đăng kí</button></div>
+						<div class="card-footer d-flex flex-row-reverse"><button type="button" class="btn btn-primary js-register">Đăng kí</button></div>
 					</div>
 				</div>  
 		    </div>
@@ -117,6 +117,5 @@
 	    	<!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-   	<script src="../../../assets/js/dangkidichvu.js"></script>
 </body>
 </html>

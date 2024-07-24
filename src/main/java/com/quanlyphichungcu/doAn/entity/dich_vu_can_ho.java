@@ -91,5 +91,12 @@ public class dich_vu_can_ho {
 	public void setNgay_ket_thuc(Date ngay_ket_thuc) {
 		this.ngay_ket_thuc = ngay_ket_thuc;
 	}
+
+	@Override
+	public String toString() {
+		return "dich_vu_can_ho [can_ho=" + can_ho + ", dich_vu=" + dich_vu + ", so_luong=" + so_luong
+				+ ", ngay_bat_dau=" + ngay_bat_dau + ", ngay_ket_thuc=" + ngay_ket_thuc + "]";
+	}
+	
 	
 }
