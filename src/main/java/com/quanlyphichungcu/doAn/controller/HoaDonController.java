@@ -25,7 +25,6 @@ import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 
 @Controller
-@RequestMapping("/user")
 public class HoaDonController {
 	private static final Date NULL = null;
 
@@ -37,62 +36,62 @@ public class HoaDonController {
 	
 	@Autowired canHoRepository CHRepository;
 	
-	@RequestMapping("/hoadon/{maCSH}")
-	public String thongTinHoaDon(Model model,@PathVariable("maCSH") String maChuSoHuu) {
+	@RequestMapping("user/hoadon/{maCanHo}")
+	public String thongTinHoaDon(Model model,@PathVariable("maCanHo") String maCanHo) {
 		// lay thong tin can de in ra bang
-		List<can_ho> ListCanHo = CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
-		HoaDon HD =  HDRepository.findByMaCanHoChuaThanhToan(ListCanHo.get(0).getMa_can_ho());
+		can_ho canHo = CHRepository.findById(maCanHo).get();
+		HoaDon HD =  HDRepository.findByMaCanHoChuaThanhToan(maCanHo);
 
 		// tao 1 list map luu thong tin hoa don
-		List<Map<String, String>> ListMapHoaDon = new ArrayList<>();
-		for (can_ho item : ListCanHo) { // Use enhanced for loop for cleaner syntax
-		    ListMapHoaDon.add(getThongTinHoaDon(item,maChuSoHuu));
-		}
+		Map<String, String> MapHoaDon = getThongTinHoaDon(canHo);
+		
 		// luu thong tin dich vu vao 1 list
-		List<Map<String, String>> UIDichVuChoCanHo = getThongTinDichVu(ListCanHo.get(0).getMa_can_ho(), HD);
+		List<Map<String, String>> UIDichVuChoCanHo = getThongTinDichVu(maCanHo, HD);
+		model.addAttribute("thongTinCanHo",canHo);
 		model.addAttribute("listDichVu", UIDichVuChoCanHo);
-		model.addAttribute("thongTinHoaDon",ListMapHoaDon);
+		model.addAttribute("thongTinHoaDon",MapHoaDon);
 		return "user/hoadon";
 	}
-
 	
-	@RequestMapping("/tracuuhoadon/{maChuSoHuu}")
+	@RequestMapping("/user/tracuuhoadon/{maChuSoHuu}")
 	public String quyen(Model model,@PathVariable("maChuSoHuu") String maChuSoHuu) {
 		// get data
 		// lay cac can ho cua chu so huu
 		List<can_ho> ListCanHo =  CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
 		// tao list thong tin hoa don cua can ho
 		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
-
-		for (can_ho item : ListCanHo) { // Use enhanced for loop for cleaner syntax
-		    ListTTHoaDon.add(getThongTinHoaDon(item,maChuSoHuu));
-		}
-		List<HoaDon> danhSachHoaDon = HDRepository.findByMaCanHo(ListCanHo.get(0).getMa_can_ho());
-			// list cac hang ma se dua vao bang
-			List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
-			
+		
+		// list cac hang ma se dua vao bang
+		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
+		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
+		    ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
+		
+			List<HoaDon> danhSachHoaDon = HDRepository.findByMaCanHo(itemCanHo.getMa_can_ho());
 			// lap cac hoa don cua can ho chuyen du lieu sang map
-			for (HoaDon item : danhSachHoaDon) {
+			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				Map<String, String> row = new HashMap<String, String>();
-				String tenHoaDon = item.getThang().toString()+" "+item.getNam().toString();
+				String tenHoaDon = itemHoaDon.getThang().toString()+" "+itemHoaDon.getNam().toString();
 				row.put("tenHoaDon", tenHoaDon);
-				row.put("soTien", item.getThang().toString());
+				row.put("maCanHo", itemCanHo.getMa_can_ho());
+				row.put("soTien", itemHoaDon.getThang().toString());
 				String ngayDong;
 				String trangThai;
-				if (item.getNgay_dong_tien() != NULL) {
-					ngayDong = item.getNgay_dong_tien().toString();
+				if (itemHoaDon.getNgay_dong_tien() != NULL) {
+					ngayDong = itemHoaDon.getNgay_dong_tien().toString();
 					trangThai = "da dong";
 				} else {
 					ngayDong = "chua dong tien";
 					trangThai = "chua dong";
 				}
 				row.put("ngayDong", ngayDong);
-				row.put("ngayLap", item.getNgay_tao().toString());
-				row.put("tienThang", item.getThang().toString());
+				row.put("ngayLap", itemHoaDon.getNgay_tao().toString());
+				row.put("tienThang", itemHoaDon.getThang().toString());
 				row.put("trangThai", trangThai);
-				row.put("tienNo", item.getTien_no().toString());
+				row.put("tienNo", itemHoaDon.getTien_no().toString());
 				UIDanhSachHoaDon.add(row);
 			}
+		}
+		model.addAttribute("danhSachCanHo",ListCanHo);
 		model.addAttribute("thongTinHoaDon", ListTTHoaDon);
 		model.addAttribute("danhSachHoaDon", UIDanhSachHoaDon);
 		return "user/tracuuhoadon";
@@ -123,7 +122,8 @@ public class HoaDonController {
 		return UIDichVuChoCanHo;
 	}
 	
-	private Map<String, String> getThongTinHoaDon(can_ho canHo, String maChuSoHuu) {
+	private Map<String, String> getThongTinHoaDon(can_ho canHo) {
+		String maChuSoHuu = canHo.getMa_chu_so_huu();
 		// tao list thong tin hoa don cua can ho
 
 		Map<String, String> TTHoaDon = new HashMap<>();
@@ -134,11 +134,7 @@ public class HoaDonController {
 	    TTHoaDon.put("hoTenKhachHang", csh != null ? csh.getHo_ten() : "N/A"); // Handle potential null case
 	    TTHoaDon.put("soDienThoai", csh != null ? csh.getSdt() : "N/A");
 
-	    TTHoaDon.put("maCanHo", canHo.getMa_can_ho());
-	    TTHoaDon.put("khu", canHo.getKhu());
-	    TTHoaDon.put("tang", canHo.getTang());
-
+	    
 		return TTHoaDon;
 	}
 }
-

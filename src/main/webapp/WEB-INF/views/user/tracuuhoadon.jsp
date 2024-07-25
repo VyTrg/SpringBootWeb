@@ -63,17 +63,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group mb-5 shadow ml-auto col-lg-6">
+                    <div class="list-group mb-5 shadow ml-auto col-lg-6 col-sm-12">
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Mã căn hộ:</strong>
-                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).maCanHo}</p>
+                                <c:forEach var="i" items="${danhSachCanHo}">
+                                    <p class="text-muted mb-0"><a href="/user/hoadon/${i.ma_can_ho}">${i.ma_can_ho}</a></p>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Khu - tầng:</strong>
-                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).khu} - ${thongTinHoaDon.get(0).tang}</p>
+                            	<c:forEach var="i" items="${danhSachCanHo}">
+                                	<p class="text-muted mb-0">${i.khu} - ${i.tang}</p>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -87,7 +91,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+                                        <table class="table table-bordered dataTable table-hover" id="dataTable" width="100%" cellspacing="0" role="grid"
                                             aria-describedby="dataTable_info" style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
@@ -95,6 +99,8 @@
                                                         aria-label="Name: activate to sort column descending" style="width: 10px;">Stt</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Tên hoá đơn</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Mã căn hộ</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Office: activate to sort column ascending" style="width: 100px;">Số tiền</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
@@ -112,17 +118,20 @@
                                             <tbody>
 	                                		<c:set var="count" value="1" scope="session" />  
                                             <c:forEach var="i" items="${danhSachHoaDon}">
-                                                <tr class="odd">
-                                                    <td class="sorting_1">${count}</td>
-                                                    <td>${i.tenHoaDon}</td>
-                                                    <td>${i.soTien}</td>
-                                                    <td>${i.ngayDong}</td>
-                                                    <td>${i.ngayLap}</td>
-                                                    <td>${i.tienThang}</td>
-                                                    <td>${i.trangThai}</td>
-                                                    <td>${i.tienNo}</td>
-                                                    
-                                                </tr>
+												
+	                                                <tr class="odd">
+	                                                    <td class="sorting_1">${count}</td>
+	                                                    <td>${i.tenHoaDon}</td>
+	                                                    <td>${i.maCanHo}</td>
+	                                                    <td>${i.soTien}</td>
+	                                                    <td>${i.ngayDong}</td>
+	                                                    <td>${i.ngayLap}</td>
+	                                                    <td>${i.tienThang}</td>
+	                                                    <td>${i.trangThai}</td>
+	                                                    <td>${i.tienNo}</td>
+	                                                </tr>
+												
+                                                
 				                                    <c:set var="count" value="${count = count + 1}" scope="session" />                                                
                                             </c:forEach>
                                             </tbody>
