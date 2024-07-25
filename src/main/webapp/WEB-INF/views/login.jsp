@@ -20,11 +20,11 @@
                         <div class="mb-3">
                             <!-- name: data after submit, value: data send -->
                             <label for="username" class="form-label">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="ten_dang_nhap">
+                            <input type="text" class="form-control" id="ten_dang_nhap" placeholder="Nhập tên đăng nhập" name="ten_dang_nhap">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="mat_khau" >
+                            <input type="password" class="form-control" id="mat_khau" placeholder="Nhập mật khẩu" name="mat_khau" >
                         </div>
                         <select class="role-select mb-3" arial-label="Default select example" id="quyen" name="quyen">
                         <option selected>Chọn quyền</option>

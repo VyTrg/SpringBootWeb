@@ -30,6 +30,7 @@
 	
 	<!-- add script in dangkidichvu -->
     <script src="../../../../assets/js/dangkidichvu.js"></script>
+	<base href="${ pageContext.servletContext.contextPath }/" />
 </head>
 <body>
     <!-- Page Wrapper -->

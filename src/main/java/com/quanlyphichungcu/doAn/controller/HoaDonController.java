@@ -25,6 +25,7 @@ import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 
 @Controller
+@RequestMapping("/user")
 public class HoaDonController {
 	private static final Date NULL = null;
 
@@ -36,7 +37,7 @@ public class HoaDonController {
 	
 	@Autowired canHoRepository CHRepository;
 	
-	@RequestMapping("user/hoadon/{maCSH}")
+	@RequestMapping("/hoadon/{maCSH}")
 	public String thongTinHoaDon(Model model,@PathVariable("maCSH") String maChuSoHuu) {
 		// lay thong tin can de in ra bang
 		List<can_ho> ListCanHo = CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
@@ -55,7 +56,7 @@ public class HoaDonController {
 	}
 
 	
-	@RequestMapping("/user/tracuuhoadon/{maChuSoHuu}")
+	@RequestMapping("/tracuuhoadon/{maChuSoHuu}")
 	public String quyen(Model model,@PathVariable("maChuSoHuu") String maChuSoHuu) {
 		// get data
 		// lay cac can ho cua chu so huu

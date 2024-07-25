@@ -31,17 +31,18 @@ public class chuSoHuuController {
 	
 	@Autowired dichVuRepository dichVuRepository;
 
-	@RequestMapping("/thongtincanho/{maChuSoHuu}")
+	
+	@RequestMapping("/thongtin/{maChuSoHuu}")
 	public String getMethodName(Model model,@PathVariable("maChuSoHuu") String maChuSoHuu) {
 		model.addAttribute("thongtinkhachhang", CSHRepository.findById(maChuSoHuu).get());
 		model.addAttribute("danhsachcanho", CanHoRepository.getCanHoByChuSoHuu(maChuSoHuu));
-		return "user/thongtincanho";
+		return "user/thongtin";
 	}
 	
 	@GetMapping("/dangkidichvu")
 	public String getThongTinDichVu(Model model) {
 		model.addAttribute("dichvu", dichVuRepository.findAll());
-		return "/user/dangkidichvu";
+		return "user/dangkidichvu";
 	}
 	
 
