@@ -47,16 +47,16 @@
 		    <!-- Main Content -->
 		    <div id="content" class="p-4">
 				<h3 class="mb-0 mt-5">THÔNG BÁO HOÁ ĐƠN</h3>
-                <p>Tên hoá đơn: Hoá đơn tháng ${thongTinHoaDon.get(0).thang} - năm ${thongTinHoaDon.get(0).nam} </p>
+                <p>Tên hoá đơn: Hoá đơn tháng ${thongTinHoaDon.thang} - năm ${thongTinHoaDon.nam} </p>
                 <hr class="my-4" />
                 <strong class="mb-0">Thông tin hoá đơn:</strong>
-                <p>Ngày lập: ${thongTinHoaDon.get(0).ngayTao} </p>
+                <p>Ngày lập: ${thongTinHoaDon.ngayTao} </p>
                 <div class="d-flex">
                     <div class="list-group mb-5 shadow col-lg-5">
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Thông tin khách hàng:</strong>
-                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).hoTenKhachHang}</p>
+                                <p class="text-muted mb-0">${thongTinHoaDon.hoTenKhachHang}</p>
                             </div>
                         </div>
                         <div class="list-group-item">
@@ -70,13 +70,13 @@
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Căn hộ số:</strong>
-                                <p class="text-muted mb-0">${thongTinHoaDon.get(0).CanHoSo}</p>
+                                <p class="text-muted mb-0">${thongTinCanHo.ma_can_ho}</p>
                             </div>
                         </div>
                         <div class="list-group-item">
                             <div class="col align-items-center">
                                 <strong class="mb-0">Khu - tầng:</strong>
-                                <p class="text-muted mb-0">Khu ${thongTinHoaDon.get(0).khu} - tầng ${thongTinHoaDon.get(0).tang}</p>
+                                <p class="text-muted mb-0">${thongTinCanHo.khu} - ${thongTinCanHo.tang}</p>
                             </div>
                         </div>
                     </div>

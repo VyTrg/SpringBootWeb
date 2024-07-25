@@ -33,7 +33,9 @@ public class testController {
 	
 	@RequestMapping("/test")
 	@ResponseBody
-	public ChuSoHuu test() {
-		return CSHRepository.findById("CSH3").get();
+	public List<can_ho> test() {
+		// lay cac can ho cua chu so huu
+		List<can_ho> ListCanHo =  CHRepository.getCanHoByChuSoHuu("CSH3");
+		return ListCanHo;
 	}
 }

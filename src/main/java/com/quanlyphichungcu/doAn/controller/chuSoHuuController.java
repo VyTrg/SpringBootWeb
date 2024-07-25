@@ -68,7 +68,7 @@ public class chuSoHuuController {
 			// get data
 			String data = thongTinDangKi;
 			// charge string to json
-			 JSONObject jsonObject = new JSONObject(data);
+			JSONObject jsonObject = new JSONObject(data);
 			 
 			// Iterate over keys
 	        Iterator<String> keys = jsonObject.keys();
