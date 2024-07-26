@@ -15,7 +15,7 @@ function searchHoaDon() {
 		if (value.length == 0) {
 			element.style.display = "";			
 		}
-		else if (isVisible) {
+		else if (!isVisible) {
 			element.style.display = "none";
 		} else {
 			element.style.display = "";
