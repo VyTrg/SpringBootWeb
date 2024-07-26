@@ -24,6 +24,9 @@
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- add script in dangkidichvu -->
+   	<script src="../../../assets/js/hoadon.js"></script>
 </head>
 <body>
     <!-- Page Wrapper -->
@@ -83,14 +86,18 @@
                 </div>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Hoá đơn:</h6>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12"><h6 class="m-0 font-weight-bold text-primary">Thông tin hoá đơn:</h6></div>
+                                <div class="col-lg-6 col-sm-12"><label>Search:<input type="search"
+                                            class="form-control-sm js-search" placeholder="YYYY/MM/DD" aria-controls="dataTable"></label></div>
+                            </div>
                     </div>
                     <div class="card-body">
                         <div class="table">
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered dataTable table-hover" id="dataTable" width="100%" cellspacing="0" role="grid"
+                                        <table class="table table-bordered dataTable table-hover js-table" id="dataTable" width="100%" cellspacing="0" role="grid"
                                             aria-describedby="dataTable_info" style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
