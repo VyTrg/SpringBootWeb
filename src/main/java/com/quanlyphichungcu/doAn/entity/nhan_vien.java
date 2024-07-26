@@ -29,7 +29,7 @@ public class nhan_vien {
 	private String cccd;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date ngay_sinh;
 	
 	@OneToOne
@@ -39,6 +39,8 @@ public class nhan_vien {
 	@ManyToOne
 	@JoinColumn(name="ma_phong_ban")
 	private PhongBan phongBan;
+	
+	private String Phai;
 
 	public String getMa_nhan_vien() {
 		return ma_nhan_vien;
@@ -96,8 +98,16 @@ public class nhan_vien {
 		this.phongBan = phongBan;
 	}
 
+	public String getPhai() {
+		return Phai;
+	}
+
+	public void setPhai(String phai) {
+		Phai = phai;
+	}
+
 	public nhan_vien(String ma_nhan_vien, String ho_ten, String sdt, String cccd, Date ngay_sinh, dang_nhap dangNhap,
-			PhongBan phongBan) {
+			PhongBan phongBan, String phai) {
 		super();
 		this.ma_nhan_vien = ma_nhan_vien;
 		this.ho_ten = ho_ten;
@@ -106,14 +116,11 @@ public class nhan_vien {
 		this.ngay_sinh = ngay_sinh;
 		this.dangNhap = dangNhap;
 		this.phongBan = phongBan;
+		Phai = phai;
 	}
 
 	public nhan_vien() {
-
-		
-
 		super();
-
 	}
 	
 }

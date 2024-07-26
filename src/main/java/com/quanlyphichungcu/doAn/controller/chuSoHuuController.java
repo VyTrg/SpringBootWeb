@@ -46,11 +46,12 @@ public class chuSoHuuController {
 	
 	@Autowired dichVuCanHoRepository DichVuCuaCanHoRepository;
 
-	@RequestMapping("/thongtincanho/{maChuSoHuu}")
+	
+	@RequestMapping("/thongtin/{maChuSoHuu}")
 	public String getMethodName(Model model,@PathVariable("maChuSoHuu") String maChuSoHuu) {
 		model.addAttribute("thongtinkhachhang", CSHRepository.findById(maChuSoHuu).get());
 		model.addAttribute("danhsachcanho", CanHoRepository.getCanHoByChuSoHuu(maChuSoHuu));
-		return "user/thongtincanho";
+		return "/user/thongtin";
 	}
 	
 	@RequestMapping("/dangkidichvu/{maCanHo}")

@@ -23,6 +23,7 @@ import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 
 @Controller
 public class testController {
+
 	@Autowired HoaDonRepository HDRepository;
 	
 	@Autowired chuSoHuuRepository CSHRepository;
@@ -39,3 +40,4 @@ public class testController {
 		return ListCanHo;
 	}
 }
+

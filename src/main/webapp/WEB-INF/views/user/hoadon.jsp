@@ -29,6 +29,7 @@
 	
 	<!-- add script in dangkidichvu -->
     <!-- <script src="/assets/js/dangkidichvu.js"></script> -->
+    <base href="${ pageContext.servletContext.contextPath }/" />
 </head>
 <body>
  <!-- Page Wrapper -->
@@ -41,7 +42,7 @@
 	    <!-- Content Wrapper -->
 	    <div id="content-wrapper" class="d-flex flex-column">
 	    	<!-- Topbar -->
-				<%@ include file="../layout/head.jsp" %>
+			<%@ include file="../layout/head.jsp" %>
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->

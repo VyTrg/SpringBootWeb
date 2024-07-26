@@ -31,11 +31,14 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-*,
-*::before,
+/* *, */
+/* *::before,
 *::after {
   box-sizing: border-box;
-}
+  
+} */
+
+
 
 html {
   font-family: sans-serif;
@@ -46,4 +49,12 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
+}
+
+.nav-link {
+  padding: 10px 20px; /* Adjust padding as per your design */
+}
+
+.nav-link .bi-arrow-down-short {
+  margin-left: 5px; /* Adjust margin for the arrow icon */
 }

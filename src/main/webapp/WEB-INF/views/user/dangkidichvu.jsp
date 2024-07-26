@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	
 	<!-- add script in dangkidichvu -->
+    <script src="../../../../assets/js/dangkidichvu.js"></script>
+	<base href="${ pageContext.servletContext.contextPath }/" />
    	<script src="../../../assets/js/dangkidichvu.js"></script>
 </head>
 <body>
