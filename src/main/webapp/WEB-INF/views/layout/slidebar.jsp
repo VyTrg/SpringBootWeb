@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<head>
-    
-</head>
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -11,24 +8,6 @@
         </div>
         <div class="sidebar-brand-text mx-3">Quản lý phí chung cư</div>
     </a>
-
-    <!-- Divider -->
-<!--     <hr class="sidebar-divider my-0"> -->
-
-<!--     Nav Item - Dashboard -->
-<!--     <li class="nav-item active"> -->
-<!--         <a class="nav-link" href="index.html"> -->
-<!--             <i class="fas fa-fw fa-tachometer-alt"></i> -->
-<!--             <span>Dashboard</span></a> -->
-<!--     </li> -->
-
-<!--     Divider -->
-<!--     <hr class="sidebar-divider"> -->
-
-    <!-- Heading -->
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo" id="collapse-container">
@@ -38,8 +17,8 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/tracuuhoadon/CSH3">Tra cứu hóa đơn</a>
-                <a class="collapse-item"  href="..${pageContext.servletContext.contextPath}/hoadon/CSH3">Lịch sử hóa đơn</a>
+                <a class="collapse-item" href="/user/tracuuhoadon/CSH3">Tra cứu hóa đơn</a>
+                <a class="collapse-item"  href="/user/hoadon/CH4">Lịch sử hóa đơn</a>
             </div>
         </div>
     </li>
@@ -53,7 +32,7 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/dangkidichvu">Đăng kí dịch vụ</a>
+                <a class="collapse-item" href="/user/dangkidichvu/CH4">Đăng kí dịch vụ</a>
                 <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>
@@ -68,7 +47,7 @@
 <!--     </div> -->
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -77,10 +56,9 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item">Thông tin căn hộ</a>
-                <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Charts -->
 <!--     <li class="nav-item"> -->

@@ -70,7 +70,7 @@ public class HoaDonController {
 			// lap cac hoa don cua can ho chuyen du lieu sang map
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				Map<String, String> row = new HashMap<String, String>();
-				String tenHoaDon = itemHoaDon.getThang().toString()+" "+itemHoaDon.getNam().toString();
+				String tenHoaDon = itemHoaDon.getThang().toString()+"/" + itemHoaDon.getNam().toString();
 				row.put("tenHoaDon", tenHoaDon);
 				row.put("maCanHo", itemCanHo.getMa_can_ho());
 				row.put("soTien", itemHoaDon.getThang().toString());
