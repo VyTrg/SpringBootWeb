@@ -197,7 +197,7 @@
 											<c:forEach var="i" items="${danhsachcanho}">
 											<tr>
 											<td><ngb-highlight>${i.ma_can_ho}</ngb-highlight></td>
-											<td><ngb-highlight>${i.ma_chu_so_huu}</ngb-highlight></td>
+											<td><ngb-highlight>${i.chuSoHuu.ho_ten}</ngb-highlight></td>
 											<td><ngb-highlight>${i.dien_tich}</ngb-highlight></td>
 											<td><ngb-highlight>${i.khu}</ngb-highlight></td>
 											<td><ngb-highlight>${i.tang}</ngb-highlight></td>

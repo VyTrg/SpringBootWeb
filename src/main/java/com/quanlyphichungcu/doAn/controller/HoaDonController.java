@@ -23,6 +23,7 @@ import com.quanlyphichungcu.doAn.repository.HoaDonRepository;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
 import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
+import com.quanlyphichungcu.doAn.service.hoaDonService;
 
 @Controller
 public class HoaDonController {
@@ -52,14 +53,17 @@ public class HoaDonController {
 //		model.addAttribute("listDichVu", UIDichVuChoCanHo);
 //		model.addAttribute("thongTinHoaDon",MapHoaDon);
 		
+		ChuSoHuu CSH = CSHRepository.findById(maChuSoHuu).get();
+		
 		List<can_ho> ListCanHo =  CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
 		// tao list thong tin hoa don cua can ho
 		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
 		
 		List<Map<String, String>> UIDichVuChoCanHo = null;
 		// list cac hang ma se dua vao bang
-		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
-		List<Map<String, String>> UIChiTietHoaDon = new ArrayList<Map<String,String>>();
+//		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
+		
+		List<hoaDonService> UIhoaDonService = new ArrayList<hoaDonService>();
 		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
 			ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
 			
@@ -67,36 +71,32 @@ public class HoaDonController {
 			// lap cac hoa don cua can ho chuyen du lieu sang map
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				if(itemHoaDon.getNgay_dong_tien() == null) {
-					Map<String, String> row = new HashMap<String, String>();
-					Map<String, String> row1 = new HashMap<String, String>();
-					String tenHoaDon = itemHoaDon.getThang().toString()+"/	" + itemHoaDon.getNam().toString();
-					row.put("tenHoaDon", tenHoaDon);
-					row.put("maCanHo", itemCanHo.getMa_can_ho());
-//					HoaDon HD =  HDRepository.findByMaCanHoChuaThanhToan(itemCanHo.getMa_can_ho());
-//					Map<String, String> MapHoaDon = getThongTinHoaDon(canHo);
-//					UIDichVuChoCanHo = getThongTinDichVu(itemCanHo.getMa_can_ho(), HD);
-					List<dich_vu_can_ho> ListCTHoaDon = DV_CHRepository.getDichVuByCanHo(itemCanHo.getMa_can_ho());
-					for (dich_vu_can_ho itemChiTiet : ListCTHoaDon) {
-						row1.put("tenDichVu", itemChiTiet.getDich_vu().getTen_dich_vu());
-						UIChiTietHoaDon.add(row1);
-//						System.out.println(itemChiTiet.getDich_vu().getTen_dich_vu());
+					hoaDonService itemUIHoaDon = new hoaDonService();
+					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/ " + itemHoaDon.getNam().toString());
+					itemUIHoaDon.setMaCanHo(itemCanHo);
+					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
+					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
+					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
+					float tong = 0;
+					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
+						int dongia, vat, soluong;
+						dongia = Integer.parseInt(tongDichVu.get("donGia"));
+						vat = Integer.parseInt(tongDichVu.get("vat"));
+						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
+						tong += (dongia*soluong*(vat+100))/100;
+
 					}
-//					row1.clear();
-					row.put("soTien", itemHoaDon.getThang().toString());
-					String ngayDong = "chưa đóng";
-					row.put("ngayDong", ngayDong);
-					row.put("ngayLap", itemHoaDon.getNgay_tao().toString());
-					row.put("tienThang", itemHoaDon.getThang().toString());
-					UIDanhSachHoaDon.add(row);
+					
+					itemUIHoaDon.setTien_thang(Float.toString(tong));
+					UIhoaDonService.add(itemUIHoaDon);
 				}
 			}
 		
 			
 		}
 		model.addAttribute("danhSachCanHo",ListCanHo);
-		model.addAttribute("thongTinHoaDon", ListTTHoaDon);
-		model.addAttribute("danhSachHoaDon", UIDanhSachHoaDon);
-		model.addAttribute("chitiet", UIChiTietHoaDon);
+		model.addAttribute("thongtin", CSH);
+		model.addAttribute("danhSachHoaDon", UIhoaDonService);
 		return "user/hoadon";
 	}
 	
@@ -173,8 +173,30 @@ public class HoaDonController {
 	    TTHoaDon.put("maKhachHang", maChuSoHuu); // Handle potential null case
 	    TTHoaDon.put("hoTenKhachHang", csh != null ? csh.getHo_ten() : "N/A"); // Handle potential null case
 	    TTHoaDon.put("soDienThoai", csh != null ? csh.getSdt() : "N/A");
-
 	    
 		return TTHoaDon;
 	}
+	
+	private List<Map<String, String>> getChiTietHoaDon(can_ho itemCanHo) {
+		List<Map<String, String>> UIChiTietHoaDon = new ArrayList<Map<String,String>>();
+		
+		List<dich_vu_can_ho>  ListCTHoaDon = DV_CHRepository.getDichVuByCanHo(itemCanHo.getMa_can_ho());
+		for (dich_vu_can_ho itemChiTiet : ListCTHoaDon) {
+			Map<String, String> rowChiTiet = new HashMap<String, String>();
+			rowChiTiet.put("tenDichVu", itemChiTiet.getDich_vu().getTen_dich_vu());
+			int soLuong = itemChiTiet.getSo_luong();
+			rowChiTiet.put("soLuong", Integer.toString(soLuong));
+			int donGia = itemChiTiet.getDich_vu().getDon_gia();
+			rowChiTiet.put("donGia", Integer.toString(donGia));
+			int vat = itemChiTiet.getDich_vu().getVat();
+			rowChiTiet.put("vat", Integer.toString(vat));
+
+//			rowChiTiet.put("ngayBatDau", itemChiTiet.getDich_vu().getTen_dich_vu());
+//			rowChiTiet.put("ngayKetThuc", itemChiTiet.getDich_vu().getTen_dich_vu());
+
+			UIChiTietHoaDon.add(rowChiTiet);
+		}
+		return UIChiTietHoaDon;
+	}
+	
 }
