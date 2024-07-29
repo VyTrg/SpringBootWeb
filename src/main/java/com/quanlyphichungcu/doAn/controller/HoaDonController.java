@@ -163,7 +163,7 @@ public class HoaDonController {
 	}
 	
 	private Map<String, String> getThongTinHoaDon(can_ho canHo) {
-		String maChuSoHuu = canHo.getMa_chu_so_huu();
+		String maChuSoHuu = canHo.getChuSoHuu().getMa_chu_so_huu();
 		// tao list thong tin hoa don cua can ho
 
 		Map<String, String> TTHoaDon = new HashMap<>();

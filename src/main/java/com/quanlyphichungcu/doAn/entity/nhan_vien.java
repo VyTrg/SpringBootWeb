@@ -29,7 +29,7 @@ public class nhan_vien {
 	private String cccd;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date ngay_sinh;
 	
 	@OneToOne
