@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -33,6 +34,9 @@ public class ChuSoHuu {
 	@ManyToOne
 	@JoinColumn(name = "ten_dang_nhap")
 	private dang_nhap dangNhap;
+	
+//	@OneToMany(mappedBy = "chuSoHuu")
+//    private List<can_ho> ds_can_ho;
 
 	public String getMa_chu_so_huu() {
 		return ma_chu_so_huu;
@@ -90,13 +94,13 @@ public class ChuSoHuu {
 		this.dangNhap = dangNhap;
 	}
 	
-	public List<can_ho> getDs_can_ho() {
-		return ds_can_ho;
-	}
-	
-	public void setDs_can_ho(List<can_ho> ds_can_ho) {
-		this.ds_can_ho = ds_can_ho;
-	}
+//	public List<can_ho> getDs_can_ho() {
+//		return ds_can_ho;
+//	}
+//	
+//	public void setDs_can_ho(List<can_ho> ds_can_ho) {
+//		this.ds_can_ho = ds_can_ho;
+//	}
 
 	public ChuSoHuu(String ma_chu_so_huu, String ho_ten, String sdt, String phai, Date ngay_sinh, String cccd,
 			dang_nhap dangNhap, List<can_ho> ds_can_ho) {
@@ -108,7 +112,7 @@ public class ChuSoHuu {
 		this.ngay_sinh = ngay_sinh;
 		this.cccd = cccd;
 		this.dangNhap = dangNhap;
-		this.ds_can_ho = ds_can_ho;
+//		this.ds_can_ho = ds_can_ho;
 	}
 
 	public ChuSoHuu() {

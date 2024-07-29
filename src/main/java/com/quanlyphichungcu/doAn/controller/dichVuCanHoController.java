@@ -55,16 +55,16 @@ public class dichVuCanHoController {
 		return "admin/canho";
 	}
 
-	@GetMapping("/{Can_Ho}")
-	public String getDSDichVu(Model model, @PathVariable String Can_Ho) {
-		Optional<can_ho> ch = CanHoRepository.findById(Can_Ho);
-		model.addAttribute("ch", ch.get());
-		model.addAttribute("csh", ch.get().getChuSoHuu());
-		List<dich_vu_can_ho> dv = DichVuCanHorepository.getDichVuByCanHo(Can_Ho);
-		model.addAttribute("dv", dv);
-		
-		return "admin/ctcanho";
-	}
+//	@GetMapping("/{Can_Ho}")
+//	public String getDSDichVu(Model model, @PathVariable String Can_Ho) {
+//		Optional<can_ho> ch = CanHoRepository.findById(Can_Ho);
+//		model.addAttribute("ch", ch.get());
+//		model.addAttribute("csh", ch.get().getChuSoHuu());
+//		List<dich_vu_can_ho> dv = DichVuCanHorepository.getDichVuByCanHo(Can_Ho);
+//		model.addAttribute("dv", dv);
+//		
+//		return "admin/ctcanho";
+//	}
 }
 //		List<Map<String, String>> ds_dv = new ArrayList<>();
 //
