@@ -38,7 +38,7 @@ public class HoaDon {
 	private Integer tien_thang;
 	private Integer tien_no;
 	
-	
+
 	@Override
 	public String toString() {
 		return "HoaDon [ma_hoa_don=" + ma_hoa_don + ", thang=" + thang + ", nam=" + nam + ", maCanHo=" + maCanHo
@@ -137,9 +137,6 @@ public class HoaDon {
 	public void setTien_no(Integer tien_no) {
 		this.tien_no = tien_no;
 	}
-	
-
-	
 
 
 	public HoaDon(String ma_hoa_don, Integer thang, Integer nam, can_ho maCanHo, nhan_vien nhanVien, Date ngay_tao,

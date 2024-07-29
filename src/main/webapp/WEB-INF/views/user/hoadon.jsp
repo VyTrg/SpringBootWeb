@@ -97,26 +97,31 @@
                                                 <tr class="odd">
                                                     <td class="sorting_1">${count}</td>
                                                     <td>${i.tenHoaDon}</td>
-                                                    <td>${i.maCanHo}</td>
-                                                    <!-- <td>${i.ngayDong}</td> -->
-                                                    <td>${i.ngayLap}</td>
-                                                    <!-- <td>${i.tienThang}</td> -->
-                                                    <!-- <td>${i.trangThai}</td> -->
-                                                    <!-- <td>${i.tienNo}</td> -->
-                                                    <td>${i.soTien}</td>
+                                                    <td>${i.maCanHo.ma_can_ho}</td>
+                                                    <td>${i.ngay_tao}</td>
+                                                    <td>${i.tien_thang}</td>
                                                     <td>
-                                                        <ul class="list-group list-group-flush">
-                                                            <c:forEach var="j" items="${chitiet}">
-                                                                <li class="list-group-item">${j.tenDichVu}</li>
-                                                                
+                                                    	<table class="table">
+														  <thead>
+														    <tr>
+														      <th scope="col">Tên dịch vụ</th>
+														      <th scope="col">Số lượng</th>
+														      <th scope="col">Đơn giá</th>
+														      <th scope="col">VAT</th>
+														    </tr>
+														  </thead>
+														  <tbody>
+														  <c:forEach var="j" items="${i.chiTietDichVu}">
+															    <tr>
+															      <th scope="row">${j.tenDichVu}</th>
+															      <td>${j.soLuong}</td>
+															      <td>${j.donGia}</td>
+															      <td>${j.vat}</td>
+															    </tr>
                                                             </c:forEach>
-                                                            <!-- <li class="list-group-item">Cras justo odio</li>
-                                                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                            <li class="list-group-item">Morbi leo risus</li>
-                                                            <li class="list-group-item">Porta ac consectetur ac</li>
-                                                            <li class="list-group-item">Vestibulum at eros</li> -->
-                                                            <c:set var="count" value="${count = count + 1}" scope="session" /> 
-                                                        </ul>
+
+														  </tbody>
+														</table>
                                                     </td>
                                                     <!-- <td href="">Xem chi tiết</td> -->
                                                      <!-- <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Xem chi tiết</button></td> -->
