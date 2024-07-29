@@ -1,6 +1,7 @@
 package com.quanlyphichungcu.doAn.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -96,6 +97,11 @@ public class dich_vu_can_ho {
 	public String toString() {
 		return "dich_vu_can_ho [can_ho=" + can_ho + ", dich_vu=" + dich_vu + ", so_luong=" + so_luong
 				+ ", ngay_bat_dau=" + ngay_bat_dau + ", ngay_ket_thuc=" + ngay_ket_thuc + "]";
+	}
+
+	public static List<dich_vu_can_ho> getDichVuByCanHo(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

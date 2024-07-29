@@ -9,25 +9,25 @@
         <div class="sidebar-brand-text mx-3">Quản lý phí chung cư</div>
     </a>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo" id="collapse-container">
-            <i class="fas fa-fw fa-cog"></i>
+            <!-- <i class="fas fa-fw fa-cog"></i> -->
             <span>Hóa đơn</span>
             <!-- <i class="bi bi-arrow-down-short" id="expandHoaDon" ></i> -->
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/user/tracuuhoadon/CSH3">Tra cứu hóa đơn</a>
-                <a class="collapse-item"  href="/user/hoadon/CH4">Lịch sử hóa đơn</a>
+                <a class="collapse-item" href="/user/tracuuhoadon/${sessionScope.thongtin.ma_chu_so_huu}">Tra cứu hóa đơn</a>
+                <a class="collapse-item"  href="/user/hoadon/${sessionScope.thongtin.ma_chu_so_huu}">Thanh toán hóa đơn</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
+            <!-- <i class="fas fa-fw fa-wrench"></i> -->
             <span>Dịch vụ</span>
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

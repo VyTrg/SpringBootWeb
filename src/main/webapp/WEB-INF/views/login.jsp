@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">Đăng nhập</h5>
-                    <form action="/login" method="post" object="dang_nhap" id="loginForm">
+                    <form action="login" method="post" object="dang_nhap" id="loginForm">
                         <div class="mb-3">
                             <!-- name: data after submit, value: data send -->
                             <label for="username" class="form-label">Tên đăng nhập</label>
@@ -36,13 +36,15 @@
                         </div>
                     </div>
                     </div>
+                    <span style="display: block" class="password__text--error" >${message}</span>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     </div>
-    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <!-- modal dialog -->
+    <!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -59,13 +61,13 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <!-- Popper.js (required for Bootstrap) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script>
+    <!-- <script>
        window.onload = function(){
         var errorMessage = '<%= request.getAttribute("errorMessage") %>';
         if (errorMessage) {
@@ -73,6 +75,11 @@
             $('#errorModal').modal('show');
         }
       } 
-    </script>
+    </script> -->
+    <style>
+        .password__text--error{
+            color: red;
+        }
+    </style>
   </body>
 </html>

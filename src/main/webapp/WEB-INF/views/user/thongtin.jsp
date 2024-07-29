@@ -42,10 +42,98 @@
 			<!-- End of Topbar -->
 	    	
 		    <!-- Main Content -->
-		    <div id="content" class="p-4">
-			    <h3 class="mb-0 mt-5">Thông tin chủ sở hữu</h3>
-	                <hr class="my-4" />
-	                <div>
+		    <section style="background-color: #eee;">
+				<div class="container py-5">
+				  <div class="row">
+					<div class="col">
+					  <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+						<ol class="breadcrumb mb-0">
+						
+						  <li class="breadcrumb-item active" aria-current="page" style="font-weight: bold;">Thông tin người dùng</li>
+						</ol>
+					  </nav>
+					</div>
+				  </div>
+			  
+				  <div class="row">
+					<div class="col-lg-4">
+					  <div class="card mb-4">
+						<div class="card-body text-center">
+						  <img src="../../../static/images/profile.jpg" alt="avatar"
+							class="rounded-circle img-fluid" style="width: 150px;">
+						  <h5 class="my-3">${thongtinkhachhang.ho_ten}</h5>
+						</div>
+					  </div>
+					  
+					</div>
+					<div class="col-lg-8">
+					  <div class="card mb-4">
+						<div class="card-body">
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Họ và tên</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.ho_ten}</p>
+							</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Mã khách hàng</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.ma_chu_so_huu}</p>
+							</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Số điện thoại</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.sdt}</p>
+							</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Giới tính</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.phai}</p>
+							</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Ngày sinh</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.ngay_sinh}</p>
+							</div>
+						  </div>
+						  <hr>
+						  <div class="row">
+							<div class="col-sm-3">
+							  <p class="mb-0">Căn cước công dân</p>
+							</div>
+							<div class="col-sm-9">
+							  <p class="text-muted mb-0">${thongtinkhachhang.cccd}</p>
+							</div>
+						  </div>
+						  
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </section>
+			
+			<div id="content" class="p-4">
+			    <!-- <h3 class="mb-0 mt-5">Thông tin chủ sở hữu</h3> -->
+	                <!-- <hr class="my-4" /> -->
+	                <!-- <div>
 	                    <div class="list-group mb-5 shadow col-lg-8 col-sm-12">
 	                        <div class="list-group-item">
 	                            <div class="col align-items-center">
@@ -90,10 +178,10 @@
 	                            </div>
 	                        </div>
 	                    </div>
-	                   </div>
+	                   </div> -->
 	                <hr class="my-4" />
 					<div _ngcontent-riq-c12="" class="card mb-4">
-						<div class="card-header">Căn hộ đang sở hữu:</div>
+						<div class="card-header" style="font-weight: bold;">Căn hộ đang sở hữu:</div>
 						<div class="card-body"><sb-ng-bootstrap-table>
 									<table class="table table-striped">
 										<thead>

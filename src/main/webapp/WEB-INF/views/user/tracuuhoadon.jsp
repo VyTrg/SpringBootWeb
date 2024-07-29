@@ -47,11 +47,12 @@
 		    <!-- Main Content -->
 		    <div id="content" class="p-4">
 		    	<h3 class="mb-0 mt-5">TRA CỨU HOÁ ĐƠN</h3>
-                <p>Thông tin hoá đơn</p>
+                <!-- <p>Thông tin hoá đơn</p> -->
                 <hr class="my-4" />
                 <strong class="mb-0">Thông tin khách hàng:</strong>
+                <p>Họ và tên: ${thongtin.ho_ten}</p>
                 <p>Mã khách hàng: ${thongTinHoaDon.get(0).maKhachHang}</p>
-                <div class="d-flex">
+                <!-- <div class="d-flex">
                     <div class="list-group mb-5 shadow col-lg-5">
                         <div class="list-group-item">
                             <div class="col align-items-center">
@@ -84,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                             <div class="row">
@@ -103,23 +104,25 @@
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
-                                                        aria-label="Name: activate to sort column descending" style="width: 10px;">Stt</th>
+                                                        aria-label="Name: activate to sort column descending" style="width: 10px;">STT</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Tên hoá đơn</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Mã căn hộ</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                        aria-label="Office: activate to sort column ascending" style="width: 100px;">Số tiền</th>
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Office: activate to sort column ascending" style="width: 100px;">Số tiền</th> -->
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Age: activate to sort column ascending" style="width: 150px;">Ngày đóng</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                                                         aria-label="Start date: activate to sort column ascending" style="width: 150px;">Ngày lập</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Tiền tháng</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                        aria-label="Salary: activate to sort column ascending" style="width: 90px;">Trạng thái</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Nợ</th>
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Tổng tiền</th>
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 90px;">Trạng thái</th> -->
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Nợ</th> -->
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                                        aria-label="Salary: activate to sort column ascending" style="width: 100px;">Chi tiết</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -130,12 +133,12 @@
 	                                                    <td class="sorting_1">${count}</td>
 	                                                    <td>${i.tenHoaDon}</td>
 	                                                    <td>${i.maCanHo}</td>
-	                                                    <td>${i.soTien}</td>
+	                                                    <!-- <td>${i.soTien}</td> -->
 	                                                    <td>${i.ngayDong}</td>
 	                                                    <td>${i.ngayLap}</td>
 	                                                    <td>${i.tienThang}</td>
-	                                                    <td>${i.trangThai}</td>
-	                                                    <td>${i.tienNo}</td>
+	                                                    <!-- <td>${i.trangThai}</td> -->
+	                                                    <!-- <td>${i.tienNo}</td> -->
 	                                                </tr>
 												
                                                 
