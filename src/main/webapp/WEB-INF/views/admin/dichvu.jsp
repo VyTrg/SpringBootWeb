@@ -91,11 +91,11 @@
 
 			<div class="row mt-4">
 				<div class="col-sm-1"></div>
-				<div class="col-sm-10 border">
+				<div class="col-sm-10 border js-table-service">
 					<div class="row">
 						<h3>Hiệu chỉnh dịch vụ</h3>
 						<div class="container col-sm-6 mt-3">
-							<table class="table table-striped js-table-service">
+							<table class="table table-striped">
 								<thead>
 								</thead>
 								<tbody>
@@ -146,5 +146,6 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+
 </body>
 </html>

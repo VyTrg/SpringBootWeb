@@ -1,7 +1,13 @@
 addEventListener("DOMContentLoaded", (event) => {
-	var suaButton = document.querySelector(".js-update");
+	var suaButton = document.querySelectorAll(".js-update");
 	var tableModelUpdate = document.querySelector(".js-table-service");
-	console.log(suaButton);
-	console.log(tableModelUpdate);
+	tableModelUpdate.style.display = "none";
+
+	suaButton.forEach(button => {
+		button.addEventListener('click',handleSuaButtonClick)
+	})
 	
+	function handleSuaButtonClick(event) {
+		tableModelUpdate.style.display = "";
+	}
 });
