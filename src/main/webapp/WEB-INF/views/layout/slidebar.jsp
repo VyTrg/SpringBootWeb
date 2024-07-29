@@ -38,8 +38,8 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/tracuuhoadon/CSH3">Tra cứu hóa đơn</a>
-                <a class="collapse-item"  href="..${pageContext.servletContext.contextPath}/hoadon/CSH3">Lịch sử hóa đơn</a>
+                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/user/tracuuhoadon/CH4">Tra cứu hóa đơn</a>
+                <a class="collapse-item"  href="..${pageContext.servletContext.contextPath}/user/hoadon/CH4c">Lịch sử hóa đơn</a>
             </div>
         </div>
     </li>
@@ -53,7 +53,7 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/dangkidichvu">Đăng kí dịch vụ</a>
+                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/user/dangkidichvu/CH4">Đăng kí dịch vụ</a>
                 <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>
@@ -76,7 +76,7 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item">Thông tin căn hộ</a>
+                <a class="collapse-item" href="..${pageContext.servletContext.contextPath}/user/thongtin/CSH3">Thông tin căn hộ</a>
                 <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>

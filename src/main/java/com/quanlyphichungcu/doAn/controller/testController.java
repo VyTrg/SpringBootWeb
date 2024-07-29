@@ -33,11 +33,10 @@ public class testController {
 	@Autowired canHoRepository CHRepository;
 	
 	@RequestMapping("/test")
-	@ResponseBody
-	public List<can_ho> test() {
+	public String test() {
 		// lay cac can ho cua chu so huu
 		List<can_ho> ListCanHo =  CHRepository.getCanHoByChuSoHuu("CSH3");
-		return ListCanHo;
+		return "test";
 	}
 }
 
