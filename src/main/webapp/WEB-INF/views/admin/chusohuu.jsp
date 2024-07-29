@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thông tin căn hộ</title>
+<title>Thông tin chủ sở hữu</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -32,7 +32,7 @@
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+	
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -52,97 +52,97 @@
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-5 container border">
-					<h2 class="text-center">Thông tin căn hộ</h2>
+					<h2 class="text-center">Thông tin chủ sở hữu</h2>
 					<div class="row">
-						<div class="container mt-3">
-							<table class="table table-striped">
+						<div class="container">
+							<table class="table table-striped mt-3">
 								<thead>
 									<tr>
-										<th>Căn hộ</th>
+										<th>Chủ sở hữu</th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>Mã căn hộ</td>
-										<td><form:input path="ch.ma_can_ho" style="width: 50%"
-												cssClass="form-control" readonly="true" /></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Diện tích</td>
-										<td><form:input path="ch.dien_tich" style="width: 50%"
-												cssClass="form-control" readonly="true" /></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Khu</td>
-										<td><form:input path="ch.khu" style="width: 50%"
-												cssClass="form-control" readonly="true" /></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Tầng</td>
-										<td><form:input path="ch.tang" style="width: 50%"
-												cssClass="form-control" readonly="true" /></td>
-										<td></td>
-									</tr>
-									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ma_chu_so_huu"
-												style="width: 50%" cssClass="form-control" /></td>
-										<td></td>
+										<td><form:input path="csh.ma_chu_so_huu"
+												style="width: 50%" cssClass="form-control" readonly="true" /></td>
 									</tr>
 									<tr>
-										<td>Chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ho_ten"
+										<td>Họ tên</td>
+										<td><form:input path="csh.ho_ten" style="width: 50%"
+												cssClass="form-control" /></td>
+									</tr>
+									<tr>
+										<td>Số điện thoại</td>
+										<td><form:input path="csh.sdt" style="width: 50%"
+												cssClass="form-control" /></td>
+									</tr>
+									<tr>
+										<td>Căn cước công dân</td>
+										<td><form:input path="csh.cccd" style="width: 50%"
+												cssClass="form-control" /></td>
+									</tr>
+									<tr>
+										<td>Ngày sinh</td>
+										<td><form:input path="csh.ngay_sinh" style="width: 50%"
+												cssClass="form-control" /></td>
+									</tr>
+									<tr>
+										<td>Giới tính</td>
+										<td><form:input path="csh.phai" style="width: 50%"
+												cssClass="form-control" /></td>
+									</tr>
+									<tr>
+										<td>Tên đăng nhập</td>
+										<td><form:input path="csh.dangNhap.ten_dang_nhap"
+												style="width: 50%" cssClass="form-control" readonly="true" /></td>
+									</tr>
+									<tr>
+										<td>Mật khẩu</td>
+										<td><form:input path="csh.dangNhap.mat_khau"
 												style="width: 50%" cssClass="form-control" /></td>
-										<td><a href="/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi
-												tiết</a></td>
 									</tr>
 								</tbody>
 							</table>
+							<div class="col text-center mb-3">
+								<button class="btn btn-primary">Cập nhật</button>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-5 container border">
-					<h2 class="text-center">Thông tin dịch vụ đã đăng kí</h2>
+					<h2 class="text-center">Căn hộ đang sở hữu</h2>
 					<div class="row">
 						<div class="container mt-3">
 							<c:set var="count" value="1" scope="session" />
-							<c:forEach var="p" items="${dv}">
+							<c:forEach var="p" items="${ch}">
 								<table class="table table-striped">
 									<thead>
 										<tr>
 											<th># ${count}</th>
-											<th>Số lượng đăng kí: ${p.so_luong}</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>Mã dịch vụ</td>
-											<td>${p.dich_vu.ma_dich_vu}</td>
+											<td>Mã căn hộ</td>
+											<td>${p.ma_can_ho}</td>
 										</tr>
 										<tr>
-											<td>Tên dịch vụ</td>
-											<td>${p.dich_vu.ten_dich_vu}</td>
+											<td>Diện tích</td>
+											<td>${p.dien_tich}</td>
 										</tr>
 										<tr>
-											<td>Thuế VAT</td>
-											<td>${p.dich_vu.vat}</td>
+											<td>Khu</td>
+											<td>${p.khu}</td>
 										</tr>
 										<tr>
-											<td>Đơn giá</td>
-											<td>${p.dich_vu.don_gia}</td>
-										</tr>
-										<tr>
-											<td>Đơn vị</td>
-											<td>${p.dich_vu.don_vi}</td>
+											<td>Tầng</td>
+											<td>${p.tang}</td>
 										</tr>
 									</tbody>
 								</table>
-								<div class="col d-flex justify-content-end mb-3 me-4">
-									<button class="btn btn-primary">Xóa</button>
-								</div>
 								<c:set var="count" value="${count = count + 1}" scope="session" />
 							</c:forEach>
 						</div>

@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface chuSoHuuRepository extends JpaRepository<ChuSoHuu, String> {
 	ChuSoHuu findByDangNhap(dang_nhap dangNhap);
-
+	
 }

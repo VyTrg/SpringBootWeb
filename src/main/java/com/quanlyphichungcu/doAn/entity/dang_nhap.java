@@ -2,8 +2,6 @@ package com.quanlyphichungcu.doAn.entity;
 
 
 
-import org.hibernate.annotations.DialectOverride.Formula;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

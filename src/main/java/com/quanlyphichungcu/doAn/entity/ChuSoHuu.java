@@ -93,6 +93,7 @@ public class ChuSoHuu {
 	public void setDangNhap(dang_nhap dangNhap) {
 		this.dangNhap = dangNhap;
 	}
+	
 	public List<can_ho> getDs_can_ho() {
 		return ds_can_ho;
 	}
@@ -102,7 +103,7 @@ public class ChuSoHuu {
 	}
 
 	public ChuSoHuu(String ma_chu_so_huu, String ho_ten, String sdt, String phai, Date ngay_sinh, String cccd,
-			dang_nhap dangNhap) {
+			dang_nhap dangNhap, List<can_ho> ds_can_ho) {
 		super();
 		this.ma_chu_so_huu = ma_chu_so_huu;
 		this.ho_ten = ho_ten;
@@ -111,20 +112,17 @@ public class ChuSoHuu {
 		this.ngay_sinh = ngay_sinh;
 		this.cccd = cccd;
 		this.dangNhap = dangNhap;
+		this.ds_can_ho = ds_can_ho;
 	}
 
 	public ChuSoHuu() {
-
 		super();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ChuSoHuu [ma_chu_so_huu=" + ma_chu_so_huu + ", ho_ten=" + ho_ten + ", sdt=" + sdt + ", phai=" + phai
 				+ ", ngay_sinh=" + ngay_sinh + ", cccd=" + cccd + ", dangNhap=" + dangNhap + "]";
 	}
 
-
-
-	
 }
