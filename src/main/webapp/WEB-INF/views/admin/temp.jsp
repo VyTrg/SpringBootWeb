@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thông tin căn hộ</title>
+<title>Thông tin</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -49,44 +49,7 @@
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
-			<div class="row">
-				<div class="col-sm-1"></div>
 
-				<div class="col-sm-10 border">
-					<div class="row">
-						<h2 class="text-center">Thông tin căn hộ</h2>
-						<div class="container mt-3">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Mã căn hộ</th>
-										<th>Diện tích</th>
-										<th>Mã chủ sở hữu</th>
-										<th>Chủ sở hữu</th>
-										<th>Khu</th>
-										<th>Tầng</th>
-										<th>Chi tiết</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="p" items="${list}">
-										<tr>
-											<td>${p.ma_can_ho}</td>
-											<td>${p.dien_tich}</td>
-											<td>${p.chuSoHuu.ma_chu_so_huu}</td>
-											<td>${p.chuSoHuu.ho_ten}</td>
-											<td>${p.khu}</td>
-											<td>${p.tang}</td>
-											<td><a href="/canho/${p.ma_can_ho}">Chi tiết</a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-1"></div>
-			</div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout/footer.jsp"%>

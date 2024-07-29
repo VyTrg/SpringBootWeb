@@ -27,7 +27,4 @@ public class dichVuCanHoService {
 		DichVuCanHoRepository.deleteById(id);;
 	}
 	
-//	public List<dich_vu_can_ho> findDichVuByIdCanHo(String id) {
-//		return DichVuCanHoRepository.findByma_can_ho(id);
-//	}
 }
