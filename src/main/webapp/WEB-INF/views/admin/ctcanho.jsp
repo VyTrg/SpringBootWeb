@@ -38,14 +38,14 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<%@ include file="../layout/slidebar.jsp"%>
+		<%@ include file="../layout_admin/slidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Topbar -->
-			<%@ include file="../layout/head.jsp"%>
+			<%@ include file="../layout_admin/head.jsp"%>
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
@@ -154,7 +154,7 @@
 			<div class="col-sm-1"></div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
-			<%@ include file="../layout/footer.jsp"%>
+			<%@ include file="../layout_admin/footer.jsp"%>
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Content Wrapper -->

@@ -21,7 +21,7 @@ import com.quanlyphichungcu.doAn.repository.nhanVienRepository;
 
 
 @Controller
-@RequestMapping("/thongtin")
+@RequestMapping("/admin")
 public class ThongTinController {
 	
 	@Autowired
@@ -33,7 +33,7 @@ public class ThongTinController {
 	@Autowired
 	private canHoRepository CanHoRepository;
 	
-	@RequestMapping("")
+	@RequestMapping("/thongtin")
 	public String listThongTin(Model model) {
 		
 		List<nhan_vien> nv = NhanVienRepository.findAll();

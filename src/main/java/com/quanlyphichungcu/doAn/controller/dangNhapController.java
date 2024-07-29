@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.entity.dang_nhap;
+import com.quanlyphichungcu.doAn.entity.nhan_vien;
 import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dangNhapRepository;
-
+import com.quanlyphichungcu.doAn.repository.nhanVienRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +28,8 @@ public class dangNhapController {
 	@Autowired 
 	private chuSoHuuRepository chu_so_huu_repo;
 	
+	@Autowired
+	private nhanVienRepository nhan_vien_repo;
 
 	@GetMapping("/login")
 	public String Login() {
@@ -37,12 +40,15 @@ public class dangNhapController {
 	@PostMapping("/login")
 	public String getdangnhap(@RequestParam("ten_dang_nhap")String ten_dang_nhap,
 							@RequestParam("mat_khau")String mat_khau,
-							@RequestParam("quyen") String quyen,
+							
 							Model model, HttpSession session) {
 		dang_nhap dangNhap = this.dang_nhap_repo.findByDangNhap(ten_dang_nhap, mat_khau);
-		if(dangNhap != null && quyen.equals("NV") && dangNhap.getQuyen().getMa_quyen().trim().equals("NV"))
-			return "redirect:/admin/canho";
-		else if (dangNhap != null && quyen.equals("CSH") && dangNhap.getQuyen().getMa_quyen().trim().equals("CSH")) {
+		if(dangNhap != null && dangNhap.getQuyen().getMa_quyen().trim().equals("NV")) {
+			nhan_vien nhanvien = this.nhan_vien_repo.findByDangNhap(dangNhap);
+			session.setAttribute("thongtin_nv", nhanvien);
+			return "redirect:/admin/thongtin";
+		}
+		else if (dangNhap != null && dangNhap.getQuyen().getMa_quyen().trim().equals("CSH")) {
 			ChuSoHuu chusohuu = this.chu_so_huu_repo.findByDangNhap(dangNhap);
 //			model.addAttribute("thongtinkhachhang", chusohuu);
 			String url = chusohuu.getMa_chu_so_huu();
@@ -51,8 +57,9 @@ public class dangNhapController {
 			return "redirect:/user/thongtin/" + url;
 		}
 		else{
+			
 			model.addAttribute("message", "Sai thông tin đăng nhập. Vui lòng nhập lại.");
-			return "login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -61,6 +68,9 @@ public class dangNhapController {
 		if(session.getAttribute("thongtin") != null) {
 			session.removeAttribute("thongtin");
 //			System.out.println("da xoa");
+		}
+		if(session.getAttribute("thongtin_nv") != null) {
+			session.removeAttribute("thongtin_nv");
 		}
 //		else 
 //			System.out.println("khong xoa");

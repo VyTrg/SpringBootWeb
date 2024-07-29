@@ -40,14 +40,14 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<%@ include file="../layout/slidebar.jsp"%>
+		<%@ include file="../layout_admin/slidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Topbar -->
-			<%@ include file="../layout/head.jsp"%>
+			<%@ include file="../layout_admin/head.jsp"%>
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
@@ -89,59 +89,59 @@
 				<div class="col-sm-1"></div>
 			</div>
 
-			<div class="row mt-4">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-10 border">
-					<div class="row">
-						<h3>Hiệu chỉnh dịch vụ</h3>
-						<div class="container col-sm-6 mt-3">
-							<table class="table table-striped js-table-service">
-								<thead>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Mã dịch vụ</td>
-										<td><input type="text" class="form-control" id=""
-											placeholder="Mã dịch vụ" name="ma_dich_vu"></td>
-									</tr>
-									<tr>
-										<td>Tên dịch vụ</td>
-										<td><input type="text" class="form-control" id="ten_dich_vu"
-											placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
-									</tr>
-									<tr>
-										<td>Thuế VAT</td>
-										<td><input type="text" class="form-control" id="vat"
-											placeholder="Thuế VAT" name="vat"></td>
-									</tr>
-									<tr>
-										<td>Đơn giá</td>
-										<td><input type="text" class="form-control" id="don_gia"
-											placeholder="Đơn giá" name="don_gia"></td>
-									</tr>
-									<tr>
-										<td>Đơn vị</td>
-										<td><input type="text" class="form-control" id="don_vi"
-											placeholder="Đơn vị" name="don_vi"></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="row">
-								<div class="col text-center col-sm-6 mb-3">
+			<form method="post" action="/admin/dichvu/create">
+				<div class="row mt-4">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10 border">
+						<div class="row">
+							<h3>Hiệu chỉnh dịch vụ</h3>
+							<div class="container col-sm-6 mt-3">
+								<table class="table table-striped js-table-service">
+									<thead>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Mã dịch vụ</td>
+											<td><input type="text" class="form-control" id=""
+												placeholder="Mã dịch vụ" name="ma_dich_vu"></td>
+										</tr>
+										<tr>
+											<td>Tên dịch vụ</td>
+											<td><input type="text" class="form-control" id="ten_dich_vu"
+												placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
+										</tr>
+										<tr>
+											<td>Thuế VAT</td>
+											<td><input type="text" class="form-control" id="vat"
+												placeholder="Thuế VAT" name="vat"></td>
+										</tr>
+										<tr>
+											<td>Đơn giá</td>
+											<td><input type="text" class="form-control" id="don_gia"
+												placeholder="Đơn giá" name="don_gia"></td>
+										</tr>
+										<tr>
+											<td>Đơn vị</td>
+											<td><input type="text" class="form-control" id="don_vi"
+												placeholder="Đơn vị" name="don_vi"></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="col text-center mb-3">
 									<button class="btn btn-primary">Thêm</button>
-								</div>
-								<div class="col text-center col-sm-6 mb-3">
-									<button class="btn btn-primary">Sửa</button>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="col-sm-1"></div>
 				</div>
-				<div class="col-sm-1"></div>
-			</div>
+				
+			</form>
+			<!-- Button trigger modal -->
+
 			<!-- End of Main Content -->
 			<!-- Footer -->
-			<%@ include file="../layout/footer.jsp"%>
+			<%@ include file="../layout_admin/footer.jsp"%>
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Content Wrapper -->

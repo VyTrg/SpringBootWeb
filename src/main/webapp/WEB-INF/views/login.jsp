@@ -26,11 +26,11 @@
                             <label for="password" class="form-label">Mật khẩu</label>
                             <input type="password" class="form-control" id="mat_khau" placeholder="Nhập mật khẩu" name="mat_khau" >
                         </div>
-                        <select class="role-select mb-3" arial-label="Default select example" id="quyen" name="quyen">
+                        <!-- <select class="role-select mb-3" arial-label="Default select example" id="quyen" name="quyen">
                         <option selected>Chọn quyền</option>
                         <option value="NV">Nhân viên</option>
                         <option value="CSH">Cư dân</option>
-                        </select>
+                        </select> -->
                         <div class="d-grid">	
                          <button id="btn_submit" type="submit" class="btn btn-primary" >Đăng nhập</button>
                         </div>
@@ -43,6 +43,9 @@
         </div>
     </div>
     </div>
+    <!-- <button  id="btn_open" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#errorModal">
+        Launch demo modal
+      </button>
     <!-- modal dialog -->
     <!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -61,20 +64,18 @@
                 </div>
             </div>
         </div>
-    </div>  -->
+    </div>   -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <!-- Popper.js (required for Bootstrap) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- <script>
-       window.onload = function(){
-        var errorMessage = '<%= request.getAttribute("errorMessage") %>';
-        if (errorMessage) {
-            document.getElementById("errorMessage").innerText = errorMessage;
-            $('#errorModal').modal('show');
-        }
-      } 
+       var btn_open = document.getElementById("btn_open");
+       var modal = document.getElementById("errorModal");
+       btn_open.addEventListener('click', function(){
+            modal.classList.add('show');
+       });
     </script> -->
     <style>
         .password__text--error{

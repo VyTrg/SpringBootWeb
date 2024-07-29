@@ -29,7 +29,7 @@ import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 //}
 
 @Controller
-@RequestMapping("/canho")
+@RequestMapping("/admin")
 public class dichVuCanHoController {
 	@Autowired
 	private dichVuCanHoRepository DichVuCanHorepository;
@@ -48,7 +48,7 @@ public class dichVuCanHoController {
 //	 return DichVuCanHorepository.findById(id); 
 //	 }
 	
-	@RequestMapping("")
+	@RequestMapping("/canho")
 	public String listCanHo(Model model) {
 		List<can_ho> list = CanHoRepository.findAll();
 		model.addAttribute("list", list);

@@ -28,6 +28,7 @@ import com.quanlyphichungcu.doAn.repository.nhanVienRepository;
 
 
 @Controller
+@RequestMapping("/admin")
 public class nhanVienController {
 	
 	

@@ -9,13 +9,13 @@
         <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo" id="collapse-container">
             <!-- <i class="fas fa-fw fa-cog"></i> -->
-            <span>Hóa đơn</span>
+            <span>Tài khoản</span>
             <!-- <i class="bi bi-arrow-down-short" id="expandHoaDon" ></i> -->
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/user/tracuuhoadon/${sessionScope.thongtin.ma_chu_so_huu}">Tra cứu hóa đơn</a>
-                <a class="collapse-item"  href="/user/hoadon/${sessionScope.thongtin.ma_chu_so_huu}">Thanh toán hóa đơn</a>
+                <a class="collapse-item" href="../admin/thongtin">Quản lý tài khoản</a>
+                <!-- <a class="collapse-item"  href="/user/hoadon/${sessionScope.thongtin.ma_chu_so_huu}">Thanh toán hóa đơn</a> -->
             </div>
         </div>
     </li>
@@ -29,7 +29,20 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/user/dangkidichvu/CH4">Đăng kí dịch vụ</a>
+                <a class="collapse-item" href="../admin/dichvu">Quản lý dịch vụ</a>
+                <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <!-- <i class="fas fa-fw fa-wrench"></i> -->
+            <span>Căn hộ</span>
+        </a>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="../admin/canho">Quản lý căn hộ</a>
                 <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>
