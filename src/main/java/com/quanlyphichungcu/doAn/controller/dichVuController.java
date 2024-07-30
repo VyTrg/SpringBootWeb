@@ -42,7 +42,7 @@ public class dichVuController {
 		dich_vu newDichVu = new dich_vu();
 		
 		newDichVu.setTen_dich_vu(request.getParameter("ten_dich_vu"));
-		newDichVu.setMa_dich_vu(request.getParameter("ma_dich_vu"));
+		newDichVu.setMa_dich_vu("**");
 		newDichVu.setVat(Integer.parseInt(request.getParameter("vat")));
 		newDichVu.setDon_gia(Integer.parseInt(request.getParameter("don_gia")));
 		newDichVu.setDon_vi(request.getParameter("don_vi"));
