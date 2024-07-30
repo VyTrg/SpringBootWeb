@@ -9,3 +9,4 @@ doAn.iml
 target/** 
 bin/**
 
+.vscode/settings.json

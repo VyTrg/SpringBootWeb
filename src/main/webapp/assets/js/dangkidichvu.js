@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var vatService = parentElement.querySelector(".vat-service").textContent;
             var countService = parentElement.querySelector(".count-service").value; // Get the value from the input
 
-            var sum = priceService*countService*((vatService+100)/100)
+            var sum = priceService*countService*(100+vatService/100)
 			
 			listService.set(parentElement.id,countService);
             var objService = {

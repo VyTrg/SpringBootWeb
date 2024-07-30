@@ -46,7 +46,7 @@
     <!-- <button  id="btn_open" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#errorModal">
         Launch demo modal
       </button>
-    <!-- modal dialog -->
+    modal dialog -->
     <!-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

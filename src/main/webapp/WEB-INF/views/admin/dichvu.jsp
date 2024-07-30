@@ -94,13 +94,13 @@
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10 border">
 						<div class="row">
-							<h3>Hiệu chỉnh dịch vụ</h3>
+							<h3>Thêm dịch vụ</h3>
 							<div class="container col-sm-6 mt-3">
 								<table class="table table-striped js-table-service">
 									<thead>
 									</thead>
 									<tbody>
-										<tr>
+										<tr style="display: none">
 											<td>Mã dịch vụ</td>
 											<td><input type="text" class="form-control" id=""
 												placeholder="Mã dịch vụ" name="ma_dich_vu"></td>

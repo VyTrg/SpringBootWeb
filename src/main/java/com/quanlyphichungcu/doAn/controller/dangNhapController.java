@@ -57,7 +57,6 @@ public class dangNhapController {
 			return "redirect:/user/thongtin/" + url;
 		}
 		else{
-			
 			model.addAttribute("message", "Sai thông tin đăng nhập. Vui lòng nhập lại.");
 			return "redirect:/login";
 		}
