@@ -55,35 +55,34 @@
 					</div>
 					<div class="card-body px-0">
 						<!-- Detail Service-->
-						<c:forEach var="i" items="${dichvu}">
-							<div class="d-flex align-items-center justify-content-between px-4 detail-service" id="${i.ma_dich_vu}">
-								<div class="ms-4">
-									<div class="text-xs text-muted">Tên dịch vụ:</div>
-									<div class="small name-service">${i.ten_dich_vu}</div>
-								</div>
-								<div class="ms-4">
-									<div class="text-xs text-muted">Đơn giá:</div>
-									<div class="small price-service">${i.don_gia}</div>
-								</div>
-								<div class="ms-4">
-									<div class="text-xs text-muted">Thuế:</div>
-									<div class="small vat-service">${i.vat}</div>
-								</div>
-								<div class="ms-4">
-									<div class="text-xs text-muted">Số lượng:</div>
-									<input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1">
-									
-								</div>
-								<div class="ms-4">
-									<div class="form-check">
-										<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
-										<label class="form-check-label" for="flexCheckDefault">
-										  Chọn
-										</label>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
+						<table class="table">
+							  <thead>
+							    <tr>
+							      <th scope="col">Tên dịch vụ:</th>
+							      <th scope="col">Đơn giá:</th>
+							      <th scope="col">Thuế:</th>
+							      <th scope="col">Số lượng:</th>
+							      
+							    </tr>
+							  </thead>
+							  <tbody>
+							  <c:forEach var="i" items="${tatcadichvu}">
+							    <tr>
+							      <th>${i.ten_dich_vu}</th>
+							      <td>${i.don_gia}</td>
+							      <td>${i.vat}</td>
+							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
+							   		<td><div class="form-check">
+											<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+											  Chọn
+											</label>
+										</div></td>
+							   	
+							    </tr>
+							  </c:forEach> 
+							  </tbody>
+							</table>
 						<hr>
 					</div>
 				</div>		

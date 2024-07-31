@@ -32,7 +32,11 @@
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+ <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -50,8 +54,7 @@
 
 			<!-- Main Content -->
 			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-5 container border">
+				<div class="col-sm-10 container border">
 					<h2 class="text-center">Thông tin căn hộ</h2>
 					<div class="row">
 						<div class="container mt-3">
@@ -61,50 +64,54 @@
 										<th>Căn hộ</th>
 									</tr>
 								</thead>
+								<form:form action="" method="post" modelAttribute="ch">
 								<tbody>
 									<tr>
 										<td>Mã căn hộ</td>
-										<td><form:input path="ch.ma_can_ho" style="width: 50%"
+										<td><form:input path="ma_can_ho" style="width: 50%"
 												cssClass="form-control" readonly="true" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Diện tích</td>
-										<td><form:input path="ch.dien_tich" style="width: 50%"
+										<td><form:input path="dien_tich" style="width: 50%"
 												cssClass="form-control" readonly="true" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Khu</td>
-										<td><form:input path="ch.khu" style="width: 50%"
+										<td><form:input path="khu" style="width: 50%"
 												cssClass="form-control" readonly="true" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Tầng</td>
-										<td><form:input path="ch.tang" style="width: 50%"
+										<td><form:input path="tang" style="width: 50%"
 												cssClass="form-control" readonly="true" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ma_chu_so_huu"
+										<td><form:input path="chuSoHuu.ma_chu_so_huu"
 												style="width: 50%" cssClass="form-control" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ho_ten"
+										<td><form:input path="chuSoHuu.ho_ten"
 												style="width: 50%" cssClass="form-control" /></td>
-										<td><a href="/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi
-												tiết</a></td>
+										<td><a href="/admin/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi tiết</a></td>
 									</tr>
 								</tbody>
+								</form:form>
 							</table>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5 container border">
+				</div>
+				<br class="p-4">
+				<div class="row">
+				<div class="col-sm-10 container border">
 					<h2 class="text-center">Thông tin dịch vụ đã đăng kí</h2>
 					<div class="row">
 						<div class="container mt-3">
@@ -147,11 +154,64 @@
 							</c:forEach>
 						</div>
 					</div>
+					<hr>
+					<div class="col d-flex justify-content-end mb-3 me-4">
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+						  Thêm
+						</button>
+					</div>
+					
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Dịch vụ chưa đăng kí</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+							<table class="table">
+							  <thead>
+							    <tr>
+							      <th scope="col">Tên dịch vụ:</th>
+							      <th scope="col">Đơn giá:</th>
+							      <th scope="col">Thuế:</th>
+							      <th scope="col">Số lượng:</th>
+							      
+							    </tr>
+							  </thead>
+							  <tbody>
+							  <c:forEach var="i" items="${dichvuchuaco}">
+							    <tr>
+							      <th>${i.ten_dich_vu}</th>
+							      <td>${i.don_gia}</td>
+							      <td>${i.vat}</td>
+							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
+							   		<td><div class="form-check">
+											<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+											  Chọn
+											</label>
+										</div></td>
+							   	
+							    </tr>
+							  </c:forEach> 
+							  </tbody>
+							</table>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				</div>
-				<div class="col-sm-1"></div>
 			</div>
-
-			<div class="col-sm-1"></div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout_admin/footer.jsp"%>
