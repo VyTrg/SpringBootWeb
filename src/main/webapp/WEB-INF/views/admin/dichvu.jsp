@@ -28,6 +28,10 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="../../../static/js/ctCanHo.js" ></script>
 
 <!-- Library bootstrap -->
 <link rel="stylesheet"
@@ -69,7 +73,7 @@
 										<th></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="js-service-modal">
 									<c:forEach var="p" items="${dv}">
 										<tr>
 											<td>${p.ma_dich_vu}</td>
@@ -77,8 +81,10 @@
 											<td>${p.vat}</td>
 											<td>${p.don_gia}</td>
 											<td>${p.don_vi}</td>
-											<td><button class="btn btn-primary js-update">Sửa</button></td>
-											<td><button class="btn btn-primary">Xóa</button></td>
+											<td><button type="button" class="btn btn-primary js-button-edit" data-toggle="modal" data-target="#exampleModalCenter">
+											  Sửa
+											</button></td>
+											<td><a href=""><button class="btn btn-danger js-button-remove">Xóa</button></a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -138,6 +144,73 @@
 				
 			</form>
 			<!-- Button trigger modal -->
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Sửa dịch vụ</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+					<form method="post" action="/admin/dichvu/edit">
+						<div class="row mt-4">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-10 border">
+								<div class="row">
+									<div class="container col-sm-8 mt-3">
+										<table class="table table-striped">
+											<thead>
+											</thead>
+											<tbody class="js-edit-table-service">
+												<tr>
+													<td>Mã dịch vụ</td>
+													<td><input type="text" class="form-control" id="ma_dich_vu"
+														placeholder="Mã dịch vụ" name="ma_dich_vu" readonly="true"></td>
+												</tr>
+												<tr>
+													<td>Tên dịch vụ</td>
+													<td><input type="text" class="form-control" id="ten_dich_vu"
+														placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
+												</tr>
+												<tr>
+													<td>Thuế VAT</td>
+													<td><input type="text" class="form-control" id="vat"
+														placeholder="Thuế VAT" name="vat"></td>
+												</tr>
+												<tr>
+													<td>Đơn giá</td>
+													<td><input type="text" class="form-control" id="don_gia"
+														placeholder="Đơn giá" name="don_gia"></td>
+												</tr>
+												<tr>
+													<td>Đơn vị</td>
+													<td><input type="text" class="form-control" id="don_vi"
+														placeholder="Đơn vị" name="don_vi"></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="col text-center mb-3">
+											<button class="btn btn-primary">Sửa</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+						
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
+			        
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
 			<!-- End of Main Content -->
 			<!-- Footer -->
@@ -146,7 +219,6 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
-	
 
 </body>
 </html>

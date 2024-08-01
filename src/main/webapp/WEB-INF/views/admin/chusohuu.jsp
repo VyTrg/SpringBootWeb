@@ -38,7 +38,7 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<%@ include file="../layout/slidebar.jsp"%>
+		<%@ include file="../layout_admin/slidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 
@@ -50,11 +50,11 @@
 
 			<!-- Main Content -->
 			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-5 container border">
+				<div class="col-sm-10 container border">
 					<h2 class="text-center">Thông tin chủ sở hữu</h2>
 					<div class="row">
 						<div class="container">
+							<form:form action="${csh.ma_chu_so_huu}" method="post" modelAttribute="csh">
 							<table class="table table-striped mt-3">
 								<thead>
 									<tr>
@@ -65,53 +65,59 @@
 								<tbody>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="csh.ma_chu_so_huu"
+										<td><form:input path="ma_chu_so_huu"
 												style="width: 50%" cssClass="form-control" readonly="true" /></td>
 									</tr>
 									<tr>
 										<td>Họ tên</td>
-										<td><form:input path="csh.ho_ten" style="width: 50%"
+										<td><form:input path="ho_ten" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Số điện thoại</td>
-										<td><form:input path="csh.sdt" style="width: 50%"
+										<td><form:input path="sdt" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Căn cước công dân</td>
-										<td><form:input path="csh.cccd" style="width: 50%"
+										<td><form:input path="cccd" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Ngày sinh</td>
-										<td><form:input path="csh.ngay_sinh" style="width: 50%"
+										<td><form:input path="ngay_sinh" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Giới tính</td>
-										<td><form:input path="csh.phai" style="width: 50%"
+										<td><form:input path="phai" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Tên đăng nhập</td>
-										<td><form:input path="csh.dangNhap.ten_dang_nhap"
+										<td><form:input path="dangNhap.ten_dang_nhap"
 												style="width: 50%" cssClass="form-control" readonly="true" /></td>
 									</tr>
 									<tr>
 										<td>Mật khẩu</td>
-										<td><form:input path="csh.dangNhap.mat_khau"
+										<td><form:input path="dangNhap.mat_khau"
 												style="width: 50%" cssClass="form-control" /></td>
 									</tr>
 								</tbody>
+								
 							</table>
-							<div class="col text-center mb-3">
-								<button class="btn btn-primary">Cập nhật</button>
+<%-- 							<div class="row text-center">${capnhat}</div>
+ --%>							<div class="col text-center mb-3">
+								<form:button type="submit" class="btn btn-primary">Cập nhật</form:button>
 							</div>
+							</form:form>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5 container border">
+				</div>
+				<br class="p-4">
+				<div class="row">
+				<div class="col-sm-10 container border">
 					<h2 class="text-center">Căn hộ đang sở hữu</h2>
 					<div class="row">
 						<div class="container mt-3">
@@ -148,7 +154,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-1"></div>
 			</div>
 
 			<div class="col-sm-1"></div>
@@ -159,5 +164,12 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+	<script>
+	  var capnhat = `${capnhat}`;
+
+	  if (capnhat !== "") {
+	    alert(capnhat);
+	  }
+</script>
 </body>
 </html>
