@@ -22,12 +22,16 @@
     
     <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Library bootstrap -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	
+	<!-- add script in dangkidichvu -->
+    <script src="../../../../assets/js/dangkidichvu.js"></script>
+	<base href="${ pageContext.servletContext.contextPath }/" />
+   	<script src="../../../assets/js/dangkidichvu.js"></script>
 </head>
 <body>
 	
@@ -47,59 +51,38 @@
 					<div class="card-header" >
 						Đăng kí dịch vụ
 					</div>
-					<div class="table">
-                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table class="table table-bordered dataTable table-hover js-table" id="dataTable" width="100%" cellspacing="0" role="grid"
-                                        aria-describedby="dataTable_info" style="width: 100%;">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Name: activate to sort column descending" style="width: 10px;" >STT</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                    aria-label="Position: activate to sort column ascending" style="width: 150.111px;" >Tên dịch vụ</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                    aria-label="Position: activate to sort column ascending" style="width: 150.111px;">Đơn giá</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                    aria-label="Office: activate to sort column ascending" style="width: 100px;">Thuế</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                                    aria-label="Salary: activate to sort column ascending" style="width: 100px;"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-											<c:set var="countt" value="1" scope="session" />
-											<c:forEach var="dv" items="${dichvu}">
-													<tr>
-														<th class="sorting_1">${countt}</th>
-														<td scope="row">${dv.ten_dich_vu}</td>
-														<td>${dv.don_gia}</td>
-														<td>${dv.vat}</td>
-														<td>
-															<button type="button" class="btn btn-light btn-submit"  data-bs-toggle="modal" data-bs-target="#dkdvModal" data-test="${dv.ten_dich_vu}">Chọn</button>
-															<div class="modal fade" id="dkdvModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																<div class="modal-dialog">
-																  <div class="modal-content">
-																	<div class="modal-header">
-																	  <h5 class="modal-title" id="exampleModalLabel">Đăng kí dịch vụ</h5>
-																	  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																	</div>
-																	<div class="modal-body">
-																		<h6 id="modal_body"></h6>
-																	</div>
-																	<div class="modal-footer">
-																	  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-																	  <button type="button" class="btn btn-primary">Xác nhận</button>
-																	</div>
-																  </div>
-																</div>
-															  </div>
-														</td>
-													</tr>
-											<c:set var="countt" value="${countt = countt + 1}" scope="session" />
-											</c:forEach>
-                                        </tbody>
-                                    </table>
+					<div class="card-body px-0">
+						<!-- Detail Service-->
+						<c:forEach var="i" items="${dichvu}">
+							<div class="d-flex align-items-center justify-content-between px-4 detail-service" id="${i.ma_dich_vu}">
+								<div class="ms-4">
+									<div class="text-xs text-muted">Tên dịch vụ:</div>
+									<div class="small name-service">${i.ten_dich_vu}</div>
+								</div>
+								<div class="ms-4">
+									<div class="text-xs text-muted">Đơn giá:</div>
+									<div class="small price-service">${i.don_gia}</div>
+								</div>
+								<div class="ms-4">
+									<div class="text-xs text-muted">Thuế:</div>
+									<div class="small vat-service">${i.vat}</div>
+								</div>
+								<div class="ms-4">
+									<div class="text-xs text-muted">Số lượng:</div>
+									<input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1">
+									
+								</div>
+								<div class="ms-4">
+									<div class="form-check">
+										<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+										  Chọn
+										</label>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+						<hr>
 					</div>
 				</div>		
 				<div class="card mb-4">

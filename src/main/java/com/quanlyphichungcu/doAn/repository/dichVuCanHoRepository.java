@@ -13,4 +13,7 @@ public interface dichVuCanHoRepository extends JpaRepository<dich_vu_can_ho, dic
 	//List<dich_vu_can_ho> findByma_can_ho(String ma_can_ho);
 	@Query(value="select * from DICH_VU_CAN_HO where ma_can_ho = ?1", nativeQuery=true)
     List<dich_vu_can_ho> getDichVuByCanHo(String MaCanHo);
+    
+    @Query(value="select * from DICH_VU_CAN_HO p where p.ma_can_ho = ?1 and p.ma_dich_vu = ?2", nativeQuery=true)
+    dich_vu_can_ho getDichVuByDichVuCanHo(String MaCanHo,String MaDichVu);
 }
