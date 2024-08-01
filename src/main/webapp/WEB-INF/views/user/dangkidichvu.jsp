@@ -29,9 +29,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	
 	<!-- add script in dangkidichvu -->
-    <script src="../../../../assets/js/dangkidichvu.js"></script>
+    <script src="../../../assets/js/dangkidichvu.js"></script>
 	<base href="${ pageContext.servletContext.contextPath }/" />
-   	<script src="../../../assets/js/dangkidichvu.js"></script>
 </head>
 <body>
     <!-- Page Wrapper -->
@@ -60,6 +59,7 @@
 							    <tr>
 							      <th scope="col">Tên dịch vụ:</th>
 							      <th scope="col">Đơn giá:</th>
+							      <th scope="col">Đơn vị:</th>
 							      <th scope="col">Thuế:</th>
 							      <th scope="col">Số lượng:</th>
 							      
@@ -70,6 +70,7 @@
 							    <tr>
 							      <th>${i.ten_dich_vu}</th>
 							      <td>${i.don_gia}</td>
+							      <td>${i.don_vi}</td>
 							      <td>${i.vat}</td>
 							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
 							   		<td><div class="form-check">

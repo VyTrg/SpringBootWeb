@@ -37,6 +37,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="../../../static/js/ctCanHo.js" ></script>
+
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -58,7 +60,7 @@
 					<h2 class="text-center">Thông tin căn hộ</h2>
 					<div class="row">
 						<div class="container mt-3">
-							<table class="table table-striped">
+							<table class="table table-striped js-table-home">
 								<thead>
 									<tr>
 										<th>Căn hộ</th>
@@ -69,7 +71,7 @@
 									<tr>
 										<td>Mã căn hộ</td>
 										<td><form:input path="ma_can_ho" style="width: 50%"
-												cssClass="form-control" readonly="true" /></td>
+												cssClass="form-control" readonly="true" id="js-home"/></td>
 										<td></td>
 									</tr>
 									<tr>
@@ -115,43 +117,34 @@
 					<h2 class="text-center">Thông tin dịch vụ đã đăng kí</h2>
 					<div class="row">
 						<div class="container mt-3">
-							<c:set var="count" value="1" scope="session" />
-							<c:forEach var="p" items="${dv}">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th># ${count}</th>
-											<th>Số lượng đăng kí: ${p.so_luong}</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Mã dịch vụ</td>
-											<td>${p.dich_vu.ma_dich_vu}</td>
-										</tr>
-										<tr>
-											<td>Tên dịch vụ</td>
-											<td>${p.dich_vu.ten_dich_vu}</td>
-										</tr>
-										<tr>
-											<td>Thuế VAT</td>
-											<td>${p.dich_vu.vat}</td>
-										</tr>
-										<tr>
-											<td>Đơn giá</td>
-											<td>${p.dich_vu.don_gia}</td>
-										</tr>
-										<tr>
-											<td>Đơn vị</td>
-											<td>${p.dich_vu.don_vi}</td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="col d-flex justify-content-end mb-3 me-4">
-									<button class="btn btn-primary">Xóa</button>
-								</div>
-								<c:set var="count" value="${count = count + 1}" scope="session" />
-							</c:forEach>
+							<table class="table">
+							  <thead>
+							    <tr>
+							      <th scope="col">Tên dịch vụ:</th>
+							      <th scope="col">Đơn giá:</th>
+							      <th scope="col">Thuế:</th>
+							      <th scope="col">Số lượng:</th>
+							      
+							    </tr>
+							  </thead>
+							  <tbody id="remove-modal">
+							  <c:forEach var="i" items="${dichvudaco}">
+							    <tr id="${i.dich_vu.ma_dich_vu}">
+							      <th>${i.dich_vu.ten_dich_vu}</th>
+							      <td>${i.dich_vu.don_gia}</td>
+							      <td>${i.dich_vu.vat}</td>
+							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
+							   		<td><div class="form-check">
+											<a href=""><button type="button" class="btn btn-secondary js-button-fix">Sửa</button></a>
+										</div></td>
+									<td><div class="form-check">
+												<a href=""><button type="button" class="btn btn-danger js-button-remove">Xoá</button></a>
+											</div></td>
+							   	
+							    </tr>
+							  </c:forEach> 
+							  </tbody>
+							</table>
 						</div>
 					</div>
 					<hr>
@@ -184,18 +177,15 @@
 							      
 							    </tr>
 							  </thead>
-							  <tbody>
-							  <c:forEach var="i" items="${dichvuchuaco}">
-							    <tr>
-							      <th>${i.ten_dich_vu}</th>
-							      <td>${i.don_gia}</td>
-							      <td>${i.vat}</td>
+							  <tbody id="register-modal">
+							  <c:forEach var="i" items="${dichvuchuathem}">
+							    <tr id="${i.dich_vu.ma_dich_vu}">
+							      <th>${i.dich_vu.ten_dich_vu}</th>
+							      <td>${i.dich_vu.don_gia}</td>
+							      <td>${i.dich_vu.vat}</td>
 							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
 							   		<td><div class="form-check">
-											<input class="form-check-input js-check count-service" type="checkbox" value="" id="flexCheckDefault">
-											<label class="form-check-label" for="flexCheckDefault">
-											  Chọn
-											</label>
+											<button type="button" class="btn btn-secondary js-button-add">Thêm</button>
 										</div></td>
 							   	
 							    </tr>
@@ -204,8 +194,8 @@
 							</table>
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
+					        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
+					        
 					      </div>
 					    </div>
 					  </div>
@@ -219,5 +209,12 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+<script>
+  var suadichvu = `${suadichvu}`;
+
+  if (suadichvu !== "") {
+    alert(suadichvu);
+  }
+</script>
 </body>
 </html>
