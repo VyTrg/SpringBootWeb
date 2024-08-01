@@ -55,11 +55,11 @@ public class dichVuCanHoController {
 		return "admin/canho";
 	}
 
-	@GetMapping("/{Can_Ho}")
+	@GetMapping("/canho/{Can_Ho}")
 	public String getDSDichVu(Model model, @PathVariable String Can_Ho) {
 		Optional<can_ho> ch = CanHoRepository.findById(Can_Ho);
 		model.addAttribute("ch", ch);
-		model.addAttribute("csh", ch);
+		model.addAttribute("csh", ch.get().getChuSoHuu());
 		List<dich_vu_can_ho> dv = DichVuCanHorepository.getDichVuByCanHo(Can_Ho);
 		model.addAttribute("dv", dv);
 		
