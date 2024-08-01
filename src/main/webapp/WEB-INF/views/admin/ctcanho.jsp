@@ -66,7 +66,7 @@
 										<th>Căn hộ</th>
 									</tr>
 								</thead>
-								<form:form action="" method="post" modelAttribute="ch">
+								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch">
 								<tbody>
 									<tr>
 										<td>Mã căn hộ</td>
@@ -103,6 +103,11 @@
 										<td><form:input path="chuSoHuu.ho_ten"
 												style="width: 50%" cssClass="form-control" /></td>
 										<td><a href="/admin/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi tiết</a></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><a href=""><button type="submit" class="btn btn-primary">Sửa</button></a></td>
+										<td></td>
 									</tr>
 								</tbody>
 								</form:form>

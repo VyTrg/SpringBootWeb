@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +30,8 @@ import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -56,6 +59,13 @@ public class canHoController {
 		model.addAttribute("dichvuchuathem",dichvuchuathem);
 
 		return "admin/ctcanho";
+	}
+	
+	@RequestMapping(value = "/canho/suathongtin", method = RequestMethod.POST)
+	public String editThongTinCanHo(Model model,@ModelAttribute("ch") can_ho canHo) {
+//		canho_repository.save(canHo);
+		System.out.println(canHo);
+		return "redirect:/canho/"+canHo.getMa_can_ho();
 	}
 
 	@PostMapping("/canho/themdichvu/{idCanHo}")
@@ -89,7 +99,6 @@ public class canHoController {
 		dv_canho.setSo_luong(Integer.parseInt(countService));
 
 		dvch_repository.save(dv_canho);
-		model.addAttribute("suadichvu","sua thanh cong");
 		return "redirect:/canho/"+idCanHo;
 	}
 	
