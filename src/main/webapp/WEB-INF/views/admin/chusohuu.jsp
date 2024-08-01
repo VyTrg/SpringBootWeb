@@ -32,7 +32,7 @@
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+	
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -45,16 +45,16 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Topbar -->
-			<%@ include file="../layout_admin/head.jsp"%>
+			<%@ include file="../layout/head.jsp"%>
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
 			<div class="row">
-				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
+					<h2 class="text-center">Thông tin chủ sở hữu</h2>
 					<div class="row">
-						<h2 class="text-center">Thông tin chủ sở hữu</h2>
 						<div class="container">
+							<form:form action="${csh.ma_chu_so_huu}" method="post" modelAttribute="csh">
 							<table class="table table-striped mt-3">
 								<thead>
 									<tr>
@@ -65,96 +65,98 @@
 								<tbody>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="csh.ma_chu_so_huu"
+										<td><form:input path="ma_chu_so_huu"
 												style="width: 50%" cssClass="form-control" readonly="true" /></td>
 									</tr>
 									<tr>
 										<td>Họ tên</td>
-										<td><form:input path="csh.ho_ten" style="width: 50%"
+										<td><form:input path="ho_ten" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Số điện thoại</td>
-										<td><form:input path="csh.sdt" style="width: 50%"
+										<td><form:input path="sdt" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Căn cước công dân</td>
-										<td><form:input path="csh.cccd" style="width: 50%"
+										<td><form:input path="cccd" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Ngày sinh</td>
-										<td><form:input path="csh.ngay_sinh" style="width: 50%"
+										<td><form:input path="ngay_sinh" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Giới tính</td>
-										<td><form:input path="csh.phai" style="width: 50%"
+										<td><form:input path="phai" style="width: 50%"
 												cssClass="form-control" /></td>
 									</tr>
 									<tr>
 										<td>Tên đăng nhập</td>
-										<td><form:input path="csh.dangNhap.ten_dang_nhap"
+										<td><form:input path="dangNhap.ten_dang_nhap"
 												style="width: 50%" cssClass="form-control" readonly="true" /></td>
 									</tr>
 									<tr>
 										<td>Mật khẩu</td>
-										<td><form:input path="csh.dangNhap.mat_khau"
+										<td><form:input path="dangNhap.mat_khau"
 												style="width: 50%" cssClass="form-control" /></td>
 									</tr>
 								</tbody>
+								
 							</table>
-							<div class="col text-center mb-3">
-								<button class="btn btn-primary">Cập nhật</button>
+<%-- 							<div class="row text-center">${capnhat}</div>
+ --%>							<div class="col text-center mb-3">
+								<form:button type="submit" class="btn btn-primary">Cập nhật</form:button>
 							</div>
+							</form:form>
 						</div>
 					</div>
-
 				</div>
-				<div class="col-sm-1"></div>
-			</div>
-			<div class="row mt-5">
-				<div class="col-sm-1"></div>
+				</div>
+				<br class="p-4">
+				<div class="row">
 				<div class="col-sm-10 container border">
+					<h2 class="text-center">Căn hộ đang sở hữu</h2>
 					<div class="row">
-						<h2>Căn hộ đang sở hữu</h2>
-						<div class="row">
-							<div class="container mt-3">
+						<div class="container mt-3">
+							<c:set var="count" value="1" scope="session" />
+							<c:forEach var="p" items="${ch}">
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>Mã căn hộ</th>
-											<th>Diện tích</th>
-											<th>Khu</th>
-											<th>Tầng</th>
+											<th># ${count}</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:set var="count" value="1" scope="session" />
-										<c:forEach var="p" items="${ch}">
-											<tr>
-												<td>${count}</td>
-												<td>${p.ma_can_ho}</td>
-												<td>${p.dien_tich}</td>
-												<td>${p.khu}</td>
-												<td>${p.tang}</td>
-												<td><a href="/admin/canho/${p.ma_can_ho}">Chi tiết</a></td>
-											</tr>
-											<c:set var="count" value="${count = count + 1}"
-												scope="session" />
-										</c:forEach>
+										<tr>
+											<td>Mã căn hộ</td>
+											<td>${p.ma_can_ho}</td>
+										</tr>
+										<tr>
+											<td>Diện tích</td>
+											<td>${p.dien_tich}</td>
+										</tr>
+										<tr>
+											<td>Khu</td>
+											<td>${p.khu}</td>
+										</tr>
+										<tr>
+											<td>Tầng</td>
+											<td>${p.tang}</td>
+										</tr>
 									</tbody>
 								</table>
-							</div>
+								<c:set var="count" value="${count = count + 1}" scope="session" />
+							</c:forEach>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-1"></div>
 			</div>
 
+			<div class="col-sm-1"></div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout/footer.jsp"%>
@@ -162,5 +164,12 @@
 		</div>
 		<!-- End of Content Wrapper -->
 	</div>
+	<script>
+	  var capnhat = `${capnhat}`;
+
+	  if (capnhat !== "") {
+	    alert(capnhat);
+	  }
+</script>
 </body>
 </html>

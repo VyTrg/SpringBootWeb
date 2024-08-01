@@ -80,10 +80,10 @@
 						  <hr>
 						  <div class="row">
 							<div class="col-sm-3">
-							  <p class="mb-0">Mã nhân viên</p>
+							  <p class="mb-0">Mã khách hàng</p>
 							</div>
 							<div class="col-sm-9">
-							  <p class="text-muted mb-0">${thongtin_nv.ma_nhan_vien}</p>
+							  <p class="text-muted mb-0">${thongtin_nv.ma_chu_so_huu}</p>
 							</div>
 						  </div>
 						  <hr>
