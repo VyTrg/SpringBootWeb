@@ -32,7 +32,7 @@
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	
+
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -45,14 +45,15 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Topbar -->
-			<%@ include file="../layout/head.jsp"%>
+			<%@ include file="../layout_admin/head.jsp"%>
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
 			<div class="row">
+				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
-					<h2 class="text-center">Thông tin chủ sở hữu</h2>
 					<div class="row">
+						<h2 class="text-center">Thông tin chủ sở hữu</h2>
 						<div class="container">
 							<form:form action="${csh.ma_chu_so_huu}" method="post" modelAttribute="csh">
 							<table class="table table-striped mt-3">
@@ -113,50 +114,50 @@
 							</form:form>
 						</div>
 					</div>
+
 				</div>
-				</div>
-				<br class="p-4">
-				<div class="row">
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
-					<h2 class="text-center">Căn hộ đang sở hữu</h2>
 					<div class="row">
-						<div class="container mt-3">
-							<c:set var="count" value="1" scope="session" />
-							<c:forEach var="p" items="${ch}">
+						<h2>Căn hộ đang sở hữu</h2>
+						<div class="row">
+							<div class="container mt-3">
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th># ${count}</th>
+											<th>#</th>
+											<th>Mã căn hộ</th>
+											<th>Diện tích</th>
+											<th>Khu</th>
+											<th>Tầng</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Mã căn hộ</td>
-											<td>${p.ma_can_ho}</td>
-										</tr>
-										<tr>
-											<td>Diện tích</td>
-											<td>${p.dien_tich}</td>
-										</tr>
-										<tr>
-											<td>Khu</td>
-											<td>${p.khu}</td>
-										</tr>
-										<tr>
-											<td>Tầng</td>
-											<td>${p.tang}</td>
-										</tr>
+										<c:set var="count" value="1" scope="session" />
+										<c:forEach var="p" items="${ch}">
+											<tr>
+												<td>${count}</td>
+												<td>${p.ma_can_ho}</td>
+												<td>${p.dien_tich}</td>
+												<td>${p.khu}</td>
+												<td>${p.tang}</td>
+												<td><a href="/admin/canho/${p.ma_can_ho}">Chi tiết</a></td>
+											</tr>
+											<c:set var="count" value="${count = count + 1}"
+												scope="session" />
+										</c:forEach>
 									</tbody>
 								</table>
-								<c:set var="count" value="${count = count + 1}" scope="session" />
-							</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-sm-1"></div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout/footer.jsp"%>

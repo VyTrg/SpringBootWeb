@@ -55,10 +55,10 @@ public class can_ho {
 	public ChuSoHuu getChuSoHuu() {
 		return chuSoHuu;
 	}
-
 	public void setChuSoHuu(ChuSoHuu chuSoHuu) {
 		this.chuSoHuu = chuSoHuu;
 	}
+	
 
 	public List<dich_vu_can_ho> getDs_dich_vu_can_ho() {
 		return ds_dich_vu_can_ho;

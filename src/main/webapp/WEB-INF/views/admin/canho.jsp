@@ -77,7 +77,7 @@
 											<td>${p.chuSoHuu.ho_ten}</td>
 											<td>${p.khu}</td>
 											<td>${p.tang}</td>
-											<td><a href="/canho/${p.ma_can_ho}">Chi tiết</a></td>
+											<td><a href="/admin/canho/${p.ma_can_ho}">Chi tiết</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
