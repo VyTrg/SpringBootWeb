@@ -51,7 +51,7 @@
 			<!-- Main Content -->
 			<div class="row">
 				<div class="col-sm-1"></div>
-				<div class="col-sm-5 container border">
+				<div class="col-sm-10 container border">
 					<h2 class="text-center">Thông tin căn hộ</h2>
 					<div class="row">
 						<div class="container mt-3">
@@ -59,6 +59,8 @@
 								<thead>
 									<tr>
 										<th>Căn hộ</th>
+										<th></th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -88,15 +90,15 @@
 									</tr>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ma_chu_so_huu"
+										<td><form:input path="csh.ma_chu_so_huu"
 												style="width: 50%" cssClass="form-control" /></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td>Chủ sở hữu</td>
-										<td><form:input path="ch.chuSoHuu.ho_ten"
-												style="width: 50%" cssClass="form-control" /></td>
-										<td><a href="/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi
+										<td><form:input path="csh.ho_ten" style="width: 50%"
+												cssClass="form-control" /></td>
+										<td><a href="/admin/csh/${csh.ma_chu_so_huu}">Chi
 												tiết</a></td>
 									</tr>
 								</tbody>
@@ -104,60 +106,56 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5 container border">
-					<h2 class="text-center">Thông tin dịch vụ đã đăng kí</h2>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10 container border">
+					<h2>Thông tin dịch vụ đã đăng kí</h2>
 					<div class="row">
 						<div class="container mt-3">
-							<c:set var="count" value="1" scope="session" />
-							<c:forEach var="p" items="${dv}">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th># ${count}</th>
-											<th>Số lượng đăng kí: ${p.so_luong}</th>
-										</tr>
-									</thead>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Mã dịch vụ</th>
+										<th>Tên dịch vụ</th>
+										<th>Thuế VAT</th>
+										<th>Đơn giá</th>
+										<th>Đơn vị</th>
+										<th>Số lượng</th>
+										<th></th>
+									</tr>
+								</thead>
+								<c:set var="count" value="1" scope="session" />
+								<c:forEach var="p" items="${dv}">
 									<tbody>
 										<tr>
-											<td>Mã dịch vụ</td>
+											<td>${count}</td>
 											<td>${p.dich_vu.ma_dich_vu}</td>
-										</tr>
-										<tr>
-											<td>Tên dịch vụ</td>
 											<td>${p.dich_vu.ten_dich_vu}</td>
-										</tr>
-										<tr>
-											<td>Thuế VAT</td>
 											<td>${p.dich_vu.vat}</td>
-										</tr>
-										<tr>
-											<td>Đơn giá</td>
 											<td>${p.dich_vu.don_gia}</td>
-										</tr>
-										<tr>
-											<td>Đơn vị</td>
 											<td>${p.dich_vu.don_vi}</td>
+											<td>${p.so_luong}</td>
+											<td><button class="btn btn-primary">Xóa</button></td>
 										</tr>
 									</tbody>
-								</table>
-								<div class="col d-flex justify-content-end mb-3 me-4">
-									<button class="btn btn-primary">Xóa</button>
-								</div>
-								<c:set var="count" value="${count = count + 1}" scope="session" />
-							</c:forEach>
+									<c:set var="count" value="${count = count + 1}" scope="session" />
+								</c:forEach>
+							</table>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
-
-			<div class="col-sm-1"></div>
-			<!-- End of Main Content -->
-			<!-- Footer -->
-			<%@ include file="../layout_admin/footer.jsp"%>
-			<!-- End of Footer -->
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+		<!-- Footer -->
+		<%@ include file="../layout_admin/footer.jsp"%>
+		<!-- End of Footer -->
+	</div>
+	<!-- End of Content Wrapper -->
 	</div>
 </body>
 </html>

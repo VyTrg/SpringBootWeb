@@ -38,14 +38,14 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<%@ include file="../layout/slidebar.jsp"%>
+		<%@ include file="../layout_admin/slidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Topbar -->
-			<%@ include file="../layout/head.jsp"%>
+			<%@ include file="../layout_admin/head.jsp"%>
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
