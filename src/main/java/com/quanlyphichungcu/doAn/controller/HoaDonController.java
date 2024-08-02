@@ -1,6 +1,7 @@
 package com.quanlyphichungcu.doAn.controller;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,6 +81,7 @@ public class HoaDonController {
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				if (itemHoaDon.getNgay_dong_tien() == null) {
 					hoaDonService itemUIHoaDon = new hoaDonService();
+					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
 					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/ " + itemHoaDon.getNam().toString());
 					itemUIHoaDon.setMaCanHo(itemCanHo);
 					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
@@ -207,9 +210,16 @@ public class HoaDonController {
 	}
 
 	@RequestMapping(value = "/thanhtoan", method = RequestMethod.POST)
-	public String thanhtoan(HttpServletRequest request, Model model) {
-		
-		return "";
+	public String Thanhtoan(HttpServletRequest request) {
+		System.out.print("test");
+		String ma_hoa_don = request.getParameter("ma_hoa_don");	
+		String khachhang = request.getParameter("khachhang");
+		LocalDate currentDate = LocalDate.now();
+		Date date = java.sql.Date.valueOf(currentDate);
+		HoaDon hoadon = new HoaDon();
+		hoadon = HDRepository.getById(ma_hoa_don);
+		hoadon.setNgay_dong_tien(date);
+		return "redirect:/user/hoadon/" + khachhang.trim();
 	}
 
 }

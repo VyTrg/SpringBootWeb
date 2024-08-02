@@ -194,7 +194,7 @@
 											</tr>
 										</thead>
 										<tbody><!---->
-											<c:forEach var="i" items="${ch}">
+											<c:forEach var="i" items="${danhsachcanho}">
 											<tr>
 											<td><ngb-highlight>${i.ma_can_ho}</ngb-highlight></td>
 											<td><ngb-highlight>${i.chuSoHuu.ho_ten}</ngb-highlight></td>
