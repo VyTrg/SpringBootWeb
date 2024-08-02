@@ -66,7 +66,7 @@
 										<th>Căn hộ</th>
 									</tr>
 								</thead>
-								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch">
+								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch" id="js-edit-info">
 								<tbody>
 									<tr>
 										<td>Mã căn hộ</td>
@@ -94,14 +94,22 @@
 									</tr>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="chuSoHuu.ma_chu_so_huu"
-												style="width: 50%" cssClass="form-control" /></td>
-										<td></td>
+										<td>
+										<form:input path="chuSoHuu.ma_chu_so_huu"
+												style="width: 50%" cssClass="form-control" readonly="true" id="js-input-id"/>
+										</td>
+										<td>
+										<select class="form-select js-select-info" aria-label="Default select example">
+										  <option selected>${ch.chuSoHuu.ma_chu_so_huu}</option>
+										  <c:forEach var="i" items="${csh}">
+											<option value="${i.ma_chu_so_huu}">${i.ma_chu_so_huu}</option>
+										  </c:forEach>
+										</select>	</td>
 									</tr>
 									<tr>
 										<td>Chủ sở hữu</td>
 										<td><form:input path="chuSoHuu.ho_ten"
-												style="width: 50%" cssClass="form-control" /></td>
+												style="width: 50%" cssClass="form-control" id="js-name-info" readonly="true"/></td>
 										<td><a href="/admin/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi tiết</a></td>
 									</tr>
 									<tr>
@@ -215,11 +223,8 @@
 		<!-- End of Content Wrapper -->
 	</div>
 <script>
-  var suadichvu = `${suadichvu}`;
-
-  if (suadichvu !== "") {
-    alert(suadichvu);
-  }
+  
+	var listcsh = '${csh}';
 </script>
 </body>
 </html>

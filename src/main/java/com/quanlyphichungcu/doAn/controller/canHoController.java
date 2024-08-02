@@ -24,12 +24,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu;
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
+import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuRepository;
+import com.quanlyphichungcu.doAn.service.chuSoHuuService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -45,12 +48,18 @@ public class canHoController {
 	@Autowired 
 	private dichVuRepository dv_repository;
 	
+	@Autowired 
+	private chuSoHuuRepository csh_repository;
+	
 	
 	@RequestMapping("/canho/{id}")
 	public String getCTCanHo(Model model, @PathVariable("id") String id) {
 		
 		can_ho ch = canho_repository.findById(id).get();
 		model.addAttribute("ch", ch);
+		List<ChuSoHuu> csh = csh_repository.findAll();
+		model.addAttribute("csh",csh);
+		// du lieu dich vu
 		List<dich_vu_can_ho> dichvudaco = dvch_repository.getDichVuByCanHo(id);
 		model.addAttribute("dichvudaco",dichvudaco);
 		List<dich_vu> tatcadichvu = dv_repository.findAll();
@@ -61,10 +70,19 @@ public class canHoController {
 		return "admin/ctcanho";
 	}
 	
+	@RequestMapping(value = "/canho/laythongtincsh", method = RequestMethod.POST)
+	@ResponseBody
+	public String getInfoCuDan(Model model,
+			@RequestParam(name = "idcsh") String idcsh,
+			@ModelAttribute("ch") can_ho canHo) {
+		ChuSoHuu thongtincsh = csh_repository.findById(idcsh).get();
+		return thongtincsh.getHo_ten();
+	}
+	
 	@RequestMapping(value = "/canho/suathongtin", method = RequestMethod.POST)
 	public String editThongTinCanHo(Model model,@ModelAttribute("ch") can_ho canHo) {
-//		canho_repository.save(canHo);
-		System.out.println(canHo);
+		canho_repository.save(canHo);
+
 		return "redirect:/canho/"+canHo.getMa_can_ho();
 	}
 

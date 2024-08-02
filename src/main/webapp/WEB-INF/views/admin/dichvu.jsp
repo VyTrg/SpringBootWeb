@@ -95,7 +95,7 @@
 				<div class="col-sm-1"></div>
 			</div>
 
-			<form method="post" action="/admin/dichvu/create">
+			<form method="post" action="/admin/dichvu/create" id="js-add-form">
 				<div class="row mt-4">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10 border">
@@ -156,7 +156,7 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-					<form method="post" action="/admin/dichvu/edit">
+					<form method="post" action="/admin/dichvu/edit" id="js-edit-submit">
 						<div class="row mt-4">
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10 border">
@@ -194,7 +194,7 @@
 											</tbody>
 										</table>
 										<div class="col text-center mb-3">
-											<button class="btn btn-primary">Sửa</button>
+											<button class="btn btn-primary js-edit-submit">Sửa</button>
 										</div>
 									</div>
 								</div>
