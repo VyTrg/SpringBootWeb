@@ -76,7 +76,7 @@
 											<td>${p.sdt}</td>
 											<td>${p.phongBan.ma_phong_ban}</td>
 											<td>${p.dangNhap.ten_dang_nhap}</td>
-											<td><a href="/thongtin/nv/${p.ma_nhan_vien}">Chi
+											<td><a href="/admin/nv/${p.ma_nhan_vien}">Chi
 													tiết</a></td>
 										</tr>
 									</c:forEach>
@@ -117,7 +117,7 @@
 													<li>${canho.ma_can_ho}</li>
 												</c:forEach></td>
 											<td>${p.dangNhap.ten_dang_nhap}</td>
-											<td><a href="/thongtin/csh/${p.ma_chu_so_huu}">Chi
+											<td><a href="/admin/csh/${p.ma_chu_so_huu}">Chi
 													tiết</a></td>
 										</tr>
 									</c:forEach>
