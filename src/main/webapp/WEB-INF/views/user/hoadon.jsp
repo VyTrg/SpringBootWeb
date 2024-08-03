@@ -204,14 +204,15 @@
             $.ajax({
               url: "/thanhtoan",
               type: "POST",
+    
               data: {
                 ma_hoa_don: btn_xacnhan.getAttribute('data-hoadon'),
                 khachhang: btn_xacnhan.getAttribute('data-khachhang')
               },
-              success: function Thanhtoan() {
+              success: function Thanhtoan(response) {
                 console.log(btn_xacnhan.getAttribute('data-hoadon'));
                 alert('success');
-                
+                location.href="/user/hoadon/" + response;
               },
               error: function fail(){
                 alert('error');
@@ -220,10 +221,6 @@
           })
         })
       </script>
-      <!-- Button trigger modal -->
-
-
-      <!-- Modal -->
 
     </body>
 

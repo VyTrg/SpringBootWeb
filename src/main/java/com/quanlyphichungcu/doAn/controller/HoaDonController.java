@@ -210,16 +210,16 @@ public class HoaDonController {
 	}
 
 	@RequestMapping(value = "/thanhtoan", method = RequestMethod.POST)
+	@ResponseBody
 	public String Thanhtoan(HttpServletRequest request) {
-		System.out.print("test");
 		String ma_hoa_don = request.getParameter("ma_hoa_don");	
 		String khachhang = request.getParameter("khachhang");
+		System.out.print(khachhang);
 		LocalDate currentDate = LocalDate.now();
 		Date date = java.sql.Date.valueOf(currentDate);
 		HoaDon hoadon = new HoaDon();
-		hoadon = HDRepository.getById(ma_hoa_don);
+		hoadon = HDRepository.findById(ma_hoa_don).get();
 		hoadon.setNgay_dong_tien(date);
-		return "redirect:/user/hoadon/" + khachhang.trim();
+		return khachhang;
 	}
-
 }

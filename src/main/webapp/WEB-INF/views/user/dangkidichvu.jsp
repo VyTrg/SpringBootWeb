@@ -213,7 +213,6 @@
 									</div>
 									<!-- End of Content Wrapper -->
 								</div>
-
 								<script type="text/javascript">
 									
 									var btns = document.querySelectorAll('.btn-submit');
