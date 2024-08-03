@@ -77,8 +77,8 @@
 										</tr>
 										<tr>
 											<th>Mật khẩu</th>
-											<td><form:input path="nv.dangNhap.mat_khau"
-													style="width: 50%" cssClass="form-control" /></td>
+											<td><form:input path="nv.dangNhap.mat_khau" 
+													style="width: 50%" cssClass="form-control" type="password"/></td>
 										</tr>
 									</tbody>
 								</table>

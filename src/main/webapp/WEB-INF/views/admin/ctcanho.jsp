@@ -129,7 +129,7 @@
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
-			<div class="row mt-5">
+			<div class="row mt-5 mb-5">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
 					<h2>Thông tin dịch vụ đã đăng kí</h2>
@@ -225,7 +225,7 @@
 		</div>
 		<!-- End of Main Content -->
 		<!-- Footer -->
-		<%@ include file="../layout_admin/footer.jsp"%>
+		<%@ include file="../layout/footer.jsp"%>
 		<!-- End of Footer -->
 	</div>
 	<!-- End of Content Wrapper -->
