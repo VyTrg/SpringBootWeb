@@ -104,6 +104,7 @@
 										  <c:forEach var="i" items="${csh}">
 											<option value="${i.ma_chu_so_huu}">${i.ma_chu_so_huu}</option>
 										  </c:forEach>
+										  	<option value="delete">Xoá chủ sở hữu</option>
 										</select>	</td>
 									</tr>
 									<tr>

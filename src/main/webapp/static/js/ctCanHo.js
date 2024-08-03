@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	 	selectInfo.addEventListener('change', (event) => {
 			// set id input value
-		   	inputElement.value = event.target.value;
+			if (event.target.value === 'delete') 
+				inputElement.value = "";
+			else 
+		   		inputElement.value = event.target.value;
 			const url = "/canho/laythongtincsh"; // Assuming you want to send to the current page
 	  		  const request = new XMLHttpRequest();
 		      request.open("POST", url, true);
@@ -26,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		        if (request.readyState === XMLHttpRequest.DONE) {
 		          if (request.status === 200) {
 					// set name input value
-		            document.getElementById('js-name-info').value = request.response;
+					if (request.response === 'khongcothongtin') 
+						document.getElementById('js-name-info').value = "";
+		            else 
+						document.getElementById('js-name-info').value = request.response;
 		          } else {
 		            console.error('Request failed with status:', request.status);
 		          }

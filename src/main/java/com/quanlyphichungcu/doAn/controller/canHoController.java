@@ -1,20 +1,14 @@
 package com.quanlyphichungcu.doAn.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +26,6 @@ import com.quanlyphichungcu.doAn.repository.canHoRepository;
 import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuRepository;
-import com.quanlyphichungcu.doAn.service.chuSoHuuService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -75,14 +68,24 @@ public class canHoController {
 	public String getInfoCuDan(Model model,
 			@RequestParam(name = "idcsh") String idcsh,
 			@ModelAttribute("ch") can_ho canHo) {
-		ChuSoHuu thongtincsh = csh_repository.findById(idcsh).get();
-		return thongtincsh.getHo_ten();
+		try {
+			if (idcsh != "delete") {
+				ChuSoHuu thongtincsh = csh_repository.findById(idcsh).get();
+				return thongtincsh.getHo_ten();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "khongcothongtin";
+		
 	}
 	
 	@RequestMapping(value = "/canho/suathongtin", method = RequestMethod.POST)
 	public String editThongTinCanHo(Model model,@ModelAttribute("ch") can_ho canHo) {
+		if (canHo.getChuSoHuu().getMa_chu_so_huu() == "") {
+			canHo.setChuSoHuu(null);		
+		}
 		canho_repository.save(canHo);
-
 		return "redirect:/canho/"+canHo.getMa_can_ho();
 	}
 

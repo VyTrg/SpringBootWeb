@@ -67,14 +67,11 @@ public class dichVuController {
 	@RequestMapping(value = "/dichvu/remove", method = RequestMethod.POST)
 	public String remove(HttpServletRequest request,
 						Model model) {
+		// tim dv
 		dich_vu DichVu = DichVuRepository.findById(request.getParameter("ma_dich_vu")).get();
+		// xoa dv
+		DichVuRepository.delete(DichVu);
 
-		try {
-			DichVuRepository.delete(DichVu);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 		return "redirect:/admin/dichvu";
 	}
 }

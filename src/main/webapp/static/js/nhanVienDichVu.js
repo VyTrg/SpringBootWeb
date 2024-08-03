@@ -43,7 +43,7 @@ addEventListener("DOMContentLoaded", (event) => {
 	   alert('Đã sửa!');
 	 });
 	 
-	
+	/*------------------------------------------------------------------------------------------*/
 	// xoa dich vu
 	var buttonRemove = dichVuModal.querySelectorAll('.js-button-remove');
 
