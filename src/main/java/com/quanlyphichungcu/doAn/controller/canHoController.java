@@ -1,20 +1,14 @@
 package com.quanlyphichungcu.doAn.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu;
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
+import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 import com.quanlyphichungcu.doAn.repository.dichVuRepository;
 
@@ -35,6 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @Controller
+@RequestMapping("/admin")
 public class canHoController {
 	@Autowired
 	private canHoRepository canho_repository;
@@ -45,12 +42,18 @@ public class canHoController {
 	@Autowired 
 	private dichVuRepository dv_repository;
 	
+	@Autowired 
+	private chuSoHuuRepository csh_repository;
+	
 	
 	@RequestMapping("/canho/{id}")
 	public String getCTCanHo(Model model, @PathVariable("id") String id) {
 		
 		can_ho ch = canho_repository.findById(id).get();
 		model.addAttribute("ch", ch);
+		List<ChuSoHuu> csh = csh_repository.findAll();
+		model.addAttribute("csh",csh);
+		// du lieu dich vu
 		List<dich_vu_can_ho> dichvudaco = dvch_repository.getDichVuByCanHo(id);
 		model.addAttribute("dichvudaco",dichvudaco);
 		List<dich_vu> tatcadichvu = dv_repository.findAll();
@@ -61,20 +64,38 @@ public class canHoController {
 		return "admin/ctcanho";
 	}
 	
+	@RequestMapping(value = "/canho/laythongtincsh", method = RequestMethod.POST)
+	@ResponseBody
+	public String getInfoCuDan(Model model,
+			@RequestParam(name = "idcsh") String idcsh,
+			@ModelAttribute("ch") can_ho canHo) {
+		try {
+			if (idcsh != "delete") {
+				ChuSoHuu thongtincsh = csh_repository.findById(idcsh).get();
+				return thongtincsh.getHo_ten();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "khongcothongtin";
+		
+	}
+	
 	@RequestMapping(value = "/canho/suathongtin", method = RequestMethod.POST)
 	public String editThongTinCanHo(Model model,@ModelAttribute("ch") can_ho canHo) {
-//		canho_repository.save(canHo);
-		System.out.println(canHo);
-		return "redirect:/canho/"+canHo.getMa_can_ho();
+		if (canHo.getChuSoHuu().getMa_chu_so_huu() == "") {
+			canHo.setChuSoHuu(null);		
+		}
+		canho_repository.save(canHo);
+		return "redirect:/admin/canho/"+canHo.getMa_can_ho();
 	}
 
 	@PostMapping("/canho/themdichvu/{idCanHo}")
 	@ResponseBody
-	public ResponseEntity<String> getDichVuDaSua(Model model, @PathVariable("idCanHo") String idCanHo,
+	public String getDichVuDaSua(Model model, @PathVariable("idCanHo") String idCanHo,
 			@RequestBody String res,
 			@RequestParam(name = "idService") String idService,
 			@RequestParam(name = "countService") String countService) {
-		String message = null;
 
 		can_ho canho = canho_repository.findById(idCanHo).get();
 		dich_vu dichvu = dv_repository.findById(idService).get();
@@ -82,24 +103,8 @@ public class canHoController {
 		dich_vu_can_ho dv_canho = new dich_vu_can_ho(canho, dichvu, Integer.parseInt(countService), currentDate,
 				null);
 		dvch_repository.save(dv_canho);
-		message = "Them thanh cong";
 			
-		return ResponseEntity.ok(message);
-	}
-	
-	@PostMapping("/canho/suadichvu/{idCanHo}")
-	@ResponseBody
-	public String getSuaDichVu(Model model, @PathVariable("idCanHo") String idCanHo,
-			@RequestBody String res,
-			@RequestParam(name = "idService") String idService,
-			@RequestParam(name = "countService") String countService) {
-		can_ho canho = canho_repository.findById(idCanHo).get();
-		dich_vu dichvu = dv_repository.findById(idService).get();
-		dich_vu_can_ho dv_canho = dvch_repository.getDichVuByDichVuCanHo(canho.getMa_can_ho(), dichvu.getMa_dich_vu());
-		dv_canho.setSo_luong(Integer.parseInt(countService));
-
-		dvch_repository.save(dv_canho);
-		return "redirect:/canho/"+idCanHo;
+		return "Đã thêm dịch vụ: \nCăn hộ:"+canho.getMa_can_ho()+"\nTên dịch vụ:"+dichvu.getTen_dich_vu()+"\nNgày bắt đầu"+currentDate;
 	}
 	
 	@PostMapping("/canho/xoadichvu/{idCanHo}")
@@ -116,7 +121,7 @@ public class canHoController {
 		dv_canho.setNgay_ket_thuc(currentDate);
 		// luu
 		dvch_repository.delete(dv_canho);
-		return "redirect:/canho/"+idCanHo;
+		return "redirect:/admin/canho/"+idCanHo;
 	}
 
 	private List<dich_vu> getDichVuChuaCo(List<dich_vu_can_ho> dichvudaco, List<dich_vu> tatcadichvu) {

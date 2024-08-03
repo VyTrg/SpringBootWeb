@@ -69,7 +69,7 @@
 										<th></th>
 									</tr>
 								</thead>
-								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch">
+								<form:form action="/admin/canho/suathongtin" method="post" modelAttribute="ch" id="js-edit-info">
 								<tbody>
 									<tr>
 										<td>Mã căn hộ</td>
@@ -97,16 +97,29 @@
 									</tr>
 									<tr>
 										<td>Mã chủ sở hữu</td>
-										<td><form:input path="csh.ma_chu_so_huu"
-												style="width: 50%" cssClass="form-control" /></td>
-										<td></td>
+										<td>
+										<form:input path="chuSoHuu.ma_chu_so_huu"
+												style="width: 50%" cssClass="form-control" readonly="true" id="js-input-id"/>
+										</td>
+										<td>
+										<select class="form-select js-select-info" aria-label="Default select example">
+										  <option selected>${ch.chuSoHuu.ma_chu_so_huu}</option>
+										  <c:forEach var="i" items="${csh}">
+											<option value="${i.ma_chu_so_huu}">${i.ma_chu_so_huu}</option>
+										  </c:forEach>
+										  	<option value="delete">Xoá chủ sở hữu</option>
+										</select>	</td>
 									</tr>
 									<tr>
 										<td>Chủ sở hữu</td>
-										<td><form:input path="csh.ho_ten" style="width: 50%"
-												cssClass="form-control" /></td>
-										<td><a href="/admin/csh/${csh.ma_chu_so_huu}">Chi
-												tiết</a></td>
+										<td><form:input path="chuSoHuu.ho_ten"
+												style="width: 50%" cssClass="form-control" id="js-name-info" readonly="true"/></td>
+										<td><a href="/admin/thongtin/csh/${ch.chuSoHuu.ma_chu_so_huu}">Chi tiết</a></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><a href=""><button type="submit" class="btn btn-primary">Sửa</button></a></td>
+										<td></td>
 									</tr>
 								</tbody>
 								</form:form>
@@ -116,7 +129,7 @@
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
-			<div class="row mt-5">
+			<div class="row mt-5 mb-5">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
 					<h2>Thông tin dịch vụ đã đăng kí</h2>
@@ -125,7 +138,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>Stt</th>
 										<th>Mã dịch vụ</th>
 										<th>Tên dịch vụ</th>
 										<th>Thuế VAT</th>
@@ -136,21 +149,21 @@
 									</tr>
 								</thead>
 								<c:set var="count" value="1" scope="session" />
-								<c:forEach var="p" items="${dv}">
-									<tbody>
-										<tr>
-											<td>${count}</td>
-											<td>${p.dich_vu.ma_dich_vu}</td>
-											<td>${p.dich_vu.ten_dich_vu}</td>
-											<td>${p.dich_vu.vat}</td>
-											<td>${p.dich_vu.don_gia}</td>
-											<td>${p.dich_vu.don_vi}</td>
-											<td>${p.so_luong}</td>
-											<td><button class="btn btn-primary">Xóa</button></td>
-										</tr>
-									</tbody>
+								<tbody id="remove-modal">
+								<c:forEach var="p" items="${dichvudaco}">
+									<tr id="${p.dich_vu.ma_dich_vu}">
+										<td>${count}</td>
+										<td>${p.dich_vu.ma_dich_vu}</td>
+										<td>${p.dich_vu.ten_dich_vu}</td>
+										<td>${p.dich_vu.vat}</td>
+										<td>${p.dich_vu.don_gia}</td>
+										<td>${p.dich_vu.don_vi}</td>
+										<td>${p.so_luong}</td>
+										<td><a href=""><button class="btn btn-primary js-button-remove">Xóa</button></a></td>
+									</tr>
 									<c:set var="count" value="${count = count + 1}" scope="session" />
 								</c:forEach>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -212,17 +225,14 @@
 		</div>
 		<!-- End of Main Content -->
 		<!-- Footer -->
-		<%@ include file="../layout_admin/footer.jsp"%>
+		<%@ include file="../layout/footer.jsp"%>
 		<!-- End of Footer -->
 	</div>
 	<!-- End of Content Wrapper -->
 	</div>
 <script>
-  var suadichvu = `${suadichvu}`;
-
-  if (suadichvu !== "") {
-    alert(suadichvu);
-  }
+  
+	var listcsh = '${csh}';
 </script>
 </body>
 </html>
