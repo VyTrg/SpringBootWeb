@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				inputElement.value = "";
 			else 
 		   		inputElement.value = event.target.value;
-			const url = "/canho/laythongtincsh"; // Assuming you want to send to the current page
+			const url = "/admin/canho/laythongtincsh"; // Assuming you want to send to the current page
 	  		  const request = new XMLHttpRequest();
 		      request.open("POST", url, true);
 		      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const countService = row.querySelector('.js-count').value;
       const params = "idService="+idService+"&countService="+countService;
 
-      const url = "/canho/themdichvu/"+macanho; // Assuming you want to send to the current page
-
+	  const url = "/admin/canho/themdichvu/"+macanho; // Assuming you want to send to the current page
+		
       const request = new XMLHttpRequest();
       request.open("POST", url, true);
       request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -81,39 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	/*-----------------------------------------------------------------------------*/
 	// click button Remove
+
+	/*-----------------------------------------------------------------------------*/
 	var modalCharge= document.querySelector('#remove-modal');
-	var count = modalCharge.querySelector('.js-count');
-	var buttonEdit = modalCharge.querySelectorAll('.js-button-fix');
-	
-	buttonEdit.forEach(button => {
-		      button.addEventListener('click', handleEditButton);
-		   });
-	
-
-   function handleEditButton(event) {
-   	      const row = event.target.closest("tr");
-   	      const idService = row.id;
-   	      const countService = count.value;
-   	      const params = "idService="+idService+"&countService="+countService;
-			
-   	      const url = "/canho/suadichvu/"+macanho; // Assuming you want to send to the current page
-   	      const request = new XMLHttpRequest();
-   	      request.open("POST", url, true);
-   	      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-   	      request.onreadystatechange = () => {
-   	        if (request.readyState === XMLHttpRequest.DONE) {
-   	          if (request.status === 200) {
-   	            alert("Sua thanh cong");
-   	          } else {
-   	            console.error('Request failed with status:', request.status);
-   	          }
-   	        }
-   	      };
-
-   	      request.send(params);
-   		}
-		/*-----------------------------------------------------------------------------*/
 	var buttonRemove = modalCharge.querySelectorAll('.js-button-remove');
 
 	buttonRemove.forEach(button => {
@@ -124,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	   	      const idService = row.id;
 	   	      const params = "idService="+idService;
 				
-	   	      const url = "/canho/xoadichvu/"+macanho; // Assuming you want to send to the current page
+	   	      const url = "/admin/canho/xoadichvu/"+macanho; // Assuming you want to send to the current page
 
 	   	      const request = new XMLHttpRequest();
 	   	      request.open("POST", url, true);

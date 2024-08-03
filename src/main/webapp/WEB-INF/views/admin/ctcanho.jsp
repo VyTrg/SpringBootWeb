@@ -69,7 +69,7 @@
 										<th></th>
 									</tr>
 								</thead>
-								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch" id="js-edit-info">
+								<form:form action="/admin/canho/suathongtin" method="post" modelAttribute="ch" id="js-edit-info">
 								<tbody>
 									<tr>
 										<td>Mã căn hộ</td>
@@ -138,7 +138,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>Stt</th>
 										<th>Mã dịch vụ</th>
 										<th>Tên dịch vụ</th>
 										<th>Thuế VAT</th>
@@ -149,21 +149,21 @@
 									</tr>
 								</thead>
 								<c:set var="count" value="1" scope="session" />
-								<c:forEach var="p" items="${dv}">
-									<tbody>
-										<tr>
-											<td>${count}</td>
-											<td>${p.dich_vu.ma_dich_vu}</td>
-											<td>${p.dich_vu.ten_dich_vu}</td>
-											<td>${p.dich_vu.vat}</td>
-											<td>${p.dich_vu.don_gia}</td>
-											<td>${p.dich_vu.don_vi}</td>
-											<td>${p.so_luong}</td>
-											<td><button class="btn btn-primary">Xóa</button></td>
-										</tr>
-									</tbody>
+								<tbody id="remove-modal">
+								<c:forEach var="p" items="${dichvudaco}">
+									<tr id="${p.dich_vu.ma_dich_vu}">
+										<td>${count}</td>
+										<td>${p.dich_vu.ma_dich_vu}</td>
+										<td>${p.dich_vu.ten_dich_vu}</td>
+										<td>${p.dich_vu.vat}</td>
+										<td>${p.dich_vu.don_gia}</td>
+										<td>${p.dich_vu.don_vi}</td>
+										<td>${p.so_luong}</td>
+										<td><a href=""><button class="btn btn-primary js-button-remove">Xóa</button></a></td>
+									</tr>
 									<c:set var="count" value="${count = count + 1}" scope="session" />
 								</c:forEach>
+								</tbody>
 							</table>
 						</div>
 					</div>

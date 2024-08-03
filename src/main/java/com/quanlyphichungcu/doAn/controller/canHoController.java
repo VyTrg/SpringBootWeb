@@ -31,6 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @Controller
+@RequestMapping("/admin")
 public class canHoController {
 	@Autowired
 	private canHoRepository canho_repository;
@@ -86,16 +87,15 @@ public class canHoController {
 			canHo.setChuSoHuu(null);		
 		}
 		canho_repository.save(canHo);
-		return "redirect:/canho/"+canHo.getMa_can_ho();
+		return "redirect:/admin/canho/"+canHo.getMa_can_ho();
 	}
 
 	@PostMapping("/canho/themdichvu/{idCanHo}")
 	@ResponseBody
-	public ResponseEntity<String> getDichVuDaSua(Model model, @PathVariable("idCanHo") String idCanHo,
+	public String getDichVuDaSua(Model model, @PathVariable("idCanHo") String idCanHo,
 			@RequestBody String res,
 			@RequestParam(name = "idService") String idService,
 			@RequestParam(name = "countService") String countService) {
-		String message = null;
 
 		can_ho canho = canho_repository.findById(idCanHo).get();
 		dich_vu dichvu = dv_repository.findById(idService).get();
@@ -103,24 +103,8 @@ public class canHoController {
 		dich_vu_can_ho dv_canho = new dich_vu_can_ho(canho, dichvu, Integer.parseInt(countService), currentDate,
 				null);
 		dvch_repository.save(dv_canho);
-		message = "Them thanh cong";
 			
-		return ResponseEntity.ok(message);
-	}
-	
-	@PostMapping("/canho/suadichvu/{idCanHo}")
-	@ResponseBody
-	public String getSuaDichVu(Model model, @PathVariable("idCanHo") String idCanHo,
-			@RequestBody String res,
-			@RequestParam(name = "idService") String idService,
-			@RequestParam(name = "countService") String countService) {
-		can_ho canho = canho_repository.findById(idCanHo).get();
-		dich_vu dichvu = dv_repository.findById(idService).get();
-		dich_vu_can_ho dv_canho = dvch_repository.getDichVuByDichVuCanHo(canho.getMa_can_ho(), dichvu.getMa_dich_vu());
-		dv_canho.setSo_luong(Integer.parseInt(countService));
-
-		dvch_repository.save(dv_canho);
-		return "redirect:/canho/"+idCanHo;
+		return "Đã thêm dịch vụ: \nCăn hộ:"+canho.getMa_can_ho()+"\nTên dịch vụ:"+dichvu.getTen_dich_vu()+"\nNgày bắt đầu"+currentDate;
 	}
 	
 	@PostMapping("/canho/xoadichvu/{idCanHo}")
@@ -137,7 +121,7 @@ public class canHoController {
 		dv_canho.setNgay_ket_thuc(currentDate);
 		// luu
 		dvch_repository.delete(dv_canho);
-		return "redirect:/canho/"+idCanHo;
+		return "redirect:/admin/canho/"+idCanHo;
 	}
 
 	private List<dich_vu> getDichVuChuaCo(List<dich_vu_can_ho> dichvudaco, List<dich_vu> tatcadichvu) {
