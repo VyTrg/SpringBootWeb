@@ -54,40 +54,40 @@ public class chuSoHuuController {
 		return "/user/thongtin";
 	}
 	
-	@RequestMapping("/dangkidichvu/{maCanHo}")
+	@RequestMapping("/dangkidichvu/{maChuSoHuu}")
 	public String getThongTinDichVu(Model model) {
 		model.addAttribute("dichvu", DichVuRepository.findAll());
 		return "/user/dangkidichvu";
 	}
 	
-	@PostMapping("/dangkidichvu/{maCanHo}")
-	@ResponseBody
-	public ResponseEntity<String> greetingJson(@RequestBody String thongTinDangKi,@PathVariable("maCanHo") String maCanHo) {
-		try {
-			// get date in current time
-			Date currentDate = new Date();
-			// get data
-			String data = thongTinDangKi;
-			// charge string to json
-			JSONObject jsonObject = new JSONObject(data);
-			 
-			// Iterate over keys
-	        Iterator<String> keys = jsonObject.keys();
-	        while (keys.hasNext()) {
-	            String key = keys.next();
-	            int value = jsonObject.getInt(key);
-				dich_vu_can_ho dangKiDichVu = new dich_vu_can_ho(CanHoRepository.findById(maCanHo).get(),
-						DichVuRepository.findById(key).get(),value,currentDate,null);
-	            DichVuCuaCanHoRepository.save(dangKiDichVu);
-	        }
-
-			
-
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok("Dang ki thanh cong");
-	}
+//	@PostMapping("/dangkidichvu/{maCanHo}")
+//	@ResponseBody
+//	public ResponseEntity<String> greetingJson(@RequestBody String thongTinDangKi,@PathVariable("maCanHo") String maCanHo) {
+//		try {
+//			// get date in current time
+//			Date currentDate = new Date();
+//			// get data
+//			String data = thongTinDangKi;
+//			// charge string to json
+//			JSONObject jsonObject = new JSONObject(data);
+//			 
+//			// Iterate over keys
+//	        Iterator<String> keys = jsonObject.keys();
+//	        while (keys.hasNext()) {
+//	            String key = keys.next();
+//	            int value = jsonObject.getInt(key);
+//				dich_vu_can_ho dangKiDichVu = new dich_vu_can_ho(CanHoRepository.findById(maCanHo).get(),
+//						DichVuRepository.findById(key).get(),value,currentDate,null);
+//	            DichVuCuaCanHoRepository.save(dangKiDichVu);
+//	        }
+//
+//			
+//
+//		} catch (NumberFormatException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return ResponseEntity.ok("Dang ki thanh cong");
+//	}
 	
 }

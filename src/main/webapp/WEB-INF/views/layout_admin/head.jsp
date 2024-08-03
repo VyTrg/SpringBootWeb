@@ -89,6 +89,6 @@
 					</li>
 
 				</ul>
-				<button type="button" class="btn btn-light" onclick="location.href='../logout'">Đăng xuất</a></button>
+				<button type="button" class="btn btn-light" onclick="location.href='/logout'">Đăng xuất</a></button>
 			</nav>
 <!-- End of Top bar -->

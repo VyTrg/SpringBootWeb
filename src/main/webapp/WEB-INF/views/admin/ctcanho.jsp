@@ -56,6 +56,7 @@
 
 			<!-- Main Content -->
 			<div class="row">
+				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
 					<h2 class="text-center">Thông tin căn hộ</h2>
 					<div class="row">
@@ -64,6 +65,8 @@
 								<thead>
 									<tr>
 										<th>Căn hộ</th>
+										<th></th>
+										<th></th>
 									</tr>
 								</thead>
 								<form:form action="/canho/suathongtin" method="post" modelAttribute="ch" id="js-edit-info">
@@ -124,40 +127,43 @@
 						</div>
 					</div>
 				</div>
-				</div>
-				<br class="p-4">
-				<div class="row">
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-sm-1"></div>
 				<div class="col-sm-10 container border">
-					<h2 class="text-center">Thông tin dịch vụ đã đăng kí</h2>
+					<h2>Thông tin dịch vụ đã đăng kí</h2>
 					<div class="row">
 						<div class="container mt-3">
-							<table class="table">
-							  <thead>
-							    <tr>
-							      <th scope="col">Tên dịch vụ:</th>
-							      <th scope="col">Đơn giá:</th>
-							      <th scope="col">Thuế:</th>
-							      <th scope="col">Số lượng:</th>
-							      
-							    </tr>
-							  </thead>
-							  <tbody id="remove-modal">
-							  <c:forEach var="i" items="${dichvudaco}">
-							    <tr id="${i.dich_vu.ma_dich_vu}">
-							      <th>${i.dich_vu.ten_dich_vu}</th>
-							      <td>${i.dich_vu.don_gia}</td>
-							      <td>${i.dich_vu.vat}</td>
-							      <td><input type="number" class="form-range js-count count-service" id="customRange" min="0" max="50" value="1"></td>
-							   		<td><div class="form-check">
-											<a href=""><button type="button" class="btn btn-secondary js-button-fix">Sửa</button></a>
-										</div></td>
-									<td><div class="form-check">
-												<a href=""><button type="button" class="btn btn-danger js-button-remove">Xoá</button></a>
-											</div></td>
-							   	
-							    </tr>
-							  </c:forEach> 
-							  </tbody>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Mã dịch vụ</th>
+										<th>Tên dịch vụ</th>
+										<th>Thuế VAT</th>
+										<th>Đơn giá</th>
+										<th>Đơn vị</th>
+										<th>Số lượng</th>
+										<th></th>
+									</tr>
+								</thead>
+								<c:set var="count" value="1" scope="session" />
+								<c:forEach var="p" items="${dv}">
+									<tbody>
+										<tr>
+											<td>${count}</td>
+											<td>${p.dich_vu.ma_dich_vu}</td>
+											<td>${p.dich_vu.ten_dich_vu}</td>
+											<td>${p.dich_vu.vat}</td>
+											<td>${p.dich_vu.don_gia}</td>
+											<td>${p.dich_vu.don_vi}</td>
+											<td>${p.so_luong}</td>
+											<td><button class="btn btn-primary">Xóa</button></td>
+										</tr>
+									</tbody>
+									<c:set var="count" value="${count = count + 1}" scope="session" />
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -216,12 +222,13 @@
 					</div>
 				</div>
 			</div>
-			<!-- End of Main Content -->
-			<!-- Footer -->
-			<%@ include file="../layout_admin/footer.jsp"%>
-			<!-- End of Footer -->
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+		<!-- Footer -->
+		<%@ include file="../layout_admin/footer.jsp"%>
+		<!-- End of Footer -->
+	</div>
+	<!-- End of Content Wrapper -->
 	</div>
 <script>
   
