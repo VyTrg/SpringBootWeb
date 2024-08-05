@@ -32,8 +32,14 @@
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -76,19 +82,22 @@
 											<td>${p.sdt}</td>
 											<td>${p.phongBan.ma_phong_ban}</td>
 											<td>${p.dangNhap.ten_dang_nhap}</td>
-											<td><a href="/admin/nv/${p.ma_nhan_vien}">Chi
-													tiết</a></td>
+											<td><a href="/admin/nv/${p.ma_nhan_vien}">Chi tiết</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col mb-3 d-flex justify-content-end mt-3">
+							<button class="btn btn-primary">Tạo tài khoản nhân viên</button>
+						</div>
+					</div>
 				</div>
 			</div>
 
 			<div class="col-sm-1"></div>
-
 			<div class="row">
 				<div class="col-sm-1"></div>
 
@@ -117,17 +126,20 @@
 													<li>${canho.ma_can_ho}</li>
 												</c:forEach></td>
 											<td>${p.dangNhap.ten_dang_nhap}</td>
-											<td><a href="/admin/csh/${p.ma_chu_so_huu}">Chi
-													tiết</a></td>
+											<td><a href="/admin/csh/${p.ma_chu_so_huu}">Chi tiết</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col mb-3 d-flex justify-content-end mt-3">
+							<button class="btn btn-primary">Tạo tài khoản chủ sở hữu</button>
+						</div>
+					</div>
 				</div>
 			</div>
-
 			<div class="col-sm-1"></div>
 			<!-- End of Main Content -->
 			<!-- Footer -->

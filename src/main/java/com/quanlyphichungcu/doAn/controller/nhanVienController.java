@@ -25,6 +25,7 @@ public class nhanVienController {
 	@RequestMapping("/nhanvien/{id}")
 	public String getNhanVienById(Model model, @PathVariable("id") String id){
 		Optional<nhan_vien> nv = nhan_vien_repo.findById(id);
+		nv.get().getDangNhap().getMat_khau().trim();
 		model.addAttribute("nv", nv.get());
 		return "admin/thongtin";
 	}
