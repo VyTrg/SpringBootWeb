@@ -29,7 +29,7 @@
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/user/dangkidichvu/CH4">Đăng kí dịch vụ</a>
+                <a class="collapse-item" href="/user/dangkidichvu/${sessionScope.thongtin.ma_chu_so_huu}">Đăng kí dịch vụ</a>
                 <!-- <a class="collapse-item"  href="../hoadon/CSH3">Lịch sử hóa đơn</a> -->
             </div>
         </div>

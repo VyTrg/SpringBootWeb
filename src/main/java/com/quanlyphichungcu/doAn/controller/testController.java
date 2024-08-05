@@ -33,16 +33,5 @@ public class testController {
 		List<can_ho> ListCanHo =  CHRepository.getCanHoByChuSoHuu("CSH3");
 		return "test";
 	}
-	
-	@RequestMapping("/laphoadon/{Can_Ho}")
-	public String getHoaDon(Model model, @PathVariable String Can_Ho) {
-		Optional<can_ho> ch = CHRepository.findById(Can_Ho);
-		model.addAttribute("ch", ch.get());
-		model.addAttribute("csh", ch.get().getChuSoHuu());
-		List<dich_vu_can_ho> dv = DV_CHRepository.getDichVuByCanHo(Can_Ho);
-		model.addAttribute("dv", dv);
-		
-		return "admin/hoadon";
-	}
 }
 

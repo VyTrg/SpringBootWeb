@@ -36,6 +36,7 @@ public class dichVuController {
 		model.addAttribute("dv", dv);
 		return "admin/dichvu";
 	}
+	
 	@RequestMapping(value = "/dichvu/create", method = RequestMethod.POST)
 	public String create(HttpServletRequest request,
 						Model model) {
@@ -50,4 +51,26 @@ public class dichVuController {
 		return "redirect:/admin/dichvu";
 	}
 	
+	@RequestMapping(value = "/dichvu/edit", method = RequestMethod.POST)
+	public String edit(HttpServletRequest request,
+						Model model) {
+		dich_vu DichVu = DichVuRepository.findById(request.getParameter("ma_dich_vu")).get();
+		DichVu.setTen_dich_vu(request.getParameter("ten_dich_vu"));
+		DichVu.setVat(Integer.parseInt(request.getParameter("vat")));
+		DichVu.setDon_gia(Integer.parseInt(request.getParameter("don_gia")));
+		DichVu.setDon_vi(request.getParameter("don_vi"));
+		DichVuRepository.save(DichVu);
+		return "redirect:/admin/dichvu";
+	}
+	
+	@RequestMapping(value = "/dichvu/remove", method = RequestMethod.POST)
+	public String remove(HttpServletRequest request,
+						Model model) {
+		// tim dv
+		dich_vu DichVu = DichVuRepository.findById(request.getParameter("ma_dich_vu")).get();
+		// xoa dv
+		DichVuRepository.delete(DichVu);
+
+		return "redirect:/admin/dichvu";
+	}
 }
