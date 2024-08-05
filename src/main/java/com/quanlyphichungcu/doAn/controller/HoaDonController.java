@@ -49,18 +49,6 @@ public class HoaDonController {
 
 	@RequestMapping("user/hoadon/{maChuSoHuu}")
 	public String thongTinHoaDon(Model model, @PathVariable("maChuSoHuu") String maChuSoHuu) {
-		// lay thong tin can de in ra bang
-//		can_ho canHo = CHRepository.findById(maCanHo).get();
-//		HoaDon HD =  HDRepository.findByMaCanHoChuaThanhToan(maCanHo);
-//
-//		// tao 1 list map luu thong tin hoa don
-//		Map<String, String> MapHoaDon = getThongTinHoaDon(canHo);
-//		
-//		// luu thong tin dich vu vao 1 list
-//		List<Map<String, String>> UIDichVuChoCanHo = getThongTinDichVu(maCanHo, HD);
-//		model.addAttribute("thongTinCanHo",canHo);
-//		model.addAttribute("listDichVu", UIDichVuChoCanHo);
-//		model.addAttribute("thongTinHoaDon",MapHoaDon);
 
 		ChuSoHuu CSH = CSHRepository.findById(maChuSoHuu).get();
 
@@ -82,13 +70,14 @@ public class HoaDonController {
 				if (itemHoaDon.getNgay_dong_tien() == null) {
 					hoaDonService itemUIHoaDon = new hoaDonService();
 					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
-					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/ " + itemHoaDon.getNam().toString());
+					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/" + itemHoaDon.getNam().toString());
 					itemUIHoaDon.setMaCanHo(itemCanHo);
 					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
 					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
 					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
 					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
-					float tong = 0;
+					System.out.println("+++++++++++" + itemUIHoaDon.getMa_hoa_don());
+					float tong = 0;	
 					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
 						int dongia, vat, soluong;
 						String donVi;
@@ -118,8 +107,11 @@ public class HoaDonController {
 		// tao list thong tin hoa don cua can ho
 		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
 
+		List<Map<String, String>> UIDichVuChoCanHo = null;
 		// list cac hang ma se dua vao bang
-		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String, String>>();
+//		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
+		ChuSoHuu CSH = CSHRepository.findById(maChuSoHuu).get();
+		List<hoaDonService> UIhoaDonService = new ArrayList<hoaDonService>();
 		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
 			ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
 
@@ -127,23 +119,35 @@ public class HoaDonController {
 			// lap cac hoa don cua can ho chuyen du lieu sang map
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				if (itemHoaDon.getNgay_dong_tien() != null) {
-					Map<String, String> row = new HashMap<String, String>();
-					String tenHoaDon = itemHoaDon.getThang().toString() + "/	" + itemHoaDon.getNam().toString();
-					row.put("tenHoaDon", tenHoaDon);
-					row.put("maCanHo", itemCanHo.getMa_can_ho());
-					row.put("soTien", itemHoaDon.getThang().toString());
-					String ngayDong;
-					ngayDong = itemHoaDon.getNgay_dong_tien().toString();
-					row.put("ngayDong", ngayDong);
-					row.put("ngayLap", itemHoaDon.getNgay_tao().toString());
-					row.put("tienThang", itemHoaDon.getThang().toString());
-					UIDanhSachHoaDon.add(row);
+					hoaDonService itemUIHoaDon = new hoaDonService();
+					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
+					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/" + itemHoaDon.getNam().toString());
+					itemUIHoaDon.setMaCanHo(itemCanHo);
+					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
+					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
+					itemUIHoaDon.setNgay_dong_tien(itemHoaDon.getNgay_dong_tien().toString());
+					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
+					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
+//					System.out.println("+++++++++++" + itemUIHoaDon.getMa_hoa_don());
+					float tong = 0;	
+					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
+						int dongia, vat, soluong;
+						String donVi;
+						dongia = Integer.parseInt(tongDichVu.get("donGia"));
+						vat = Integer.parseInt(tongDichVu.get("vat"));
+						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
+						donVi = tongDichVu.get("donVi");
+						tong += (dongia * soluong * (vat + 100)) / 100;
+					}
+					UIhoaDonService.add(itemUIHoaDon);
+					itemUIHoaDon.setTien_thang(Float.toString(tong));
 				}
 			}
+
 		}
 		model.addAttribute("danhSachCanHo", ListCanHo);
-		model.addAttribute("thongTinHoaDon", ListTTHoaDon);
-		model.addAttribute("danhSachHoaDon", UIDanhSachHoaDon);
+		model.addAttribute("thongtin", CSH);
+		model.addAttribute("danhSachHoaDon", UIhoaDonService);
 		return "user/tracuuhoadon";
 	}
 
@@ -209,17 +213,24 @@ public class HoaDonController {
 		return UIChiTietHoaDon;
 	}
 
-	@RequestMapping(value = "/thanhtoan", method = RequestMethod.POST)
-	@ResponseBody
+	@RequestMapping(value = "/user/thanhtoan", method = RequestMethod.POST)
 	public String Thanhtoan(HttpServletRequest request) {
-		String ma_hoa_don = request.getParameter("ma_hoa_don");	
+		String ma_hoa_don = request.getParameter("ma_hoa_don");
+		System.out.println("======================" + ma_hoa_don);
 		String khachhang = request.getParameter("khachhang");
-		System.out.print(khachhang);
 		LocalDate currentDate = LocalDate.now();
 		Date date = java.sql.Date.valueOf(currentDate);
 		HoaDon hoadon = new HoaDon();
 		hoadon = HDRepository.findById(ma_hoa_don).get();
 		hoadon.setNgay_dong_tien(date);
-		return khachhang;
+		HDRepository.save(hoadon);
+		return "redirect:/user/hoadon/" + khachhang;
 	}
+	
+//	@RequestMapping(value = "/chitiethoadon", method = RequestMethod.GET)
+//	private void getChiTiet(HttpServletRequest request){
+//		List<Map<String, String>> ChiTietHoaDon = new ArrayList<Map<String, String>>();
+//		List<dich_vu_can_ho> ListCTHoaDon = DV_CHRepository.getDichVuByCanHo(request.getParameter(null));
+////		return ChiTietHoaDon;
+//	}
 }

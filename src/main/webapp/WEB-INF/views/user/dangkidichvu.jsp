@@ -106,7 +106,7 @@
 																				class="btn btn-light btn-submit"
 																				data-bs-toggle="modal"
 																				data-bs-target="#dkdvModal"
-																				data-test="${dv.ten_dich_vu}">Chọn</button>
+																				data-test="${dv.ten_dich_vu}">Đăng kí</button>
 																			<div class="modal fade" id="dkdvModal"
 																				tabindex="-1"
 																				aria-labelledby="exampleModalLabel"
@@ -158,8 +158,7 @@
 															<button type="button" class="btn btn-light btn-tim">Tìm</button>
 														</div>
 													</div>
-													<!-- </div> -->
-													<!-- </form> -->
+													
 													<div class="col-sm-12">
 														<table
 															class="table table-bordered dataTable table-hover js-table"

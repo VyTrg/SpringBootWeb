@@ -10,8 +10,8 @@
       <meta name="description" content="">
       <meta name="author" content="">
 
-      <title>Hoa don</title>
-
+      <title>Thanh toán hóa đơn</title>
+      
       <link href="../../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -92,7 +92,8 @@
                                   <td>${i.tien_thang}</td>
                                   <td>
                                     <button type="button" class="btn btn-primary btn_chitiethoadon"
-                                      data-bs-toggle="modal" data-bs-target="#chitietModal"> Xem chi tiết</button>
+                                      data-bs-toggle="modal" data-bs-target="#chitietModal"
+                                      data-chitiet="${i.chiTietDichVu}">Xem chi tiết</button>
                                     <div class="modal fade" id="chitietModal" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog modal-xl">
@@ -102,43 +103,47 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                               aria-label="Close"></button>
                                           </div>
-                                          <div class="modal-body">
-                                            <table class="table" id="chitietdichvu">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col">Stt</th>
-                                                  <th scope="col">Tên dịch vụ</th>
-                                                  <th scope="col">Đơn giá</th>
-                                                  <th scope="col">Số lượng</th>
-                                                  <th scope="col">Thuế</th>
-                                                  <th scope="col">Đơn vị</th>
-                                                  <th scope="col">Thành tiền</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <c:set var="countt" value="1" scope="session" />
-                                                <c:forEach var="j" items="${i.chiTietDichVu}">
+                                            <div class="modal-body">
+                                              <div id="table_chittiet"></div>
+                                              <table class="table" id="chitietdichvu">
+                                                <thead>
                                                   <tr>
-                                                    <td class="sorting_1">${countt}</td>
-                                                    <td>${j.tenDichVu}</td>
-                                                    <td>${j.donGia}</td>
-                                                    <td>${j.soLuong}</td>
-                                                    <td>${j.vat}</td>
-                                                    <td>${j.donVi}</td>
-                                                    <td>${j.tong} VND</td>
+                                                    <th scope="col">Stt</th>
+                                                    <th scope="col">Tên dịch vụ</th>
+                                                    <th scope="col">Đơn giá</th>
+                                                    <th scope="col">Số lượng</th>
+                                                    <th scope="col">Thuế</th>
+                                                    <th scope="col">Đơn vị</th>
+                                                    <th scope="col">Thành tiền</th>
                                                   </tr>
-                                                  <c:set var="countt" value="${countt = countt + 1}" scope="session" />
-                                                </c:forEach>
-                                              </tbody>
-                                              <tfoot>
-                                                <tr>
-                                                  <th scope="row">Tổng tiền</th>
-                                                  <td colspan="6" class="table-active">${i.tien_thang} VND</td>
-                                                </tr>
-                                              </tfoot>
-                                            </table>
-                                          </div>
-                                          <div class="modal-footer">
+                                                </thead>
+                                                <tbody>
+                                                  <c:set var="countt" value="1" scope="session" />
+                                                  <c:forEach var="j" items="${i.chiTietDichVu}" >
+                                                    <tr>
+                                                      <td class="sorting_1">${countt}</td>
+                                                      <td>${j.tenDichVu}</td>
+                                                      <td>${j.donGia}</td>
+                                                      <td>${j.soLuong}</td>
+                                                      <td>${j.vat}</td>
+                                                      <td>${j.donVi}</td>
+                                                      <td>${j.tong} VND</td>
+                                                      
+                                                    </tr>
+                                                    <c:set var="countt" value="${countt = countt + 1}" scope="session" />
+                                                  </c:forEach>
+                                                </tbody>
+                                                <tfoot>
+                                                  <tr>
+                                                    <th scope="row">Tổng tiền</th>
+                                                    <td colspan="6" class="table-active">${i.tien_thang} VND</td>
+                                                    <input type="hidden" name="chitiet" id="chitiet" value="${i.tien_thang}">
+                                                  </tr>
+                                                </tfoot>
+                                              </table>
+                                            </form>
+                                            </div>
+                                            <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                               data-bs-dismiss="modal">Close</button>
                                           </div>
@@ -149,26 +154,28 @@
                                   <td>
                                     <button type="button" class="btn btn-primary btn_thanhtoan" data-bs-toggle="modal"
                                       data-bs-target="#thanhtoanModal" data-tenhoadon="${i.tenHoaDon}"
-                                      data-canho="${i.maCanHo.ma_can_ho}">Thanh toán</button>
+                                      data-canho="${i.maCanHo.ma_can_ho}" data-mahoadon="${i.ma_hoa_don}">Thanh toán</button>
+                                      <input type="hidden" name="ip_ma_hoa_don" id="ip_ma_can_ho" value="${i.ma_hoa_don}">
                                     <div class="modal fade" id="thanhtoanModal" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog">
                                         <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Thanh toán</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                              aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <h6 id="modebody_thanhtoan"></h6>
-                                          </div>
-                                          <div class="modal-footer">
-                                            <!-- <form method="post" action="/thanhtoan/${i.ma_hoa_don}"> -->
-                                            <button type="button" class="btn btn-secondary btn_xacnhan"
-                                              data-bs-dismiss="modal" data-hoadon="${i.ma_hoa_don}"
-                                              data-khachhang="${thongtin.ma_chu_so_huu}">Xác nhận</button>
-                                            <!-- </form> -->
-                                          </div>
+                                          <form action="/user/thanhtoan" method="post">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Thanh toán</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <h6 id="modebody_thanhtoan"></h6>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <!-- <form method="post" action="/thanhtoan/${i.ma_hoa_don}"> -->
+                                              <button type="button" class="btn btn-secondary btn_xacnhan"
+                                                data-bs-dismiss="modal" 
+                                                data-khachhang="${thongtin.ma_chu_so_huu}" id="xacnhan">Xác nhận</button>
+                                            </div>
+                                          </form>
                                         </div>
                                       </div>
                                     </div>
@@ -191,35 +198,43 @@
       </div>
 
       <script type="text/javascript">
+        var btn_chitiets = document.querySelectorAll('.btn_chitiethoadon');
+        btn_chitiets.forEach(function(btn_chitiet){
+          btn_chitiet.addEventListener('click', function(){
+            $('#foreach_chitiet').attr("items", btn_chitiet.getAttribute('data-chitiet'));
+          })
+        })
+
         var btn_thanhtoans = document.querySelectorAll('.btn_thanhtoan');
         btn_thanhtoans.forEach(function (btn_thanhtoan) {
           btn_thanhtoan.addEventListener('click', function () {
             $("#modebody_thanhtoan").html("Xác nhận thanh toán hóa đơn " + btn_thanhtoan.getAttribute('data-tenhoadon') + " của " + btn_thanhtoan.getAttribute('data-canho'));
+            $('#xacnhan').attr("data-hoadon", btn_thanhtoan.getAttribute('data-mahoadon'));
           })
         })
-
         var btn_xacnhans = document.querySelectorAll('.btn_xacnhan');
-        btn_xacnhans.forEach(function (btn_xacnhan) {
-          btn_xacnhan.addEventListener('click', function Thanhtoan() {
-            $.ajax({
-              url: "/thanhtoan",
-              type: "POST",
+            btn_xacnhans.forEach(function (btn_xacnhan) {
+              btn_xacnhan.addEventListener('click', function Thanhtoan() {
+                $.ajax({
+                  url: "http://localhost:8080/user/thanhtoan",
+                  type: "POST",
     
-              data: {
-                ma_hoa_don: btn_xacnhan.getAttribute('data-hoadon'),
-                khachhang: btn_xacnhan.getAttribute('data-khachhang')
-              },
-              success: function Thanhtoan(response) {
-                console.log(btn_xacnhan.getAttribute('data-hoadon'));
-                alert('success');
-                location.href="/user/hoadon/" + response;
-              },
-              error: function fail(){
-                alert('error');
-              }
+                  data: {
+                    ma_hoa_don: btn_xacnhan.getAttribute('data-hoadon'),
+                    khachhang: btn_xacnhan.getAttribute('data-khachhang')
+                  },
+                  success: function Thanhtoan() {
+                    // alert(ma_hoa_don);
+                    window.location.reload();
+                  },
+                  error: function fail() {
+                    alert('error');
+                  }
+                })
+                
+              })
             })
-          })
-        })
+
       </script>
 
     </body>

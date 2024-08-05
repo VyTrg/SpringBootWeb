@@ -55,7 +55,6 @@ public class dichVuController {
 	public String edit(HttpServletRequest request,
 						Model model) {
 		dich_vu DichVu = DichVuRepository.findById(request.getParameter("ma_dich_vu")).get();
-		
 		DichVu.setTen_dich_vu(request.getParameter("ten_dich_vu"));
 		DichVu.setVat(Integer.parseInt(request.getParameter("vat")));
 		DichVu.setDon_gia(Integer.parseInt(request.getParameter("don_gia")));
