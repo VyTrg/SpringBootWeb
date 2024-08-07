@@ -109,21 +109,58 @@ public class HoaDonController {
 	@RequestMapping("/user/tracuuhoadon/{maChuSoHuu}")
 	public String quyen(Model model, @PathVariable("maChuSoHuu") String maChuSoHuu) {
 		// get data
-		// lay cac can ho cua chu so huu
-		List<can_ho> ListCanHo = CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
-		// tao list thong tin hoa don cua can ho
-		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
-
-		List<Map<String, String>> UIDichVuChoCanHo = null;
-		// list cac hang ma se dua vao bang
-//		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
+//		// lay cac can ho cua chu so huu
+//		List<can_ho> ListCanHo = CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
+//		// tao list thong tin hoa don cua can ho
+//		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
+//
+//		List<Map<String, String>> UIDichVuChoCanHo = null;
+//		// list cac hang ma se dua vao bang
+////		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
+//		ChuSoHuu CSH = CSHRepository.findById(maChuSoHuu).get();
+//		List<hoaDonService> UIhoaDonService = new ArrayList<hoaDonService>();
+//		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
+//			ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
+//
+//			List<HoaDon> danhSachHoaDon = HDRepository.findByMaCanHo(itemCanHo.getMa_can_ho());
+//			// lap cac hoa don cua can ho chuyen du lieu sang map
+//			for (HoaDon itemHoaDon : danhSachHoaDon) {
+//				if (itemHoaDon.getNgay_dong_tien() != null) {
+//					hoaDonService itemUIHoaDon = new hoaDonService();
+//					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
+//					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/" + itemHoaDon.getNam().toString());
+//					itemUIHoaDon.setMaCanHo(itemCanHo);
+//					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
+//					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
+//					itemUIHoaDon.setNgay_dong_tien(itemHoaDon.getNgay_dong_tien().toString());
+//					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
+//					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
+//
+//					float tong = 0;
+//					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
+//						int dongia, vat, soluong;
+//						String donVi;
+//						dongia = Integer.parseInt(tongDichVu.get("donGia"));
+//						vat = Integer.parseInt(tongDichVu.get("vat"));
+//						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
+//						donVi = tongDichVu.get("donVi");
+//						tong += (dongia * soluong * (vat + 100)) / 100;
+//					}
+//					UIhoaDonService.add(itemUIHoaDon);
+//					itemUIHoaDon.setTien_thang(Float.toString(tong));
+//				}
+//			}
+//
+//		}
 		ChuSoHuu CSH = CSHRepository.findById(maChuSoHuu).get();
+
+		List<can_ho> ListCanHo = CHRepository.getCanHoByChuSoHuu(maChuSoHuu);
 		List<hoaDonService> UIhoaDonService = new ArrayList<hoaDonService>();
-		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
-			ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
+		for (can_ho itemCanHo : ListCanHo) { 
+//			ListTTHoaDon.add(getThongTinHoaDon(itemCanHo));
 
 			List<HoaDon> danhSachHoaDon = HDRepository.findByMaCanHo(itemCanHo.getMa_can_ho());
-			// lap cac hoa don cua can ho chuyen du lieu sang map
+
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				if (itemHoaDon.getNgay_dong_tien() != null) {
 					hoaDonService itemUIHoaDon = new hoaDonService();
@@ -133,19 +170,13 @@ public class HoaDonController {
 					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
 					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
 					itemUIHoaDon.setNgay_dong_tien(itemHoaDon.getNgay_dong_tien().toString());
-					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
-					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
-//					System.out.println("+++++++++++" + itemUIHoaDon.getMa_hoa_don());
+					List<dich_vu_can_ho> item = getChitiet(itemCanHo.getMa_can_ho());
+					itemUIHoaDon.setChitietdichvu(item);
 					float tong = 0;
-					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
-						int dongia, vat, soluong;
-						String donVi;
-						dongia = Integer.parseInt(tongDichVu.get("donGia"));
-						vat = Integer.parseInt(tongDichVu.get("vat"));
-						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
-						donVi = tongDichVu.get("donVi");
-						tong += (dongia * soluong * (vat + 100)) / 100;
+					for(dich_vu_can_ho chitiet: item) {
+						tong += (chitiet.getSo_luong() * chitiet.getDich_vu().getDon_gia() * (chitiet.getDich_vu().getVat() + 100) / 100);
 					}
+					
 					UIhoaDonService.add(itemUIHoaDon);
 					itemUIHoaDon.setTien_thang(Float.toString(tong));
 				}

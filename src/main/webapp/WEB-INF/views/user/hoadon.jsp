@@ -102,7 +102,7 @@
                                       <td>${i.maCanHo.ma_can_ho}</td>
                                       <td>${i.ngay_tao}</td>
                                       <td>${i.nhanVien.ho_ten}</td>
-                                      <td>${i.tien_thang}</td>
+                                      <td><fmt:formatNumber value="${i.tien_thang}" type="number"/> VND</td>
                                       <td>
 
                                         <button type="button" class="btn btn-primary btn_chitiethoadon"
@@ -121,7 +121,6 @@
                                               <div class="modal-body">
 
                                                 <table class="table" id="chitietdichvu">
-                                                  <!-- <form action="/user/hoadon/find/${i.maCanHo.ma_can_ho}" method="GET"> -->
                                                   <thead>
                                                     <tr>
                                                       <th scope="col">Stt</th>
@@ -143,7 +142,7 @@
                                                         <td>${chitiet.so_luong}</td>
                                                         <td><fmt:formatNumber value="${chitiet.dich_vu.vat/100.0}" type="percent" maxIntegerDigits="5"/></td>
                                                         <td>${chitiet.dich_vu.don_vi}</td>
-                                                        <td>
+                                                        <td class="text-end">
                                                           <fmt:formatNumber value="${chitiet.dich_vu.don_gia * chitiet.so_luong * (100 +
                                                           chitiet.dich_vu.vat) / 100}" type="number"/> VND</td>
                                                       </tr>
@@ -154,9 +153,8 @@
                                                   <tfoot>
                                                     <tr>
                                                       <th scope="row">Tổng tiền</th>
-                                                      <td colspan="6" class="table-active"><fmt:formatNumber value="${i.tien_thang}" type="number"/>VND</td>
-                                                      <!-- <input type="hidden" name="chitiet" id="chitiet"
-                                                        value="${i.tien_thang}"> -->
+                                                      <td colspan="6" class="table-active text-end"><fmt:formatNumber value="${i.tien_thang}" type="number"/> VND</td>
+
                                                     </tr>
                                                   </tfoot>
                                                 </table>

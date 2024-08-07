@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <!DOCTYPE html>
         <html>
 
@@ -139,15 +140,15 @@
                                                                         <td>${i.nhanVien.ho_ten}</td>
                                                                         <td>${i.ngay_tao}</td>
                                                                         <td>${i.ngay_dong_tien}</td>
-                                                                        <td>${i.tien_thang}</td>
+                                                                        <td><fmt:formatNumber value="${i.tien_thang}" type="number"/> VND</td>
                                                                         <td>
                                                                             <button type="button"
                                                                                 class="btn btn-primary btn_chitiethoadon"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#chitietModal"
+                                                                                data-bs-target="#chitietModal-${fn:trim(i.ma_hoa_don)}"
                                                                                 data-chitiet="${i.chiTietDichVu}">Xem
                                                                                 chi tiết</button>
-                                                                            <div class="modal fade" id="chitietModal"
+                                                                            <div class="modal fade" id="chitietModal-${fn:trim(i.ma_hoa_don)}"
                                                                                 tabindex="-1"
                                                                                 aria-labelledby="exampleModalLabel"
                                                                                 aria-hidden="true">
@@ -163,79 +164,45 @@
                                                                                                 aria-label="Close"></button>
                                                                                         </div>
                                                                                         <div class="modal-body">
-                                                                                            <div id="table_chittiet">
-                                                                                            </div>
-                                                                                            <table class="table"
-                                                                                                id="chitietdichvu">
+                                                                                            <table class="table" id="chitietdichvu">
                                                                                                 <thead>
-                                                                                                    <tr>
-                                                                                                        <th scope="col">
-                                                                                                            Stt</th>
-                                                                                                        <th scope="col">
-                                                                                                            Tên dịch vụ
-                                                                                                        </th>
-                                                                                                        <th scope="col">
-                                                                                                            Đơn giá</th>
-                                                                                                        <th scope="col">
-                                                                                                            Số lượng
-                                                                                                        </th>
-                                                                                                        <th scope="col">
-                                                                                                            Thuế</th>
-                                                                                                        <th scope="col">
-                                                                                                            Đơn vị</th>
-                                                                                                        <th scope="col">
-                                                                                                            Thành tiền
-                                                                                                        </th>
-                                                                                                    </tr>
+                                                                                                  <tr>
+                                                                                                    <th scope="col">Stt</th>
+                                                                                                    <th scope="col">Tên dịch vụ</th>
+                                                                                                    <th scope="col">Đơn giá</th>
+                                                                                                    <th scope="col">Số lượng</th>
+                                                                                                    <th scope="col">Thuế</th>
+                                                                                                    <th scope="col">Đơn vị</th>
+                                                                                                    <th scope="col">Thành tiền</th>
+                                                                                                  </tr>
                                                                                                 </thead>
-                                                                                                <tbody>
-                                                                                                    <c:set var="countt"
-                                                                                                        value="1"
-                                                                                                        scope="session" />
-                                                                                                    <c:forEach var="j"
-                                                                                                        items="${i.chiTietDichVu}">
-                                                                                                        <tr>
-                                                                                                            <td
-                                                                                                                class="sorting_1">
-                                                                                                                ${countt}
-                                                                                                            </td>
-                                                                                                            <td>${j.tenDichVu}
-                                                                                                            </td>
-                                                                                                            <td>${j.donGia}
-                                                                                                            </td>
-                                                                                                            <td>${j.soLuong}
-                                                                                                            </td>
-                                                                                                            <td>${j.vat}
-                                                                                                            </td>
-                                                                                                            <td>${j.donVi}
-                                                                                                            </td>
-                                                                                                            <td>${j.tong}
-                                                                                                                VND</td>
-
-                                                                                                        </tr>
-                                                                                                        <c:set
-                                                                                                            var="countt"
-                                                                                                            value="${countt = countt + 1}"
-                                                                                                            scope="session" />
-                                                                                                    </c:forEach>
+                                                                                                <tbody id="table_body">
+                                                                                                  <c:set var="countt" value="1" scope="session" />
+                                                                                                  <c:forEach var="chitiet" items="${i.chitietdichvu}">
+                                                                                                    <tr>
+                                                                                                      <td class="sorting_1">${countt}</td>
+                                                                                                      <td>${chitiet.dich_vu.ten_dich_vu}</td>
+                                                                                                      <td>${chitiet.dich_vu.don_gia}</td>
+                                                                                                      <td>${chitiet.so_luong}</td>
+                                                                                                      <td><fmt:formatNumber value="${chitiet.dich_vu.vat/100.0}" type="percent" maxIntegerDigits="5"/></td>
+                                                                                                      <td>${chitiet.dich_vu.don_vi}</td>
+                                                                                                      <td class="text-end">
+                                                                                                        <fmt:formatNumber value="${chitiet.dich_vu.don_gia * chitiet.so_luong * (100 +
+                                                                                                        chitiet.dich_vu.vat) / 100}" type="number"/> VND</td>
+                                                                                                    </tr>
+                                                                                                    <c:set var="countt" value="${countt = countt + 1}"
+                                                                                                      scope="session" />
+                                                                                                  </c:forEach>
                                                                                                 </tbody>
                                                                                                 <tfoot>
-                                                                                                    <tr>
-                                                                                                        <th scope="row">
-                                                                                                            Tổng tiền
-                                                                                                        </th>
-                                                                                                        <td colspan="6"
-                                                                                                            class="table-active">
-                                                                                                            ${i.tien_thang}
-                                                                                                            VND</td>
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="chitiet"
-                                                                                                            id="chitiet"
-                                                                                                            value="${i.tien_thang}">
-                                                                                                    </tr>
+                                                                                                  <tr>
+                                                                                                    <th scope="row">Tổng tiền</th>
+                                                                                                    <td colspan="6" class="table-active text-end"><fmt:formatNumber value="${i.tien_thang}" type="number"/> VND</td>
+                                                                                                    <!-- <input type="hidden" name="chitiet" id="chitiet"
+                                                                                                      value="${i.tien_thang}"> -->
+                                                                                                  </tr>
                                                                                                 </tfoot>
-                                                                                            </table>
+                                                                                              </table>
                                                                                             </form>
                                                                                         </div>
                                                                                         <div class="modal-footer">
