@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -42,7 +43,27 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <ul>
+        <li>${hoadon.thang }</li>
+        <li>${hoadon.nam }</li>
+        <li>${hoadon.ngay_dong_tien }</li>
+        <li>${hoadon.tien_thang }</li>
+        <li>${hoadon.tien_no }</li>
+        </ul>
+      </div>
+      <div class="modal-body">
+        <ul>
+        <c:forEach var="i" items="${cthoadon}">
+        	<li>${i.can_ho.ma_can_ho }</li>
+        	<li>${i.dich_vu.ma_dich_vu }</li>
+        	<li>${i.so_luong }</li>
+        	<li>${i.ngay_bat_dau }</li>
+        	<li>${i.ngay_bat_dau }</li>
+        	<li>${i.ngay_ket_thuc }</li>
+
+        </c:forEach>
+        
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

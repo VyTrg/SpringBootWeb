@@ -2,11 +2,25 @@ addEventListener("DOMContentLoaded", (event) => {
 	var dichVuModal = document.querySelector('.js-service-modal');
 	var buttonEdit = dichVuModal.querySelectorAll('.js-button-edit');
 	
-	const addForm = document.getElementById('js-add-form');
-		 addForm.addEventListener('submit', (event) => {
-		// Prevent default form submission   
-		   alert('Đã thêm!');
-		 });
+	var param = new URLSearchParams(window.location.search);
+	if(param.get('state') == 'dathem') {
+		alert("Thêm thành công");
+	}
+	if(param.get('state') == 'chuathem') {
+			alert("Thêm không thành công \nĐảm bảo rằng điền đúng thông tin:");
+	}
+	if(param.get('state') == 'dasua') {
+			alert("Sửa thành công");
+	}
+	if(param.get('state') == 'chuasua') {
+			alert("Sửa không thành công \nĐảm bảo rằng dịch vụ chưa được đăng kí:");
+	}
+	if(param.get('state') == 'daxoa') {
+			alert("Xoá thành công");
+	}
+	if(param.get('state') == 'chuaxoa') {
+			alert("Xoá không thành công \nĐảm bảo rằng điền đúng thông tin:");
+	}
 	 
 	buttonEdit.forEach(button => {
 		      button.addEventListener('click', handleEditButton);
@@ -32,16 +46,8 @@ addEventListener("DOMContentLoaded", (event) => {
 		for (var i = 0; i<inputService.length;i++) {
 			inputService[i].value = info[i]	
 			}
-
+		document.querySelector('tr select').value = row.cells[row.cells.length-3].querySelector('p').id;
 	}
-	
-
-	// handle edit form 
-	 const editForm = document.getElementById('js-edit-submit');
-	 editForm.addEventListener('submit', (event) => {
-	// Prevent default form submission   
-	   alert('Đã sửa!');
-	 });
 	 
 	/*------------------------------------------------------------------------------------------*/
 	// xoa dich vu
@@ -55,7 +61,7 @@ addEventListener("DOMContentLoaded", (event) => {
 		const row = event.target.closest("tr");
 		// Extract the ID from the first table cell (assuming consistent structure)
 		const idService = row.cells[0].textContent.trim(); // Use cells[0] for more direct access
-		
+		alert('Bạn có chắc chắn muốn xoá không ???');
 		const params = "ma_dich_vu="+idService;
 
 		// setup http request
@@ -64,17 +70,20 @@ addEventListener("DOMContentLoaded", (event) => {
 	      const request = new XMLHttpRequest();
 	      request.open("POST", url, true);
 	      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	
-	      request.onreadystatechange = () => {
+		  request.onreadystatechange = () => {
 	        if (request.readyState === XMLHttpRequest.DONE) {
-	          if (request.status === 200) {
-	            alert('Xoá thành công');
-	          } else {
-	            alert('Xoá không thành công \nĐảm bảo rằng dịch vụ chưa được đăng kí:', request.status);
-	          }
+	         	if (request.status === 200) {
+					var url = window.location.search;
+					const urlParams = new URLSearchParams(url)
+					urlParams.delete('state')
+					urlParams.append('state','daxoa');
+					window.location.replace('/admin/dichvu?'+urlParams);
+				}
+				else {
+	           	 	console.error('Request failed with status:', request.status);
+	          	}
 	        }
 	      };
-	
 	      request.send(params);
 	}
 });

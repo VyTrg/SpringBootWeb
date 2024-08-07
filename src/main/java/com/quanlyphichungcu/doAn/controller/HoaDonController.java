@@ -69,8 +69,6 @@ public class HoaDonController {
 		List<Map<String, String>> ListTTHoaDon = new ArrayList<>();
 
 		List<Map<String, String>> UIDichVuChoCanHo = null;
-		// list cac hang ma se dua vao bang
-//		List<Map<String, String>> UIDanhSachHoaDon = new ArrayList<Map<String,String>>();
 
 		List<hoaDonService> UIhoaDonService = new ArrayList<hoaDonService>();
 		for (can_ho itemCanHo : ListCanHo) { // Use enhanced for loop for cleaner syntax
@@ -80,26 +78,25 @@ public class HoaDonController {
 			// lap cac hoa don cua can ho chuyen du lieu sang map
 			for (HoaDon itemHoaDon : danhSachHoaDon) {
 				if (itemHoaDon.getNgay_dong_tien() == null) {
-					hoaDonService itemUIHoaDon = new hoaDonService();
-					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
-					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/ " + itemHoaDon.getNam().toString());
-					itemUIHoaDon.setMaCanHo(itemCanHo);
-					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
-					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
-					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
-					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
-					float tong = 0;
-					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
-						int dongia, vat, soluong;
-						String donVi;
-						dongia = Integer.parseInt(tongDichVu.get("donGia"));
-						vat = Integer.parseInt(tongDichVu.get("vat"));
-						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
-						donVi = tongDichVu.get("donVi");
-						tong += (dongia * soluong * (vat + 100)) / 100;
-					}
-					UIhoaDonService.add(itemUIHoaDon);
-					itemUIHoaDon.setTien_thang(Float.toString(tong));
+//					hoaDonService itemUIHoaDon = new hoaDonService();
+//					itemUIHoaDon.setMa_hoa_don(itemHoaDon.getMa_hoa_don());
+//					itemUIHoaDon.setTenHoaDon(itemHoaDon.getThang().toString() + "/ " + itemHoaDon.getNam().toString());
+//					itemUIHoaDon.setMaCanHo(itemCanHo);
+//					itemUIHoaDon.setNgay_tao(itemHoaDon.getNgay_tao().toString());
+//					itemUIHoaDon.setNhanVien(itemHoaDon.getNhanVien());
+//					List<Map<String, String>> itemUIChiTietHoaDon = getChiTietHoaDon(itemCanHo);
+//					itemUIHoaDon.setChiTietDichVu(itemUIChiTietHoaDon);
+//					float tong = 0;
+//					for (Map<String, String> tongDichVu : itemUIChiTietHoaDon) {
+//						int dongia, vat, soluong;
+//						String donVi;
+//						dongia = Integer.parseInt(tongDichVu.get("donGia"));
+//						vat = Integer.parseInt(tongDichVu.get("vat"));
+//						soluong = Integer.parseInt(tongDichVu.get("soLuong"));
+//						donVi = tongDichVu.get("donVi");
+//						tong += (dongia * soluong * ((float)vat/100  + 1));
+//					}
+//					UIhoaDonService.add(itemUIHoaDon);
 				}
 			}
 

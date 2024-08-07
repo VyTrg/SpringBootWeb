@@ -188,7 +188,7 @@
           </div>
           <%@ include file="../layout/footer.jsp" %>
       </div>
-      </div>
+    
 
       <script type="text/javascript">
         var btn_thanhtoans = document.querySelectorAll('.btn_thanhtoan');

@@ -11,16 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	 });
 	 
 	 // handle option edit csh
-	 const selectInfo = document.querySelector('.js-select-info');
+	 const selectInfo = document.querySelectorAll('.js-select-info');
 	 const inputElement = document.querySelector('#js-input-id');
-
-	 	selectInfo.addEventListener('change', (event) => {
+	 
+	 selectInfo.forEach(select => {
+	 	select.addEventListener('change', (event) => {
 			// set id input value
 			if (event.target.value === 'delete') 
 				inputElement.value = "";
 			else 
-		   		inputElement.value = event.target.value;
-			const url = "/admin/canho/laythongtincsh"; // Assuming you want to send to the current page
+		   	  inputElement.value = event.target.value;
+			  const url = "/admin/canho/laythongtincsh"; // Assuming you want to send to the current page
 	  		  const request = new XMLHttpRequest();
 		      request.open("POST", url, true);
 		      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -29,10 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		        if (request.readyState === XMLHttpRequest.DONE) {
 		          if (request.status === 200) {
 					// set name input value
-					if (request.response === 'khongcothongtin') 
-						document.getElementById('js-name-info').value = "";
+					if (request.response == 'khongcothongtin') {
+						document.querySelector("#js-idcsh").value = "";
+						document.querySelector("#js-ten").value = "";
+						document.querySelector("#js-sdt").value = "";
+						document.querySelector("#js-cccd").value = "";
+						document.querySelector("#js-ngaysinh").value = "";
+						document.querySelector("#js-gioitinh").value = "";
+						document.querySelector("#js-tendangnhap").value = "";
+						document.querySelector("#js-matkhau").value = "";						
+					}
 		            else 
-						document.getElementById('js-name-info').value = request.response;
+						//document.getElementById('js-name-info').value = request.response;
+						var ttcsh = JSON.parse(request.response)
+						document.querySelector("#js-idcsh").value = ttcsh.ma_chu_so_huu;
+						document.querySelector("#js-ten").value = ttcsh.ho_ten;
+						document.querySelector("#js-sdt").value = ttcsh.sdt;
+						document.querySelector("#js-cccd").value = ttcsh.cccd;
+						document.querySelector("#js-ngaysinh").value = ttcsh.ngay_sinh;
+						document.querySelector("#js-gioitinh").value = ttcsh.phai;
+						document.querySelector("#js-tendangnhap").value = ttcsh.dangNhap.ten_dang_nhap;
+						document.querySelector("#js-matkhau").value = ttcsh.dangNhap.mat_khau;
 		          } else {
 		            console.error('Request failed with status:', request.status);
 		          }
@@ -41,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		      request.send("idcsh="+event.target.value);
 		});
+		
+	 });
+	 
 	 /*-------------------------------------------------------------------------------*/
 
 	var modalDangKi = document.querySelector('#register-modal');
@@ -91,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				   });
 	function handleRemoveButton(event) {
 	   	      const row = event.target.closest("tr");
+			  console.log(row);
 	   	      const idService = row.id;
 	   	      const params = "idService="+idService;
 				

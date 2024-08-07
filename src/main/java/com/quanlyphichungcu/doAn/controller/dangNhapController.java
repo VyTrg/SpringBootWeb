@@ -40,7 +40,6 @@ public class dangNhapController {
 	@PostMapping("/login")
 	public String getdangnhap(@RequestParam("ten_dang_nhap")String ten_dang_nhap,
 							@RequestParam("mat_khau")String mat_khau,
-							
 							Model model, HttpSession session) {
 		dang_nhap dangNhap = this.dang_nhap_repo.findByDangNhap(ten_dang_nhap, mat_khau);
 		if(dangNhap != null && dangNhap.getQuyen().getMa_quyen().trim().equals("NV")) {

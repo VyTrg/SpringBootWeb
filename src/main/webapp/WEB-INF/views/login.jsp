@@ -34,15 +34,14 @@
                         <div class="d-grid">	
                          <button id="btn_submit" type="submit" class="btn btn-primary" >Đăng nhập</button>
                         </div>
+                    </form>
                     </div>
                     </div>
                     <span style="display: block" class="password__text--error" >${message}</span>
-                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+
     <!-- <button  id="btn_open" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#errorModal">
         Launch demo modal
       </button>
