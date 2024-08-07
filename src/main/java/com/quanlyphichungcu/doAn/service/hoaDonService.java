@@ -9,8 +9,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.quanlyphichungcu.doAn.entity.HoaDon;
 import com.quanlyphichungcu.doAn.entity.can_ho;
+import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.entity.nhan_vien;
 import com.quanlyphichungcu.doAn.repository.HoaDonRepository;
+import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,10 +22,12 @@ import jakarta.persistence.TemporalType;
 
 public class hoaDonService {
 	@Autowired HoaDonRepository hoaDonRepository;
+	@Autowired dichVuCanHoRepository dvchRepository;
 	
 	List<HoaDon> findALL() {
 		return hoaDonRepository.findAll();
 	}
+	
 	
 	private String ma_hoa_don;
 	private String tenHoaDon;
@@ -35,6 +39,8 @@ public class hoaDonService {
 	private String tien_no;
 	private List<Map<String, String>> chiTietDichVu;
 
+	private List<dich_vu_can_ho> chitietdichvu;
+	
 	public HoaDonRepository getHoaDonRepository() {
 		return hoaDonRepository;
 	}
@@ -98,7 +104,12 @@ public class hoaDonService {
 	public hoaDonService() {
 		super();
 	}
+	public List<dich_vu_can_ho> getChitietdichvu() {
+		return chitietdichvu;
+	}
+	public void setChitietdichvu(List<dich_vu_can_ho> chitietdichvu) {
+		this.chitietdichvu = chitietdichvu;
+	}
 	
-
 	
 }

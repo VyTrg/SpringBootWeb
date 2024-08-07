@@ -31,6 +31,7 @@ public class dich_vu_can_ho {
 	
 	private int so_luong;
 	
+	@Id
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date ngay_bat_dau;

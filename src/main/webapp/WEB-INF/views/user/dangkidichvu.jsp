@@ -34,7 +34,9 @@
 					integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 					crossorigin="anonymous"></script>
 			</head>
+
 			<body>
+
 				<!-- Page Wrapper -->
 				<div id="wrapper">
 					<!-- Sidebar -->
@@ -45,13 +47,52 @@
 								<!-- End of Topbar -->
 
 								<!-- Main Content -->
-								<div id="content">
-									<div class="card card-header-actions mb-4">
-										<div class="card-header">
-											Đăng kí dịch vụ
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Căn hộ</h6>
+									<!-- <div class="col-auto">  -->
+									<div class="btn-group">
+										<button type="button" class="btn btn-light dropdown-toggle"
+											data-bs-toggle="dropdown" aria-expanded="false">
+											Action
+										</button>
+										<form action="" method="GET">
+											<ul class="dropdown-menu">
+												
+											</ul>
+										</form>
+									</div>
+									<!-- </div> -->
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+										data-bs-target="#dangkiModal">
+										Đăng kí
+									</button>
+
+									<!-- Modal -->
+									<div class="modal fade" id="dangkiModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Dịch vụ</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal"
+														aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													...
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Đóng</button>
+													<button type="button" class="btn btn-primary">Lưu</button>
+												</div>
+											</div>
 										</div>
-										<div class="table">
-											<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+									</div>
+								</div>
+								<div class="card-body">
+									<!-- <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 												<div class="row">
 													<div class="col-sm-12">
 														<table
@@ -106,7 +147,8 @@
 																				class="btn btn-light btn-submit"
 																				data-bs-toggle="modal"
 																				data-bs-target="#dkdvModal"
-																				data-test="${dv.ten_dich_vu}">Đăng kí</button>
+																				data-test="${dv.ten_dich_vu}">Đăng
+																				kí</button>
 																			<div class="modal fade" id="dkdvModal"
 																				tabindex="-1"
 																				aria-labelledby="exampleModalLabel"
@@ -144,87 +186,111 @@
 															</tbody>
 														</table>
 													</div>
-												</div>
-												<div class="card mb-4">
-													<div class="row g-3 align-items-center">
-														<div class="col-auto">
+												</div> -->
+									<!-- <div class="card mb-4"> -->
+									<!-- <div class="row g-3 align-items-center"> -->
+									<!-- <div class="col-auto">
 															<label class="col-form-label">Căn hộ</label>
-														</div>
-														<div class="col-auto">
-															<input type="text" class="form-control" id="canho"
-																name="canho">
-														</div>
-														<div class="col-auto">
-															<button type="button" class="btn btn-light btn-tim">Tìm</button>
-														</div>
-													</div>
-													
-													<div class="col-sm-12">
-														<table
-															class="table table-bordered dataTable table-hover js-table"
-															id="dataTable" width="100%" cellspacing="0" role="grid"
-															aria-describedby="dataTable_info" style="width: 100%;">
-															<thead>
-																<tr role="row">
-																	<th class="sorting sorting_asc" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1" aria-sort="ascending"
-																		aria-label="Name: activate to sort column descending"
-																		style="width: 10px;">STT</th>
-																	<th class="sorting" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1"
-																		aria-label="Position: activate to sort column ascending"
-																		style="width: 150.111px;">Tên dịch vụ</th>
-																	<th class="sorting" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1"
-																		aria-label="Position: activate to sort column ascending"
-																		style="width: 150.111px;">Đơn giá</th>
-																	<th class="sorting" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1"
-																		aria-label="Office: activate to sort column ascending"
-																		style="width: 100px;">Đơn vị</th>
-																	<th class="sorting" tabindex="0"
+														</div> -->
+									<!-- <div class="col-auto"> 
+
+															<div class="btn-group">
+																<button type="button"
+																	class="btn btn-light dropdown-toggle"
+																	data-bs-toggle="dropdown" aria-expanded="false">
+																	Action
+																</button>
+																<ul class="dropdown-menu">
+																	<li><a class="dropdown-item" href="#">Action</a>
+																	</li>
+																	<li><a class="dropdown-item" href="#">Another
+																			action</a></li>
+																	<li><a class="dropdown-item" href="#">Something else
+																			here</a></li>
+																	<li>
+																		<hr class="dropdown-divider">
+																	</li>
+																	<li><a class="dropdown-item" href="#">Separated
+																			link</a></li>
+																</ul>
+															</div>
+															</div> -->
+
+									<!-- </div> -->
+									<select name="canho" id="canho" class="form-controll">
+										<option th:each="canho: ${dscanho}"
+										th:value="${canho.ma_can_ho}"
+										th:name="${canho.ma_can_ho}"></option>
+									</select>
+									<div class="col-sm-12">
+										<table class="table table-bordered dataTable table-hover js-table"
+											id="dataTable" width="100%" cellspacing="0" role="grid"
+											aria-describedby="dataTable_info" style="width: 100%;">
+											<thead>
+												<tr role="row">
+													<th class="sorting sorting_asc" tabindex="0"
+														aria-controls="dataTable" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="Name: activate to sort column descending"
+														style="width: 10px;">STT</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Position: activate to sort column ascending"
+														style="width: 150.111px;">Tên dịch vụ</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Position: activate to sort column ascending"
+														style="width: 150.111px;">Đơn giá</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Office: activate to sort column ascending"
+														style="width: 100px;">Đơn vị</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Salary: activate to sort column ascending"
+														style="width: 100px;">Số lượng</th>
+													<!-- <th class="sorting" tabindex="0"
 																		aria-controls="dataTable" rowspan="1"
 																		colspan="1"
 																		aria-label="Salary: activate to sort column ascending"
-																		style="width: 100px;">Số lượng</th>
-																	<th class="sorting" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1"
-																		aria-label="Salary: activate to sort column ascending"
-																		style="width: 100px;">Ngày bắt đầu</th>
-																</tr>
-															</thead>
-															<tbody>
+																		style="width: 100px;">Ngày bắt đầu</th> -->
+												</tr>
+											</thead>
+											<tbody>
 
-															</tbody>
-														</table>
-													</div>
+											</tbody>
+										</table>
 
-												</div>
-											</div>
-										</div>
-										<%@ include file="../layout/footer.jsp" %>
-											<!-- End of Footer -->
+
+										<!-- </div> -->
 									</div>
-									<!-- End of Content Wrapper -->
 								</div>
-								<script type="text/javascript">
-									
-									var btns = document.querySelectorAll('.btn-submit');
-									btns.forEach(function (btn) {
-										btn.addEventListener('click', function () {
-											$("#modal_body").html(btn.getAttribute('data-test'));
-										})
-									})
+								<%@ include file="../layout/footer.jsp" %>
+									<!-- End of Footer -->
+									<!-- </div> -->
+									<!-- End of Content Wrapper -->
+									<!-- </div> -->
+									<script type="text/javascript">
 
-									var btn_tim = document.querySelector('.btn-tim');
-									btn_tim.addEventListener('click', function(){
-										alert( $("#canho").val());
-									})
-								</script>
+										var btns = document.querySelectorAll('.btn-submit');
+										btns.forEach(function (btn) {
+											btn.addEventListener('click', function () {
+												$("#modal_body").html(btn.getAttribute('data-test'));
+											})
+										})
+
+										var btn_tim = document.querySelector('.btn-tim');
+										btn_tim.addEventListener('click', function () {
+											alert($("#canho").val());
+										})
+									</script>
+									<script
+										src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+										integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+										crossorigin="anonymous"></script>
+									<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+										integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+										crossorigin="anonymous"></script>
 			</body>
+
 			</html>

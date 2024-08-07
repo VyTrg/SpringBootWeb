@@ -21,7 +21,19 @@ public class dich_vu {
 	@OneToMany(mappedBy = "dich_vu")
 	private List<dich_vu_can_ho> ds_dich_vu_can_ho; 
 	
+	//0 tra sau 1 tra truoc
+	private int tra_truoc;
 	
+	
+	
+	public int getTra_truoc() {
+		return tra_truoc;
+	}
+
+	public void setTra_truoc(int tra_truoc) {
+		this.tra_truoc = tra_truoc;
+	}
+
 	public String getMa_dich_vu() {
 		return ma_dich_vu;
 	}
@@ -56,7 +68,7 @@ public class dich_vu {
 	}
 
 	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi,
-			List<dich_vu_can_ho> ds_dich_vu_can_ho) {
+			List<dich_vu_can_ho> ds_dich_vu_can_ho, int tra_truoc) {
 		super();
 		this.ma_dich_vu = ma_dich_vu;
 		this.ten_dich_vu = ten_dich_vu;
@@ -64,6 +76,7 @@ public class dich_vu {
 		this.don_gia = don_gia;
 		this.don_vi = don_vi;
 		this.ds_dich_vu_can_ho = ds_dich_vu_can_ho;
+		this.tra_truoc = tra_truoc;
 	}
 
 	public dich_vu() {
