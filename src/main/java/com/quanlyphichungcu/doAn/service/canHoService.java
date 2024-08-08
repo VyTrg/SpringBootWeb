@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quanlyphichungcu.doAn.entity.can_ho;
+import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
+import com.quanlyphichungcu.doAn.repository.dichVuCanHoRepository;
 
 @Service
 public class canHoService {
 	
 	@Autowired
 	private canHoRepository CanHoRepository;
+	
+	@Autowired
+	private dichVuCanHoRepository dvchRepo;
 	
 	public List<can_ho> findAll() {
 		return CanHoRepository.findAll();
@@ -24,6 +29,10 @@ public class canHoService {
 	
 	public void deleteById(String ma_can_ho) {
 		CanHoRepository.deleteById(ma_can_ho);
+	}
+	
+	public List<dich_vu_can_ho> getDSDichvu(String ma_can_ho){
+		return dvchRepo.getDichVuByCanHo(ma_can_ho);
 	}
 	
 }

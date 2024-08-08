@@ -17,8 +17,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quanlyphichungcu.doAn.entity.can_ho;
@@ -54,12 +56,33 @@ public class chuSoHuuController {
 		return "/user/thongtin";
 	}
 	
-	@RequestMapping("/dangkidichvu/{maChuSoHuu}")
-	public String getThongTinDichVu(Model model) {
-		model.addAttribute("dichvu", DichVuRepository.findAll());
+	@RequestMapping(value="/dangkidichvu/{maChuSoHuu}", method=RequestMethod.GET)
+	public String getThongTinDichVu(Model model, @PathVariable("maChuSoHuu") String ma_csh) {
+		List<can_ho> danhsachcanho = CanHoRepository.getCanHoByChuSoHuu(ma_csh);
+//		model.addAttribute("dichvu", DichVuRepository.findAll());
+//		for(can_ho item: danhsachcanho) {
+//			List<dich_vu_can_ho> danhsachdichvu;
+//			danhsachdichvu = DichVuCuaCanHoRepository.getDichVuByCanHo(item.getMa_can_ho());
+//		}
+		model.addAttribute("dscanho", danhsachcanho);
 		return "/user/dangkidichvu";
 	}
 	
+	@RequestMapping(value="/dangkidichvu/dichvu/{ma_can_ho}", method=RequestMethod.GET)
+	public String getDVCH(Model model, @PathVariable("ma_can_ho") String ma_ch) {
+		List<dich_vu_can_ho> dichvucanho = DichVuCuaCanHoRepository.getDichVuByCanHo(ma_ch);
+		List<dich_vu_can_ho> dichvudangki = null;
+		model.addAttribute("dvch",dichvucanho);
+		model.addAttribute("dichvudangki", dichvudangki);
+		return "/user/dangkidichvu";
+	}
+	
+//	@GetMapping(value = "/dangkidichvu/{maChuSoHuu}")
+//	public String getCanho(Model model, @PathVariable("maChuSoHuu") String ma_csh) {
+//		
+////		List<can_ho> canho = canHoRepository.getCanHoByChuSoHuu
+//		return "/user/dangkidichvu";
+//	}
 //	@PostMapping("/dangkidichvu/{maCanHo}")
 //	@ResponseBody
 //	public ResponseEntity<String> greetingJson(@RequestBody String thongTinDangKi,@PathVariable("maCanHo") String maCanHo) {

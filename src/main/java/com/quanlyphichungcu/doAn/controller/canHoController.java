@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +51,6 @@ public class canHoController {
 	
 	@RequestMapping("/canho/{id}")
 	public String getCTCanHo(Model model, @PathVariable("id") String id) {
-		
 		can_ho ch = canho_repository.findById(id).get();
 		model.addAttribute("ch", ch);
 		List<ChuSoHuu> csh = csh_repository.findAll();
@@ -174,6 +174,16 @@ public class canHoController {
 		}
 		return dichvuchuathem;
 	}
+	
+//	@GetMapping("/user/dangkidichvu")
+//	@ResponseBody
+//	public String getCH(Model model) {
+//		List<can_ho> danhsachcanho = canho_repository.getCanHoByChuSoHuu("CSH2");
+//		
+//		model.addAttribute("dscanho", danhsachcanho);
+//		model.addAttribute("canho", new can_ho());
+//		return "/user/dangkidichvu";
+//	}
 	
 	
 }
