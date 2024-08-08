@@ -2,6 +2,8 @@ package com.quanlyphichungcu.doAn.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Map;
 
@@ -75,16 +77,49 @@ public class hoaDonService {
 						dongia = item.getDich_vu().getDon_gia();
 						vat = item.getDich_vu().getVat();
 						tong += (float) soluong*dongia*(1+(float)vat/100);
-					} else {
-						// dich vu tra sau
-						if (item.getDich_vu().getTra_truoc() == 0) {
-							if (thang-1 == currentDate.getMonthValue() && nam == currentDate.getYear()) {
-								int soluong,dongia,vat;
-								soluong = item.getSo_luong();
-								dongia = item.getDich_vu().getDon_gia();
-								vat = item.getDich_vu().getVat();
-								tong += (float) soluong*dongia*(1+(float)vat/100);
+						// dich vu tra truoc
+						if (item.getDich_vu().getTra_truoc() != 0) {
+							if (thang == 12) {
+								thang = 1;
+								nam = nam+1;
+							} else {
+								thang = thang + 1;
 							}
+							String strDauThang = thang+"-"+"01"+"-"+nam; 
+							LocalDate ngaycuoithang = LocalDate.parse(strDauThang,DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+							ngaycuoithang = ngaycuoithang.with(TemporalAdjusters.lastDayOfMonth());
+							item.setNgay_ket_thuc(java.sql.Date.valueOf(ngaycuoithang));
+							dichVuCanHoRepository.save(item);
+							// tao dv ch moi
+							if (thang == 12) {
+								thang = 1;
+								nam = nam+1;
+							} else {
+								thang = thang + 1;
+							}
+							String hd_moi = thang+"-"+"01"+"-"+nam;
+							LocalDate ngaydauhdmoi = LocalDate.parse(hd_moi,DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+							ngaydauhdmoi = ngaydauhdmoi.with(TemporalAdjusters.firstDayOfMonth());
+							dich_vu_can_ho dv_ch = new dich_vu_can_ho(canho, item.getDich_vu(), soluong, java.sql.Date.valueOf(ngaydauhdmoi), null);
+							dichVuCanHoRepository.save(dv_ch);
+						} else {
+							String strDauThang = thang+"-"+"01"+"-"+nam; 
+							LocalDate ngaycuoithang = LocalDate.parse(strDauThang,DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+							ngaycuoithang = ngaycuoithang.with(TemporalAdjusters.lastDayOfMonth());
+							item.setNgay_ket_thuc(java.sql.Date.valueOf(ngaycuoithang));
+							dichVuCanHoRepository.save(item);
+							// tao dich vu can ho moi
+							if (thang == 12) {
+								thang = 1;
+								nam = nam+1;
+							} else {
+								thang = thang + 1;
+							}
+							String hd_moi = thang+"-"+"01"+"-"+nam;
+							LocalDate ngaydauhdmoi = LocalDate.parse(hd_moi,DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+							ngaydauhdmoi = ngaydauhdmoi.with(TemporalAdjusters.firstDayOfMonth());
+							dich_vu_can_ho dv_ch = new dich_vu_can_ho(canho, item.getDich_vu(), soluong, java.sql.Date.valueOf(ngaydauhdmoi), null);
+							dichVuCanHoRepository.save(dv_ch);
 						}
 					}
 				}

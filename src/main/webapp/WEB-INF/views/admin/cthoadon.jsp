@@ -199,10 +199,22 @@
 												<tr>
 													<th>Tiền nợ</th>
 													<td>${thongtinhoadon.tien_no}</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
 												</tr>
 												<tr>
 													<th>Tổng cộng</th>
 													<td>${thongtinhoadon.tien_thang}</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
 												</tr>
 											</table>
 											

@@ -308,7 +308,7 @@
 									</tr>
 									<tr>
 										<td>Mật khẩu</td>
-										<td><form:input path="chuSoHuu.dangNhap.mat_khau" id="js-matkhau"
+										<td><form:input type="password" path="chuSoHuu.dangNhap.mat_khau" id="js-matkhau"
 												style="width: 50%" cssClass="form-control" /></td>
 										<td></td>
 									</tr>

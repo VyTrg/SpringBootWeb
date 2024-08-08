@@ -106,7 +106,7 @@ public class nhanVienController {
 	public String quanlihoadon(Model model,HttpSession session){
 		nhan_vien nhanVien = (nhan_vien) session.getAttribute("thongtin_nv");
 		List<ChuSoHuu> dsChuSoHuu = chu_so_huu_repo.findAll();
-		List<can_ho> dsCanHo = can_ho_repo.findAll();
+		List<can_ho> dsCanHo = can_ho_repo.getCanHoChuaSoHuu();
 		List<HoaDon> dsHoaDon = hd_service.findALL();
 		List<JSONObject> json_dsHoaDon = new ArrayList<JSONObject>();
 		for (HoaDon item: dsHoaDon) {
