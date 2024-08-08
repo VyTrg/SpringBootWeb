@@ -41,7 +41,6 @@ public class ThongTinController {
 		
 		List<ChuSoHuu> csh = ChuSoHuuRepository.findAll();
 		model.addAttribute("csh", csh);
-		
 		return "admin/thongtin";
 	}
 	

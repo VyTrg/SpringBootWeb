@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu;
@@ -60,6 +62,7 @@ public class canHoController {
 		List<dich_vu> dichvuchuaco = getDichVuChuaCo(dichvudaco,tatcadichvu);
 		List<dich_vu_can_ho> dichvuchuathem = getDichVuChuaThem(dichvuchuaco,ch);
 		model.addAttribute("dichvuchuathem",dichvuchuathem);
+		model.addAttribute("mess","okokok");
 
 		return "admin/ctcanho";
 	}
@@ -67,15 +70,18 @@ public class canHoController {
 	@RequestMapping(value = "/canho/laythongtincsh", method = RequestMethod.POST)
 	@ResponseBody
 	public String getInfoCuDan(Model model,
-			@RequestParam(name = "idcsh") String idcsh,
-			@ModelAttribute("ch") can_ho canHo) {
+			@RequestParam(name = "idcsh") String idcsh) {
 		try {
-			if (idcsh != "delete") {
-				ChuSoHuu thongtincsh = csh_repository.findById(idcsh).get();
-				return thongtincsh.getHo_ten();
+			if (!idcsh.equals("delete")) {
+				String id = idcsh.toLowerCase();
+				ChuSoHuu thongtincsh = csh_repository.findById(id).get();
+				JSONObject responeThongTinCSH = new JSONObject(thongtincsh);
+				responeThongTinCSH.put("ngay_sinh", thongtincsh.getNgay_sinh().toString());
+				return responeThongTinCSH.toString();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return "khongcothongtin";
 		
@@ -86,7 +92,10 @@ public class canHoController {
 		if (canHo.getChuSoHuu().getMa_chu_so_huu() == "") {
 			canHo.setChuSoHuu(null);		
 		}
-		canho_repository.save(canHo);
+		can_ho canho = canho_repository.findById(canHo.getMa_can_ho()).get();
+		ChuSoHuu csh = canHo.getChuSoHuu();
+		canho.setChuSoHuu(csh);
+		canho_repository.save(canho);
 		return "redirect:/admin/canho/"+canHo.getMa_can_ho();
 	}
 
@@ -100,8 +109,7 @@ public class canHoController {
 		can_ho canho = canho_repository.findById(idCanHo).get();
 		dich_vu dichvu = dv_repository.findById(idService).get();
 		Date currentDate = new Date();
-		dich_vu_can_ho dv_canho = new dich_vu_can_ho(canho, dichvu, Integer.parseInt(countService), currentDate,
-				null);
+		dich_vu_can_ho dv_canho = new dich_vu_can_ho(canho, dichvu, Integer.parseInt(countService),currentDate,null);
 		dvch_repository.save(dv_canho);
 			
 		return "Đã thêm dịch vụ: \nCăn hộ:"+canho.getMa_can_ho()+"\nTên dịch vụ:"+dichvu.getTen_dich_vu()+"\nNgày bắt đầu"+currentDate;

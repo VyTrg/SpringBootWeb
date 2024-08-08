@@ -18,6 +18,7 @@ public class dich_vu {
 	private int don_gia;
 	private String don_vi;
 	
+	
 	@OneToMany(mappedBy = "dich_vu")
 	private List<dich_vu_can_ho> ds_dich_vu_can_ho; 
 	
@@ -67,14 +68,32 @@ public class dich_vu {
 		this.don_vi = don_vi;
 	}
 
-	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi,
-			List<dich_vu_can_ho> ds_dich_vu_can_ho, int tra_truoc) {
+	
+
+	public List<dich_vu_can_ho> getDs_dich_vu_can_ho() {
+		return ds_dich_vu_can_ho;
+	}
+
+	public void setDs_dich_vu_can_ho(List<dich_vu_can_ho> ds_dich_vu_can_ho) {
+		this.ds_dich_vu_can_ho = ds_dich_vu_can_ho;
+	}
+
+	@Override
+	public String toString() {
+		return "dich_vu [ma_dich_vu=" + ma_dich_vu + ", ten_dich_vu=" + ten_dich_vu + ", vat=" + vat + ", don_gia="
+				+ don_gia + ", don_vi=" + don_vi + ", tra_truoc=" + tra_truoc + ", ds_dich_vu_can_ho="
+				+ ds_dich_vu_can_ho + "]";
+	}
+
+	public dich_vu(String ma_dich_vu, String ten_dich_vu, int vat, int don_gia, String don_vi, int tra_truoc,
+			List<dich_vu_can_ho> ds_dich_vu_can_ho) {
 		super();
 		this.ma_dich_vu = ma_dich_vu;
 		this.ten_dich_vu = ten_dich_vu;
 		this.vat = vat;
 		this.don_gia = don_gia;
 		this.don_vi = don_vi;
+		this.tra_truoc = tra_truoc;
 		this.ds_dich_vu_can_ho = ds_dich_vu_can_ho;
 		this.tra_truoc = tra_truoc;
 	}

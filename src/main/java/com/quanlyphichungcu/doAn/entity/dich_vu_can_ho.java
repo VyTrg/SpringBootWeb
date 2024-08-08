@@ -39,16 +39,6 @@ public class dich_vu_can_ho {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date ngay_ket_thuc;
-	
-	public dich_vu_can_ho(com.quanlyphichungcu.doAn.entity.can_ho can_ho,
-			com.quanlyphichungcu.doAn.entity.dich_vu dich_vu, int so_luong, Date ngay_bat_dau, Date ngay_ket_thuc) {
-		super();
-		this.can_ho = can_ho;
-		this.dich_vu = dich_vu;
-		this.so_luong = so_luong;
-		this.ngay_bat_dau = ngay_bat_dau;
-		this.ngay_ket_thuc = ngay_ket_thuc;
-	}
 
 	public dich_vu_can_ho() {
 		super();
@@ -98,6 +88,16 @@ public class dich_vu_can_ho {
 	public String toString() {
 		return "dich_vu_can_ho [can_ho=" + can_ho + ", dich_vu=" + dich_vu + ", so_luong=" + so_luong
 				+ ", ngay_bat_dau=" + ngay_bat_dau + ", ngay_ket_thuc=" + ngay_ket_thuc + "]";
+	}
+
+	public dich_vu_can_ho(com.quanlyphichungcu.doAn.entity.can_ho can_ho,
+			com.quanlyphichungcu.doAn.entity.dich_vu dich_vu, int so_luong, Date ngay_bat_dau, Date ngay_ket_thuc) {
+		super();
+		this.can_ho = can_ho;
+		this.dich_vu = dich_vu;
+		this.so_luong = so_luong;
+		this.ngay_bat_dau = ngay_bat_dau;
+		this.ngay_ket_thuc = ngay_ket_thuc;
 	}
 
 	public static List<dich_vu_can_ho> getDichVuByCanHo(String string) {

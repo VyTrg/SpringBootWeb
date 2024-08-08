@@ -15,7 +15,7 @@
 <title>Thông tin dịch vụ</title>
 
 <!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+<link href="../../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -61,6 +61,7 @@
 					<div class="row">
 						<h2 class="text-center">Bảng dịch vụ</h2>
 						<div class="container mt-3">
+							<!-- End of Notification service -->
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -69,6 +70,7 @@
 										<th>Thuế VAT</th>
 										<th>Đơn giá</th>
 										<th>Đơn vị</th>
+										<th>Trả trước</th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -81,136 +83,178 @@
 											<td>${p.vat}</td>
 											<td>${p.don_gia}</td>
 											<td>${p.don_vi}</td>
-											<td><button type="button" class="btn btn-primary js-button-edit" data-toggle="modal" data-target="#exampleModalCenter">
+											<td><c:if test="${p.tra_truoc == 1}"><p id="1">Trả trước</p></c:if> 
+												<c:if test="${p.tra_truoc == 0}"><p id="0">Trả sau</p></c:if></td>
+											<td><button type="button" class="btn btn-secondary js-button-edit" data-toggle="modal" data-target="#exampleModalEdit">
 											  Sửa
 											</button></td>
-											<td><a href=""><button class="btn btn-danger js-button-remove">Xóa</button></a></td>
+											<td><button class="btn btn-danger js-button-remove">Xóa</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<div class="col text-center mb-3">
+						<button class="btn btn-primary ml-auto d-flex" data-toggle="modal" data-target="#exampleModalAdd">Thêm</button>
+					</div>
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
 
-			<form method="post" action="/admin/dichvu/create" id="js-add-form">
-				<div class="row mt-4">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-10 border">
-						<div class="row">
-							<h3>Thêm dịch vụ</h3>
-							<div class="container col-sm-6 mt-3">
-								<table class="table table-striped js-table-service">
-									<thead>
-									</thead>
-									<tbody>
-										<tr style="display: none">
-											<td>Mã dịch vụ</td>
-											<td><input type="text" class="form-control" id=""
-												placeholder="Mã dịch vụ" name="ma_dich_vu"></td>
-										</tr>
-										<tr>
-											<td>Tên dịch vụ</td>
-											<td><input type="text" class="form-control" id="ten_dich_vu"
-												placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
-										</tr>
-										<tr>
-											<td>Thuế VAT</td>
-											<td><input type="text" class="form-control" id="vat"
-												placeholder="Thuế VAT" name="vat"></td>
-										</tr>
-										<tr>
-											<td>Đơn giá</td>
-											<td><input type="text" class="form-control" id="don_gia"
-												placeholder="Đơn giá" name="don_gia"></td>
-										</tr>
-										<tr>
-											<td>Đơn vị</td>
-											<td><input type="text" class="form-control" id="don_vi"
-												placeholder="Đơn vị" name="don_vi"></td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="col text-center mb-3">
-									<button class="btn btn-primary">Thêm</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-1"></div>
-				</div>
 				
-			</form>
-			<!-- Button trigger modal -->
+				<!-- Button trigger modal -->
 			
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Sửa dịch vụ</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-					<form method="post" action="/admin/dichvu/edit" id="js-edit-submit">
-						<div class="row mt-4">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-10 border">
-								<div class="row">
-									<div class="container col-sm-8 mt-3">
-										<table class="table table-striped">
-											<thead>
-											</thead>
-											<tbody class="js-edit-table-service">
-												<tr>
-													<td>Mã dịch vụ</td>
-													<td><input type="text" class="form-control" id="ma_dich_vu"
-														placeholder="Mã dịch vụ" name="ma_dich_vu" readonly="true"></td>
-												</tr>
-												<tr>
-													<td>Tên dịch vụ</td>
-													<td><input type="text" class="form-control" id="ten_dich_vu"
-														placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
-												</tr>
-												<tr>
-													<td>Thuế VAT</td>
-													<td><input type="text" class="form-control" id="vat"
-														placeholder="Thuế VAT" name="vat"></td>
-												</tr>
-												<tr>
-													<td>Đơn giá</td>
-													<td><input type="text" class="form-control" id="don_gia"
-														placeholder="Đơn giá" name="don_gia"></td>
-												</tr>
-												<tr>
-													<td>Đơn vị</td>
-													<td><input type="text" class="form-control" id="don_vi"
-														placeholder="Đơn vị" name="don_vi"></td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="col text-center mb-3">
-											<button class="btn btn-primary js-edit-submit">Sửa</button>
+				<!-- Start of modal edit service -->
+				<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle">Sửa dịch vụ</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+						<form method="post" action="/admin/dichvu/edit" id="js-edit-submit">
+							<div class="row mt-4">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10 border">
+									<div class="row">
+										<div class="container col-sm-8 mt-3">
+											<table class="table table-striped">
+												<thead>
+												</thead>
+												<tbody class="js-edit-table-service">
+													<tr>
+														<td>Mã dịch vụ</td>
+														<td><input type="text" class="form-control" id="ma_dich_vu"
+															placeholder="Mã dịch vụ" name="ma_dich_vu" readonly="true"></td>
+													</tr>
+													<tr>
+														<td>Tên dịch vụ</td>
+														<td><input type="text" class="form-control" id="ten_dich_vu"
+															placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
+													</tr>
+													<tr>
+														<td>Thuế VAT</td>
+														<td><input type="text" class="form-control" id="vat"
+															placeholder="Thuế VAT" name="vat"></td>
+													</tr>
+													<tr>
+														<td>Đơn giá</td>
+														<td><input type="text" class="form-control" id="don_gia"
+															placeholder="Đơn giá" name="don_gia"></td>
+													</tr>
+													<tr>
+														<td>Đơn vị</td>
+														<td><input type="text" class="form-control" id="don_vi"
+															placeholder="Đơn vị" name="don_vi"></td>
+													</tr>
+													<tr>
+														<td>Trả trước</td>
+														<td><select name="tra_truoc" class="form-select" aria-label="Default select example">
+														  <c:if test="${p.tra_truoc == 1}"><option selected value="1">Trả trước</option></c:if> 
+														  <c:if test="${p.tra_truoc == 0}"><option selected value="0">Trả sau</option></c:if>
+														  <option value="1">Trả trước</option>
+														  <option value="0">Trả sau</option>
+														</select></td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="col text-center mb-3">
+												<button class="btn btn-primary js-edit-submit">Sửa</button>
+											</div>
 										</div>
 									</div>
 								</div>
+								<div class="col-sm-1"></div>
 							</div>
-							<div class="col-sm-1"></div>
-						</div>
-						
-					</form>
-			      </div>
-			      <div class="modal-footer">
-			        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
-			        
-			      </div>
-			    </div>
-			  </div>
-			</div>
+							
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
+				        
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- End of modal edit service -->
+				<!-- Start of modal Add service -->
+				<div class="modal fade" id="exampleModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle">Thêm dịch vụ</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+						<form method="post" action="/admin/dichvu/create" id="js-add-form">
+							<div class="row mt-4">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10 border">
+									<div class="row">
+										<div class="container col-sm-6 mt-3">
+											<table class="table table-striped js-table-service">
+												<thead>
+												</thead>
+												<tbody>
+													<tr style="display: none">
+														<td>Mã dịch vụ</td>
+														<td><input type="text" class="form-control" id=""
+															placeholder="Mã dịch vụ" name="ma_dich_vu"></td>
+													</tr>
+													<tr>
+														<td>Tên dịch vụ</td>
+														<td><input type="text" class="form-control" id="ten_dich_vu"
+															placeholder="Tên dịch vụ" name="ten_dich_vu"></td>
+													</tr>
+													<tr>
+														<td>Thuế VAT</td>
+														<td><input type="text" class="form-control" id="vat"
+															placeholder="Thuế VAT" name="vat"></td>
+													</tr>
+													<tr>
+														<td>Đơn giá</td>
+														<td><input type="text" class="form-control" id="don_gia"
+															placeholder="Đơn giá" name="don_gia"></td>
+													</tr>
+													<tr>
+														<td>Đơn vị</td>
+														<td><input type="text" class="form-control" id="don_vi"
+															placeholder="Đơn vị" name="don_vi"></td>
+													</tr>
+													<tr>
+														<td>Trả trước</td>
+														<td><select name="tra_truoc" class="form-select" aria-label="Default select example">
+														  <option value="1">Trả trước</option>
+														  <option value="0">Trả sau</option>
+														</select>
+													</tr>
+												</tbody>
+											</table>
+											<div class="col text-center mb-3">
+												<button type="submit" class="btn btn-primary">Thêm</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-1"></div>
+							</div>
+							
+						</form>
+				      </div>
+				      <div class="modal-footer">
+				        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
+				        
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- End of modal Add service -->
 
 			<!-- End of Main Content -->
 			<!-- Footer -->

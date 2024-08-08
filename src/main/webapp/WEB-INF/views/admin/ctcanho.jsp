@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,9 +34,11 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
  <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Library for bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Library standand -->
 <script src="../../../static/js/ctCanHo.js" ></script>
 
 </head>
@@ -101,14 +103,7 @@
 										<form:input path="chuSoHuu.ma_chu_so_huu"
 												style="width: 50%" cssClass="form-control" readonly="true" id="js-input-id"/>
 										</td>
-										<td>
-										<select class="form-select js-select-info" aria-label="Default select example">
-										  <option selected>${ch.chuSoHuu.ma_chu_so_huu}</option>
-										  <c:forEach var="i" items="${csh}">
-											<option value="${i.ma_chu_so_huu}">${i.ma_chu_so_huu}</option>
-										  </c:forEach>
-										  	<option value="delete">Xoá chủ sở hữu</option>
-										</select>	</td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>Chủ sở hữu</td>
@@ -118,7 +113,7 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><a href=""><button type="submit" class="btn btn-primary">Sửa</button></a></td>
+										<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalSuaThongTinCSH">Sửa</button></td>
 										<td></td>
 									</tr>
 								</tbody>
@@ -176,7 +171,7 @@
 					</div>
 					
 					
-					<!-- Modal -->
+					<!--Start modal them dich vu -->
 					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 					  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					    <div class="modal-content">
@@ -209,7 +204,7 @@
 										</div></td>
 							   	
 							    </tr>
-							  </c:forEach> 
+							  </c:forEach>
 							  </tbody>
 							</table>
 					      </div>
@@ -220,6 +215,120 @@
 					    </div>
 					  </div>
 					</div>
+					<!--End modal them dich vu -->
+					<!--Start modal sua thong tin chu so huu -->
+					<div class="modal fade" id="exampleModalSuaThongTinCSH" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Thông tin chủ sở hữu</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+							<form:form action="/admin/canho/suathongtin" method="post" modelAttribute="ch">
+							<table class="table table-striped mt-3">
+								<thead>
+									<tr>
+										<th>Sửa thông tin căn hộ</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Mã căn hộ</td>
+										<td><form:input path="ma_can_ho"
+												style="width: 50%" cssClass="form-control" readonly="true" /></td>
+										<td></td>
+										
+									</tr>
+									<tr>
+										<td>Mã chủ sở hữu</td>
+										<td><form:input path="chuSoHuu.ma_chu_so_huu" id="js-idcsh"
+												style="width: 50%" cssClass="form-control" readonly="true" /></td>
+										<td></td>
+										
+									</tr>
+									<tr>
+										<td>Họ tên</td>
+										<td><form:input path="chuSoHuu.ho_ten" style="width: 50%" id="js-ten"
+												cssClass="form-control" /></td>
+										<td><select class="form-select js-select-info" aria-label="Default select example">
+										  <option selected value="${ch.chuSoHuu.ma_chu_so_huu}">${ch.chuSoHuu.ho_ten}</option>
+										  <c:forEach var="i" items="${csh}">
+											<option value="${i.ma_chu_so_huu}">${i.ho_ten}</option>
+										  </c:forEach>
+										  	<option value="delete">Xoá chủ sở hữu</option>
+										</select>	</td>
+									</tr>
+									<tr>
+										<td>Số điện thoại</td>
+										<td><form:input path="chuSoHuu.sdt" style="width: 50%" id="js-sdt"
+												cssClass="form-control" /></td>
+										<td><select class="form-select js-select-info" aria-label="Default select example">
+										  <option selected value="${ch.chuSoHuu.ma_chu_so_huu}">${ch.chuSoHuu.sdt}</option>
+										  <c:forEach var="i" items="${csh}">
+											<option value="${i.ma_chu_so_huu}">${i.sdt}</option>
+										  </c:forEach>
+										  	<option value="delete">Xoá chủ sở hữu</option>
+										</select>	</td>
+									</tr>
+									<tr>
+										<td>Căn cước công dân</td>
+										<td><form:input path="chuSoHuu.cccd" style="width: 50%" id="js-cccd"
+												cssClass="form-control" /></td>
+										<td><select class="form-select js-select-info" aria-label="Default select example">
+										  <option value="${ch.chuSoHuu.ma_chu_so_huu}" selected >${ch.chuSoHuu.cccd}</option>
+										  <c:forEach var="i" items="${csh}">
+											<option value="${i.ma_chu_so_huu}">${i.cccd}</option>
+										  </c:forEach>
+										  	<option value="delete">Xoá chủ sở hữu</option>
+										</select>	</td>
+									</tr>
+									<tr>
+										<td>Ngày sinh</td>
+										<td><form:input path="chuSoHuu.ngay_sinh" style="width: 50%" id="js-ngaysinh"
+												cssClass="form-control" /></td>
+										<td></td>
+										
+									</tr>
+									<tr>
+										<td>Giới tính</td>
+										<td><form:input path="chuSoHuu.phai" style="width: 50%" id="js-gioitinh"
+												cssClass="form-control" /></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Tên đăng nhập</td>
+										<td><form:input path="chuSoHuu.dangNhap.ten_dang_nhap" id="js-tendangnhap"
+												style="width: 50%" cssClass="form-control" readonly="true" /></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Mật khẩu</td>
+										<td><form:input path="chuSoHuu.dangNhap.mat_khau" id="js-matkhau"
+												style="width: 50%" cssClass="form-control" /></td>
+										<td></td>
+									</tr>
+								</tbody>
+								
+							</table>
+								<div class="col text-center mb-3">
+								<form:button type="submit" class="btn btn-primary">Cập nhật</form:button>
+							</div>
+							</form:form>
+					      </div>
+					      <div class="modal-footer">
+					        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
+					        
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!--End modal sua thong tin chu so huu -->
+					
 				</div>
 			</div>
 		</div>
