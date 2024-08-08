@@ -61,7 +61,7 @@
 				<div class="col-sm-10 container border">
 					<div class="row">
 					<div>
-						<h3 class="my-4 text-center">TẠO HOÁ ĐƠN</h3>
+						<h3 class="my-4 text-center">QUẢN LÍ HOÁ ĐƠN</h3>
 						<hr>
 					</div>
 						<h4 class="my-4">Thông tin nhân viên</h4>
@@ -141,7 +141,7 @@
 																<td>${i.get("soTien")}</td>
 																<td>${i.get("no")}</td>
 																<td>${i.get("trangThai")}</td>
-																<td><a href="">Chi tiet</a></td>
+																<td><a href="/admin/quanlihoadon/xemchitiet/${i.get("ma_hoa_don")}">Chi tiet</a></td>
 															</tr>
 															<c:set var="count" value="${count = count + 1}"
 																scope="session" />
@@ -150,8 +150,7 @@
 													</tbody>
 												</table>
 												<div class="col text-center  mb-3">
-													<button class="btn btn-primary" data-toggle="modal" data-target="#modalTaoHoaDon">Tạo 1 hóa đơn</button>
-													<button class="btn btn-primary" data-toggle="modal" data-target="#modalTaoTatCaHoaDon">Tạo nhiều hoá đơn</button>
+													<button class="btn btn-primary" data-toggle="modal" data-target="#modalTaoHoaDon">Tạo hóa đơn</button>
 												</div>
 											</div>
 										</div>
@@ -179,149 +178,8 @@
 									</div>
 								</div>
 								<div class="content-receipt">
-									<div class="row container">
-										<hr>
-										<div class="col-lg-6">
-											<h4>Người nhận</h4>
-											<select class="Apartment-select my-2" aria-label="Default select example">
-												<option value="">Chọn chủ sở hữu</option>
-												<c:forEach var="i" items="${dsChuSoHuu}">
-												  <option value="${i.ma_chu_so_huu}">${i.ho_ten}</option>
-												</c:forEach>
-											</select>
-											<table class="table">
-											  <thead>
-											  </thead>
-											  <tbody>
-											    <tr>
-											      <td><p class="px-2">Họ tên: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.ho_ten}" readonly="true"></td>
-											    </tr>
-											    <tr>
-											      <td><p class="px-2">Sdt: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.cccd}" readonly="true"></td>
-											    </tr>
-											    <tr>
-											      <td><p class="px-2">CCCD: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.sdt}" readonly="true"></td>
-											    </tr>
-											  </tbody>
-											</table>
-										</div>
-										
-										<div class="col-lg-6">
-											<h4>Căn hộ:</h4>
-											<select class="client-select my-2" aria-label="Default select example">
-												<option value="">Chọn căn hộ</option>
-												<c:forEach var="i" items="${dsCanHo}">
-												  <option value="${i.ma_can_ho}">${i.ma_can_ho}</option>
-												</c:forEach>
-											</select>
-											<table class="table">
-											  <thead>
-											  </thead>
-											  <tbody>
-											    <tr>
-											      <td><p class="px-2">Mã căn hộ: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.ho_ten}" readonly="true"></td>
-											    </tr>
-											    <tr>
-											      <td><p class="px-2">Khu: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.cccd}" readonly="true"></td>
-											    </tr>
-											    <tr>
-											      <td><p class="px-2">Tầng: </p></td>
-											      <td><input type="text" class="form-control" value="${thongtinnhanvien.sdt}" readonly="true"></td>
-											    </tr>
-											  </tbody>
-											</table>
-										</div>
-									</div>
 									<div class="container mt-3">
 										<hr>
-										<table class="table table-striped">
-											<thead>
-												<tr>
-													<th>Stt</th>
-													<th>Mã dịch vụ</th>
-													<th>Tên dịch vụ</th>
-													<th>Thuế VAT</th>
-													<th>Đơn giá</th>
-													<th>Đơn vị</th>
-													<th>Số lượng</th>
-													<th></th>
-												</tr>
-											</thead>
-											<c:set var="count" value="1" scope="session" />
-											<tbody id="remove-modal">
-											<c:forEach var="p" items="${dichvudaco}">
-												<tr id="${p.dich_vu.ma_dich_vu}">
-													<td>${count}</td>
-													<td>${p.dich_vu.ma_dich_vu}</td>
-													<td>${p.dich_vu.ten_dich_vu}</td>
-													<td>${p.dich_vu.vat}</td>
-													<td>${p.dich_vu.don_gia}</td>
-													<td>${p.dich_vu.don_vi}</td>
-													<td>${p.so_luong}</td>
-													<td><a href=""><button class="btn btn-primary js-button-remove">Xóa</button></a></td>
-												</tr>
-												<c:set var="count" value="${count = count + 1}" scope="session" />
-											</c:forEach>
-											</tbody>
-											<tr>
-												<th>Tổng cộng</th>
-											</tr>
-										</table>
-										<hr>
-									</div>
-								</div>
-								<div class="row footer-receipt">
-									<div class="col-lg-6">
-										<p>Cám ơn đã sử dụng tại chung cư</p>
-										<p>Vui lòng đóng phí trước ngày 15 hàng tháng</p>
-										<p>Liên hệ ban quản lí nếu có thắc mắc:</p>
-									</div>
-									<div class="col-lg-6">
-										<p>CHUNG CƯ PTIT</p>
-										<p>Email: nhom22@gmail.com</p>
-										<p>Sdt:(+84) 000 000 0000</p>
-									</div>
-								</div>
-							</div>
-							<button type="button" class="btn btn-primary d-flex ml-auto">Lập hoá đơn</button>
-					      </div>
-					      <div class="modal-footer">
-					        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-					<!--End modal tao hoa don -->
-					<!--Start modal tao hoa don -->
-					<div class="modal fade" id="modalTaoTatCaHoaDon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-					  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLongTitle">Tạo hoá đơn</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body">
-							<div class="container">
-								<div class="row head-receipt p-4 bg-secondary text-white">
-									<div class="col-lg-6"><h2>HOÁ ĐƠN</h2></div>
-									<div class="col-lg-6">
-										<p>Tên hoá đơn: </p>
-									</div>
-								</div>
-								<div class="content-receipt">
-									<div class="row container">
-										<hr>										
-									</div>
-									<div class="container mt-3">
-										<hr>
-										<form action="/admin/quanlihoadon/laphoadon" method="post" id="formHoadon">
 										<table class="table table-striped">
 											<thead>
 												<tr>
@@ -331,8 +189,7 @@
 													<th>Chủ sở hữu</th>
 													<th>Khu</th>
 													<th>Tầng</th>
-													<th>Chi tiết</th>
-													<th><input type="checkbox" id="" name="" value=""></th>
+													<th>Tạo hoá đơn</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -344,31 +201,15 @@
 														<td>${p.chuSoHuu.ho_ten}</td>
 														<td>${p.khu}</td>
 														<td>${p.tang}</td>
-														<td><a href="/admin/canho/${p.ma_can_ho}">Chi tiết</a></td>
-														<td><input type="checkbox" id="checkbox-Receipt" name="maCanHo" value="${p.ma_can_ho}"></td>
+														<td><a href="/admin/quanlihoadon/laphoadon/${p.ma_can_ho}">Tạo</a></td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-										<button type="submit" class="btn btn-primary d-flex ml-auto">Lập hoá đơn</button>
-										</form>
 										<hr>
 									</div>
 								</div>
-<!-- 								<div class="row footer-receipt">
-									<div class="col-lg-6">
-										<p>Cám ơn đã sử dụng tại chung cư</p>
-										<p>Vui lòng đóng phí trước ngày 15 hàng tháng</p>
-										<p>Liên hệ ban quản lí nếu có thắc mắc:</p>
-									</div>
-									<div class="col-lg-6">
-										<p>CHUNG CƯ PTIT</p>
-										<p>Email: nhom22@gmail.com</p>
-										<p>Sdt:(+84) 000 000 0000</p>
-									</div>
-								</div> -->
 							</div>
-							
 					      </div>
 					      <div class="modal-footer">
 					        <a href=""><button type="button" class="btn btn-primary">Xong</button></a>

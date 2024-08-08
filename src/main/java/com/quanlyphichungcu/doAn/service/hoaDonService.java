@@ -95,6 +95,7 @@ public class hoaDonService {
 						tong += hoadonthangtruoc.getTien_thang();
 						hoadonthangtruoc.setNgay_dong_tien(java.sql.Date.valueOf(currentDate));
 						hoadonthangtruoc.setTien_thang(0);
+						update(hoadonthangtruoc);
 				} else {
 					hoadon.setTien_no(0);
 				}
