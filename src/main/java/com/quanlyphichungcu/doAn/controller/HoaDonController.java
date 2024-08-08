@@ -356,12 +356,4 @@ public class HoaDonController {
 //		return "/user/hoadon";
 //	}
 	
-//	@GetMapping("/user/hoadon/find/{id_canho}")
-//	@ResponseBody
-//	public List<dich_vu_can_ho> test(@PathVariable("id_canho") String id_can_ho, Model model) {
-//		List<dich_vu_can_ho> dvch = canhoService.getDSDichvu(id_can_ho);
-//		
-//		model.addAttribute("chitiethd", dvch);
-//		return dvch;
-//	}
 }
