@@ -53,15 +53,21 @@
 								  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 									  <!-- <li class="nav-item dropdown"> -->
+										<form action=""></form>
 										<select data-mdb-select-init>
-											<option value="1">One</option>
+											<form action="/user/dangkidichvu/${sessionScope.thongtin.ma_chu_so_huu}" method="get">
+											<c:forEach var="canho" items="${dscanho}">
+												<option value="${canho.ma_can_ho}">${canho.ma_can_ho}</option>
+											</c:forEach>
+											</form>
+											<!-- <option value="1">One</option>
 											<option value="2">Two</option>
 											<option value="3">Three</option>
 											<option value="4">Four</option>
 											<option value="5">Five</option>
 											<option value="6">Six</option>
 											<option value="7">Seven</option>
-											<option value="8">Eight</option>
+											<option value="8">Eight</option> -->
 										  </select>
 									  <!-- </li> -->
 									  
@@ -120,24 +126,15 @@
 														rowspan="1" colspan="1"
 														aria-label="Office: activate to sort column ascending"
 														style="width: 100px;">Đơn vị</th>
-													<!-- <th class="sorting" tabindex="0" aria-controls="dataTable"
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
 														rowspan="1" colspan="1"
-														aria-label="Salary: activate to sort column ascending"
-														style="width: 100px;">Số lượng</th> -->
-													<!-- <th class="sorting" tabindex="0"
-																		aria-controls="dataTable" rowspan="1"
-																		colspan="1"
-																		aria-label="Salary: activate to sort column ascending"
-																		style="width: 100px;">Ngày bắt đầu</th> -->
+														aria-label="Office: activate to sort column ascending"
+														style="width: 100px;">VAT</th>
 												</tr>
 											</thead>
 											<tbody>
-
 											</tbody>
 										</table>
-
-
-										<!-- </div> -->
 									</div>
 								</div>
 								<%@ include file="../layout/footer.jsp" %>
