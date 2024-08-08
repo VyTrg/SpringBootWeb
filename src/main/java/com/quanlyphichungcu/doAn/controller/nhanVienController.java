@@ -2,8 +2,12 @@ package com.quanlyphichungcu.doAn.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +103,7 @@ public class nhanVienController {
 	}
 	
 	@RequestMapping("/quanlihoadon")
-	public String lapHoaDon(Model model,HttpSession session){
+	public String quanlihoadon(Model model,HttpSession session){
 		nhan_vien nhanVien = (nhan_vien) session.getAttribute("thongtin_nv");
 		List<ChuSoHuu> dsChuSoHuu = chu_so_huu_repo.findAll();
 		List<can_ho> dsCanHo = can_ho_repo.findAll();
@@ -114,12 +118,6 @@ public class nhanVienController {
 			json_object.put("ngayLap", item.getNgay_tao().toString());
 			json_object.put("soTien", item.getTien_thang().toString());
 			json_object.put("no", item.getTien_no().toString());
-			List<dich_vu_can_ho> chitiet = dv_canho_repo.getDichVuByCanHo(item.getMaCanHo().getMa_can_ho());
-			for (dich_vu_can_ho dichvu: chitiet) {
-				
-			}
-//			json_object.put("chitiethoadon", );
-
 			if (item.getNgay_dong_tien() == null) 
 				json_object.put("trangThai", "Chua dong");
 			else 
@@ -133,49 +131,127 @@ public class nhanVienController {
 		return "admin/hoadon";
 	}
 	
+	@RequestMapping("/quanlihoadon/xemchitiet/{idHoaDon}")
+	public String xemChiTiet(Model model,
+			HttpSession session,
+			@PathVariable("idHoaDon") String idHoaDon){
+		HoaDon hoadon = hd_service.findById(idHoaDon);
+		List<dich_vu_can_ho> tatcadichvu = dv_canho_repo.getDichVuByCanHo(hoadon.getMaCanHo().getMa_can_ho());
+		List<JSONObject> UIchitiethoadon = new ArrayList<JSONObject>();
+		for (dich_vu_can_ho item: tatcadichvu) {
+			if (item.getNgay_ket_thuc() == null) {
+				LocalDateTime ngaybatdau = ((Date) item.getNgay_bat_dau()).toLocalDate().atStartOfDay();
+				if (ngaybatdau.getYear() <= hoadon.getNam()) {
+					if (ngaybatdau.getMonthValue() <= hoadon.getThang()) {
+						JSONObject json = new JSONObject();
+						json.put("ma_dich_vu", item.getDich_vu().getMa_dich_vu());
+						json.put("ten_dich_vu", item.getDich_vu().getTen_dich_vu());
+						json.put("vat", item.getDich_vu().getVat());
+						json.put("don_gia", item.getDich_vu().getDon_gia());
+						json.put("don_vi", item.getDich_vu().getDon_vi());
+						json.put("so_luong", item.getSo_luong());
+						int soluong,dongia,vat;
+						soluong = item.getSo_luong();
+						dongia = item.getDich_vu().getDon_gia();
+						vat = item.getDich_vu().getVat();
+						float tong = (float) soluong*dongia*(1+(float)vat/100);
+						json.put("tong", tong);
+						UIchitiethoadon.add(json);
+					}
+				}
+			} else {
+				LocalDateTime ngaybatdau = ((Date) item.getNgay_bat_dau()).toLocalDate().atStartOfDay();
+				if (ngaybatdau.getYear() <= hoadon.getNam()) {
+					if (ngaybatdau.getMonthValue() <= hoadon.getThang()) {
+						JSONObject json = new JSONObject();
+						json.put("ma_dich_vu", item.getDich_vu().getMa_dich_vu());
+						json.put("ten_dich_vu", item.getDich_vu().getTen_dich_vu());
+						json.put("vat", item.getDich_vu().getVat());
+						json.put("don_gia", item.getDich_vu().getDon_gia());
+						json.put("don_vi", item.getDich_vu().getDon_vi());
+						json.put("so_luong", item.getSo_luong());
+						int soluong,dongia,vat;
+						soluong = item.getSo_luong();
+						dongia = item.getDich_vu().getDon_gia();
+						vat = item.getDich_vu().getVat();
+						float tong = (float) soluong*dongia*(1+(float)vat/100);
+						json.put("tong", tong);
+						UIchitiethoadon.add(json);
+					}
+				}
+			}
+		}
+		model.addAttribute("thongtinhoadon",hoadon);
+		model.addAttribute("chitiethoadon",UIchitiethoadon);
+		return "admin/cthoadon";
+	}
+	
+	@RequestMapping("/quanlihoadon/laphoadon/{idCanHo}")
+	public String pagelaphoadon(Model model,
+			HttpSession session,
+			@PathVariable("idCanHo") String idCanHo
+			){
+		nhan_vien nhanvien = (nhan_vien) session.getAttribute("thongtin_nv");
+		can_ho canHo = can_ho_repo.findById(idCanHo).get();
+		List<dich_vu_can_ho> tatcadichvu = dv_canho_repo.getDichVuByCanHo(idCanHo);
+		List<JSONObject> UIchitiethoadon = new ArrayList<JSONObject>();
+		LocalDate currentDate = LocalDate.now();
+		HoaDon hoadon = hd_service.laphoadon(currentDate.getMonthValue(), currentDate.getYear(), nhanvien, canHo, tatcadichvu);
+		for (dich_vu_can_ho item: tatcadichvu) {
+			if (item.getNgay_ket_thuc() == null) {
+				LocalDateTime ngaybatdau = ((Date) item.getNgay_bat_dau()).toLocalDate().atStartOfDay();
+				if (ngaybatdau.getYear() <= hoadon.getNam()) {
+					if (ngaybatdau.getMonthValue() <= hoadon.getThang()) {
+						JSONObject json = new JSONObject();
+						json.put("ma_dich_vu", item.getDich_vu().getMa_dich_vu());
+						json.put("ten_dich_vu", item.getDich_vu().getTen_dich_vu());
+						json.put("vat", item.getDich_vu().getVat());
+						json.put("don_gia", item.getDich_vu().getDon_gia());
+						json.put("don_vi", item.getDich_vu().getDon_vi());
+						json.put("so_luong", item.getSo_luong());
+						int soluong,dongia,vat;
+						soluong = item.getSo_luong();
+						dongia = item.getDich_vu().getDon_gia();
+						vat = item.getDich_vu().getVat();
+						float tong = (float) soluong*dongia*(1+(float)vat/100);
+						json.put("tong", tong);
+						UIchitiethoadon.add(json);
+					}
+				}
+			}
+		}
+		model.addAttribute("thongtinhoadon",hoadon);
+		model.addAttribute("chitiethoadon",UIchitiethoadon);
+		return "admin/laphoadon";
+	}
+	
 	@PostMapping("/quanlihoadon/laphoadon/{idcanho}")
-	@ResponseBody
 	public String laphoadonchocanho(Model model, 
 			@PathVariable("idcanho") String idCanHo,
+			@RequestParam("dichvu") List<String> dichvu,
+			@RequestParam("soluong") List<String> soluong,
 			HttpSession session){
 		// lay can ho tu ma can ho
 		can_ho canHo = can_ho_repo.findById(idCanHo).get();
 		// lay thong tin nhan vien
 		nhan_vien nhanvien = (nhan_vien) session.getAttribute("thongtin_nv");
 		LocalDate currentDate = LocalDate.now();
-		Date dateHoaDon = java.sql.Date.valueOf(currentDate);
-		// tinh tong hoa don
-		float tong = 0;
+		// gop 2 list 
+		Map<String, Integer> sl_dv = new HashMap<String, Integer>();
+		for (int i = 0; i<dichvu.size();i++) {
+			sl_dv.put(dichvu.get(i), Integer.parseInt(soluong.get(i)));
+		}
 		// lay tat ca dich vu
-		List<dich_vu_can_ho> dsDichVuCanHo = dv_canho_repo.getDichVuByCanHo(idCanHo);
+		List<dich_vu_can_ho> dsDichVuCanHo = new ArrayList<dich_vu_can_ho>();
+		for (String item: dichvu) {
+			dich_vu_can_ho dv_ch = dv_canho_repo.getDichVuByDichVuCanHo(idCanHo, item);
+			dv_ch.setSo_luong(sl_dv.get(item));
+			dsDichVuCanHo.add(dv_ch);
+		}
 		model.addAttribute("dsDichVuCanHo",dsDichVuCanHo);
 		HoaDon hoaDon = hd_service.laphoadon(currentDate.getMonthValue(), currentDate.getYear(), nhanvien, canHo, dsDichVuCanHo);
 		System.out.println(hoaDon.toString());
-//		hd_repo.save(hoaDon);
-		return "redirect:/admin/quanlihoadon";
-	}
-	
-	@PostMapping("/quanlihoadon/laphoadon")
-	public String laptatcahoadon(Model model, 
-			@RequestParam(name = "maCanHo") List<String> dsCanHo,
-			HttpSession session){
-		// lay thong tin nhan vien
-		nhan_vien nhanvien = (nhan_vien) session.getAttribute("thongtin_nv");
-		// lay can ho
-		for (String item: dsCanHo) {
-			can_ho canho = can_ho_repo.findById(item).get();
-			LocalDate currentDate = LocalDate.now();
-			Date dateHoaDon = java.sql.Date.valueOf(currentDate);
-			// lay tong so tien
-			float tong = 0;
-			// lay tat ca dich vu
-			List<dich_vu_can_ho> dsDichVuCanHo = dv_canho_repo.getDichVuByCanHo(canho.getMa_can_ho());
-			// lay hoa don
-			HoaDon hoaDon = hd_service.laphoadon(currentDate.getMonthValue(), currentDate.getYear(), nhanvien, canho, dsDichVuCanHo);
-			if(hoaDon!=null) {
-				hd_repo.save(hoaDon);
-			}
-		}
+		hd_repo.save(hoaDon);
 		return "redirect:/admin/quanlihoadon";
 	}
 }
