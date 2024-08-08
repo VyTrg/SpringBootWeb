@@ -17,6 +17,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,11 +56,19 @@ public class chuSoHuuController {
 	}
 	
 	@RequestMapping("/dangkidichvu/{maChuSoHuu}")
-	public String getThongTinDichVu(Model model) {
+	public String getThongTinDichVu(Model model, @PathVariable("maChuSoHuu") String ma_csh) {
 		model.addAttribute("dichvu", DichVuRepository.findAll());
+		
 		return "/user/dangkidichvu";
 	}
 	
+	
+	@GetMapping(value = "/dangkidichvu/{maChuSoHuu}")
+	public String getCanho(Model model, @PathVariable("maChuSoHuu") String ma_csh) {
+		
+//		List<can_ho> canho = canHoRepository.getCanHoByChuSoHuu
+		return "/user/dangkidichvu";
+	}
 //	@PostMapping("/dangkidichvu/{maCanHo}")
 //	@ResponseBody
 //	public ResponseEntity<String> greetingJson(@RequestBody String thongTinDangKi,@PathVariable("maCanHo") String maCanHo) {

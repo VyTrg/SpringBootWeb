@@ -11,6 +11,6 @@ import com.quanlyphichungcu.doAn.entity.can_ho;
 
 @Repository
 public interface canHoRepository extends JpaRepository<can_ho, String>{
-	@Query(value="select * from CAN_HO a where a.ma_chu_so_huu = :maCSH", nativeQuery=true)
-    List<can_ho> getCanHoByChuSoHuu(@Param("maCSH") String Ma_Chu_so_huu);
+	@Query(value="select * from CAN_HO where ma_chu_so_huu = ?1", nativeQuery=true)
+    List<can_ho> getCanHoByChuSoHuu(String Ma_Chu_so_huu);
 }
