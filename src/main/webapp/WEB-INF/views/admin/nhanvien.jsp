@@ -26,13 +26,37 @@
 
 <!-- Latest compiled and minified CSS -->
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Library bootstrap -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+</script>
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -74,61 +98,67 @@
 											<th>Tên đăng nhập</th>
 											<td><form:input path="nv.dangNhap.ten_dang_nhap"
 													style="width: 50%" cssClass="form-control" readonly="true" /></td>
+											<td><a href="/admin/doimk">Đổi mật khẩu</a></td>
 										</tr>
-										<tr>
+										<%-- <tr>
 											<th>Mật khẩu</th>
-											<td><form:input path="nv.dangNhap.mat_khau" 
-													style="width: 50%" cssClass="form-control" type="password"/></td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="col text-center mb-3">
-									<button class="btn btn-primary">Cập nhật</button>
-								</div>
-								<h4>Thông tin cá nhân</h4>
-								<table class="table table-striped mt-3">
-									<thead>
-									</thead>
-									<tbody>
-										<tr>
-											<th>Mã nhân viên</th>
-											<td><form:input path="nv.ma_nhan_vien"
-													style="width: 50%" cssClass="form-control" readonly="true" /></td>
-										</tr>
-										<tr>
-											<th>Họ và tên</th>
-											<td><form:input path="nv.ho_ten" style="width: 50%"
-													cssClass="form-control" /></td>
-										</tr>
-										<tr>
-											<th>Số điện thoại</th>
-											<td><form:input path="nv.sdt" style="width: 50%"
-													cssClass="form-control" /></td>
-										<tr>
-											<th>Căn cước công dân</th>
-											<td><form:input path="nv.cccd" style="width: 50%"
-													cssClass="form-control" /></td>
-										</tr>
-										<tr>
-											<th>Ngày sinh</th>
-											<td><form:input path="nv.ngay_sinh" style="width: 50%"
-													cssClass="form-control" /></td>
-										</tr>
-										<tr>
-											<th>Giới tính</th>
-											<td><form:input path="nv.phai" style="width: 50%"
-													cssClass="form-control" /></td>
-										</tr>
-										<tr>
-											<th>Mã phòng ban</th>
-											<td><form:input path="nv.phongBan.ma_phong_ban"
+											<td><form:input path="nv.dangNhap.mat_khau"
 													style="width: 50%" cssClass="form-control" /></td>
-										</tr>
+											<td><a href="/admin/doimk">Đổi mật khẩu</a></td>
+										</tr> --%>
+
 									</tbody>
 								</table>
-								<div class="col text-center mb-3">
-									<button class="btn btn-primary">Cập nhật</button>
-								</div>
+								<h4>Thông tin cá nhân</h4>
+								${message}
+								<form:form action="/admin/nv/${nv.ma_nhan_vien}"
+									modelAttribute="nv" enctype="multipart/form-data">
+									<form:hidden path="dangNhap.ten_dang_nhap"
+										cssClass="form-control" />
+									<table class="table table-striped mt-3">
+										<thead>
+										</thead>
+										<tbody>
+											<tr>
+												<th>Mã nhân viên</th>
+												<td><form:input path="ma_nhan_vien" style="width: 50%"
+														cssClass="form-control" readonly="true" /></td>
+											</tr>
+											<tr>
+												<th>Họ và tên</th>
+												<td><form:input path="ho_ten" style="width: 50%"
+														cssClass="form-control" /></td>
+											</tr>
+											<tr>
+												<th>Số điện thoại</th>
+												<td><form:input path="sdt" style="width: 50%"
+														cssClass="form-control" /></td>
+											<tr>
+												<th>Căn cước công dân</th>
+												<td><form:input path="cccd" style="width: 50%"
+														cssClass="form-control" /></td>
+											</tr>
+											<tr>
+												<th>Ngày sinh</th>
+												<td><form:input path="ngay_sinh" style="width: 50%"
+														cssClass="form-control" /></td>
+											</tr>
+											<tr>
+												<th>Giới tính</th>
+												<td><form:input path="Phai" style="width: 50%"
+														cssClass="form-control" /></td>
+											</tr>
+											<tr>
+												<th>Mã phòng ban</th>
+												<td><form:input path="phongBan.ma_phong_ban"
+														style="width: 50%" cssClass="form-control" /></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="col text-center mb-3">
+										<button class="btn btn-primary">Chỉnh sửa</button>
+									</div>
+								</form:form>
 							</div>
 						</div>
 					</div>
@@ -137,7 +167,7 @@
 				<div class="col-sm-1"></div>
 				<!-- End of Main Content -->
 				<!-- Footer -->
-				<%@ include file="../layout/footer.jsp"%>
+				<%@ include file="../layout_admin/footer.jsp"%>
 				<!-- End of Footer -->
 			</div>
 			<!-- End of Content Wrapper -->

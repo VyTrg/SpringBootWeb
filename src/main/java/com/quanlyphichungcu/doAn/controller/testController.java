@@ -8,7 +8,6 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.json.JSONObject;
@@ -19,9 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
-import com.quanlyphichungcu.doAn.entity.HoaDon;
 import com.quanlyphichungcu.doAn.entity.can_ho;
 import com.quanlyphichungcu.doAn.entity.dich_vu_can_ho;
 import com.quanlyphichungcu.doAn.entity.nhan_vien;

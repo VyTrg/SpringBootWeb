@@ -49,23 +49,22 @@ public class dangNhapController {
 		}
 		else if (dangNhap != null && dangNhap.getQuyen().getMa_quyen().trim().equals("CSH")) {
 			ChuSoHuu chusohuu = this.chu_so_huu_repo.findByDangNhap(dangNhap);
-//			model.addAttribute("thongtinkhachhang", chusohuu);
+
 			String url = chusohuu.getMa_chu_so_huu();
-//			model.addAttribute("ma_chu_so_huu", url);
+
 			session.setAttribute("thongtin", chusohuu);
 			return "redirect:/user/thongtin/" + url;
 		}
-		else{
+		else if(dangNhap == null){
 			session.setAttribute("message", "Thông tin đăng nhập sai. Vui lòng nhập lại!");
-			return "redirect:/login";
 		}
+		return "redirect:/login";
 	}
 	
 	@RequestMapping("logout")
 	public String Logout(HttpSession session) {
 		if(session.getAttribute("thongtin") != null) {
 			session.removeAttribute("thongtin");
-//			System.out.println("da xoa");
 		}
 		if(session.getAttribute("thongtin_nv") != null) {
 			session.removeAttribute("thongtin_nv");

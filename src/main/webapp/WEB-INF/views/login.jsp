@@ -37,7 +37,7 @@
                     </form>
                     </div>
                     </div>
-                    <span style="display: block" class="password__text--error" >${sessionSmessage}</span>
+                    <span style="display: block" class="password__text--error" >${message}</span>
                 </div>
             </div>
         </div>

@@ -16,6 +16,14 @@ public class nhanVienService {
 	public Optional<nhan_vien> findById(String id) {
         return Repository.findById(id);
     }
+	
+	public nhan_vien save(nhan_vien nv) {
+		return Repository.save(nv);
+	}
+	
+	public void create(nhan_vien nv) {
+		Repository.save(nv);
+	}
 //	public nhan_vien findByUserName(String ten_dang_nhap) {
 //		return ((nhanVienService) Repository).findByUserName(ten_dang_nhap);
 //	public nhan_vien getNhanVien(dang_nhap dangNhap) {

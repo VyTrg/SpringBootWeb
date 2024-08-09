@@ -4,8 +4,12 @@ package com.quanlyphichungcu.doAn.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -18,21 +22,35 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name="CHU_SO_HUU")
 public class ChuSoHuu {
-	@Id private String ma_chu_so_huu;
+	@Id
+	@NotBlank(message = "Mã chủ sở hữu không được để trống")
+	private String ma_chu_so_huu;
+	
+	@NotBlank(message = "Họ và tên không được để trống")
 	private String ho_ten;
+	
+	@Column(unique=true)
+	@NotBlank(message = "Số điện thoại không được để trống")
 	private String sdt;
+	
+	@Column(unique=true)
+	@NotBlank(message = "Căn cước công dân không được để trống")
+	private String cccd;
+	
+	@NotBlank(message = "Giới tính không được để trống")
 	private String phai;
 	
 	@Temporal(TemporalType.DATE)
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-
+	@NotNull(message = "Ngày sinh không được để trống")
 	private Date ngay_sinh;
-	private String cccd;
+	
+	
 //	Chu so huu join voi bang dang nhap kieu tra ve la Entity dang nhap
 	
 	@ManyToOne
 	@JoinColumn(name = "ten_dang_nhap")
+	@NotBlank(message = "Tên đăng nhập không được để trống")
 	private dang_nhap dangNhap;
 	
 	@OneToMany(mappedBy = "chuSoHuu")
