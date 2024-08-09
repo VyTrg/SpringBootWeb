@@ -44,120 +44,140 @@
 						<div id="content-wrapper" class="d-flex flex-column">
 							<!-- Topbar -->
 							<%@ include file="../layout/head.jsp" %>
-							<nav class="navbar navbar-expand-lg navbar-light bg-light">
-								<div class="container-fluid">
-								  <a class="navbar-brand" href="#">Căn hộ</a>
-								  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="navbar-toggler-icon"></span>
-								  </button>
-								  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-									  <!-- <li class="nav-item dropdown"> -->
-										<form action=""></form>
-										<select data-mdb-select-init>
-											<form action="/user/dangkidichvu/${sessionScope.thongtin.ma_chu_so_huu}" method="get">
-											<c:forEach var="canho" items="${dscanho}">
-												<option value="${canho.ma_can_ho}">${canho.ma_can_ho}</option>
-											</c:forEach>
+								<nav class="navbar navbar-expand-lg navbar-light bg-light">
+									<div class="container-fluid">
+
+										<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+											data-bs-target="#navbarSupportedContent"
+											aria-controls="navbarSupportedContent" aria-expanded="false"
+											aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse" id="navbarSupportedContent">
+											<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+											</ul>
+											<form class="d-flex me-2">
+												<input class="form-control me-2" type="search" placeholder="Tìm kiếm"
+													aria-label="Search">
+												<button class="btn btn-outline-success" type="submit">Tìm</button>
 											</form>
-											<!-- <option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-											<option value="4">Four</option>
-											<option value="5">Five</option>
-											<option value="6">Six</option>
-											<option value="7">Seven</option>
-											<option value="8">Eight</option> -->
-										  </select>
-									  <!-- </li> -->
-									  
-									</ul>
-									<form class="d-flex me-2">
-									  <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
-									  <button class="btn btn-outline-success" type="submit">Tìm</button>
-									</form>
-									<button type="button" class="btn btn-outline-primary">Đăng kí</button>
-								  </div>
-								</div>
-							  </nav>
-									<div class="modal fade" id="dangkiModal" tabindex="-1"
-										aria-labelledby="exampleModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Dịch vụ</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-														aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													...
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Đóng</button>
-													<button type="button" class="btn btn-primary">Lưu</button>
+
+										</div>
+									</div>
+								</nav>
+								<!-- <a class="navbar-brand">Căn hộ</a> -->
+								<!-- <select data-mdb-select-init class="canho me-auto mb-2 mb-lg-0"> -->
+								<form action="/user/dangkidichvu/${sessionScope.thongtin.ma_chu_so_huu}" method="get">
+									<c:forEach var="canho" items="${dscanho}">
+										<p style="margin-left: 10px;">Căn hộ: ${canho.ma_can_ho}</p>
+										<button type="button" class="btn btn-outline-primary"
+											style="margin-left: 10px;">Đăng kí</button>
+										<div class="modal fade" id="dangkiModal" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Dịch vụ</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														...
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Đóng</button>
+														<button type="button" class="btn btn-primary">Lưu</button>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								<!-- </div> -->
-								<div class="card-body">
-									
-									<div class="col-sm-12">
-										<table class="table table-bordered dataTable table-hover js-table"
-											id="dataTable" width="100%" cellspacing="0" role="grid"
-											aria-describedby="dataTable_info" style="width: 100%;">
-											<thead>
-												<tr role="row">
-													<th class="sorting sorting_asc" tabindex="0"
-														aria-controls="dataTable" rowspan="1" colspan="1"
-														aria-sort="ascending"
-														aria-label="Name: activate to sort column descending"
-														style="width: 10px;">STT</th>
-													<th class="sorting" tabindex="0" aria-controls="dataTable"
-														rowspan="1" colspan="1"
-														aria-label="Position: activate to sort column ascending"
-														style="width: 150.111px;">Tên dịch vụ</th>
-													<th class="sorting" tabindex="0" aria-controls="dataTable"
-														rowspan="1" colspan="1"
-														aria-label="Position: activate to sort column ascending"
-														style="width: 150.111px;">Đơn giá</th>
-													<th class="sorting" tabindex="0" aria-controls="dataTable"
-														rowspan="1" colspan="1"
-														aria-label="Office: activate to sort column ascending"
-														style="width: 100px;">Đơn vị</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-														rowspan="1" colspan="1"
-														aria-label="Office: activate to sort column ascending"
-														style="width: 100px;">VAT</th>
-												</tr>
-											</thead>
-											<tbody>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<%@ include file="../layout/footer.jsp" %>
-									<!-- End of Footer -->
-									<!-- </div> -->
-									<!-- End of Content Wrapper -->
-									<!-- </div> -->
-									<script type="text/javascript">
+										<div class="">
+											<div class="col-sm-12">
+												<table class="table table-bordered dataTable table-hover js-table"
+													id="dataTable" width="100%" cellspacing="0" role="grid"
+													aria-describedby="dataTable_info" style="width: 100%;">
+													<thead>
+														<tr role="row">
+															<th class="sorting sorting_asc" tabindex="0"
+																aria-controls="dataTable" rowspan="1" colspan="1"
+																aria-sort="ascending"
+																aria-label="Name: activate to sort column descending"
+																style="width: 10px;">STT</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable"
+																rowspan="1" colspan="1"
+																aria-label="Position: activate to sort column ascending"
+																style="width: 150.111px;">Tên dịch vụ</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable"
+																rowspan="1" colspan="1"
+																aria-label="Position: activate to sort column ascending"
+																style="width: 150.111px;">Đơn giá</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable"
+																rowspan="1" colspan="1"
+																aria-label="Office: activate to sort column ascending"
+																style="width: 100px;">Đơn vị</th>
+															<th class="sorting" tabindex="0" aria-controls="dataTable"
+																rowspan="1" colspan="1"
+																aria-label="Office: activate to sort column ascending"
+																style="width: 100px;">VAT</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:set var="countt" value="1" scope="session" />
+														<c:forEach var="dichvu" items="${canho.ds_dich_vu_can_ho}">
+															<tr>
+																<td class="sorting_1">${countt}</td>
+																<td>${dichvu.dich_vu.ten_dich_vu}</td>
+																<td>${dichvu.dich_vu.don_gia}</td>
+																<td>${dichvu.dich_vu.don_vi}</td>
+																<td>${dichvu.dich_vu.vat}</td>
+															</tr>
+															<c:set var="countt" value="${countt = countt + 1}"
+															scope="session" />
+														</c:forEach>
+													</tbody>
+												</table>
 
-										var btns = document.querySelectorAll('.btn-submit');
-										btns.forEach(function (btn) {
-											btn.addEventListener('click', function () {
-												$("#modal_body").html(btn.getAttribute('data-test'));
-											})
+											</div>
+									</c:forEach>
+								</form>
+						</div>
+						<%@ include file="../layout/footer.jsp" %>
+							<!-- End of Footer -->
+							<!-- </div> -->
+							<!-- End of Content Wrapper -->
+							<!-- </div> -->
+							<script type="text/javascript">
+							</script>
+							<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+								integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+								crossorigin="anonymous"></script>
+							<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+								integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+								crossorigin="anonymous"></script>
+							<script>
+								$(document).ready(function () {
+									$("select.canho").change(function () {
+										var selected = $(this).children("option:selected").val();
+										// alert(selected);
+										$.ajax({
+											url: "http://localhost:8080/dangkidichvu/dichvu/" + selected,
+											type: "GET",
+											data: {
+												ma_can_ho: selected
+											},
+											success: function sc() {
+												alert('error');
+											},
+											error: function fail() {
+												alert('error');
+											}
 										})
-									</script>
-									<script
-										src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-										integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-										crossorigin="anonymous"></script>
-									<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-										integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-										crossorigin="anonymous"></script>
+									});
+								});
+							</script>
 			</body>
 
 			</html>

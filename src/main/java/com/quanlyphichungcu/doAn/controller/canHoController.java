@@ -141,7 +141,7 @@ public class canHoController {
 			// lay cac dv chua co tim trong tat ca dich vu
 			//[1,2,3,4,5]
 			//[3,5]
-			//->[1,2,5]
+			//->[1,2,4]
 			//vi du lieu duoc sort san nen khong can sort lai
 			for (dich_vu item: tatcadichvu) {
 				if (it.hasNext()) {

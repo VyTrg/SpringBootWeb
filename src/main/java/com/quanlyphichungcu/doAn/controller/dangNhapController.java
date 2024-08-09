@@ -56,7 +56,7 @@ public class dangNhapController {
 			return "redirect:/user/thongtin/" + url;
 		}
 		else{
-			model.addAttribute("message", "Sai thông tin đăng nhập. Vui lòng nhập lại.");
+			session.setAttribute("message", "Thông tin đăng nhập sai. Vui lòng nhập lại!");
 			return "redirect:/login";
 		}
 	}
@@ -70,8 +70,7 @@ public class dangNhapController {
 		if(session.getAttribute("thongtin_nv") != null) {
 			session.removeAttribute("thongtin_nv");
 		}
-//		else 
-//			System.out.println("khong xoa");
+		session.removeAttribute("message");
 		return "redirect:/login";
 	}
 }
