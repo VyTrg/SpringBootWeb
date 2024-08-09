@@ -91,13 +91,12 @@
 					</div>
 					<div class="row">
 						<div class="col mb-3 d-flex justify-content-end mt-3">
-							<button class="btn btn-primary">Tạo tài khoản nhân viên</button>
+							<button class="btn btn-primary" onclick="location.href='/admin/themnv'">Thêm nhân viên</button>
 						</div>
 					</div>
 				</div>
-			</div>
-
 			<div class="col-sm-1"></div>
+			</div>
 			<div class="row">
 				<div class="col-sm-1"></div>
 
@@ -135,12 +134,12 @@
 					</div>
 					<div class="row">
 						<div class="col mb-3 d-flex justify-content-end mt-3">
-							<button class="btn btn-primary">Tạo tài khoản chủ sở hữu</button>
+							<button class="btn btn-primary" onclick="location.href='/admin/themcsh'">Thêm chủ sở hữu</button>
 						</div>
 					</div>
 				</div>
-			</div>
 			<div class="col-sm-1"></div>
+			</div>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout_admin/footer.jsp"%>

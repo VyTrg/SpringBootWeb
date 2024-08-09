@@ -2,6 +2,10 @@ package com.quanlyphichungcu.doAn.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -18,28 +22,37 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name="NHAN_VIEN")
 public class nhan_vien {
-	@Id private String ma_nhan_vien;
+	@Id
+	@NotBlank(message = "Mã nhân viên không được để trống")
+	private String ma_nhan_vien;
 	
+	@NotBlank(message = "Họ và tên không được để trống")
 	private String ho_ten;
 	
 	@Column(unique=true)
+	@Size(min = 10, max = 10, message = "Số điện thoại phải có 10 chữ số")
 	private String sdt;
 	
 	@Column(unique=true)
+	@NotBlank(message = "Căn cước công dân không được để trống")
 	private String cccd;
 	
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Ngày sinh không được để trống")
 	private Date ngay_sinh;
 	
 	@OneToOne
 	@JoinColumn(name="ten_dang_nhap")
+	@NotBlank(message = "Tên đăng nhập không được để trống")
 	private dang_nhap dangNhap;
 	
 	@ManyToOne
 	@JoinColumn(name="ma_phong_ban")
+	@NotBlank(message = "Mã phòng ban không được để trống")
 	private PhongBan phongBan;
 	
+	@NotBlank(message = "Giới tính không được để trống")
 	private String Phai;
 
 	public String getMa_nhan_vien() {
@@ -122,5 +135,20 @@ public class nhan_vien {
 	public nhan_vien() {
 		super();
 	}
+
+	@Override
+	 public String toString() {
+        return "NhanVien{" +
+                "ma_nhan_vien='" + ma_nhan_vien + '\'' +
+                ", ho_ten='" + ho_ten + '\'' +
+                ", sdt='" + sdt + '\'' +
+                ", cccd='" + cccd + '\'' +
+                ", ngay_sinh=" + ngay_sinh +
+                ", dangNhap=" + dangNhap +
+                ", phongBan=" + phongBan +
+                ", phai='" + Phai + '\'' +
+                '}';
+    }
+
 	
 }

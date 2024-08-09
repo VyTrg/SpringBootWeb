@@ -1,13 +1,16 @@
 package com.quanlyphichungcu.doAn.controller;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quanlyphichungcu.doAn.entity.ChuSoHuu;
 import com.quanlyphichungcu.doAn.entity.can_ho;
@@ -15,19 +18,6 @@ import com.quanlyphichungcu.doAn.entity.nhan_vien;
 import com.quanlyphichungcu.doAn.repository.canHoRepository;
 import com.quanlyphichungcu.doAn.repository.chuSoHuuRepository;
 import com.quanlyphichungcu.doAn.repository.nhanVienRepository;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.quanlyphichungcu.doAn.entity.nhan_vien;
-import com.quanlyphichungcu.doAn.repository.nhanVienRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -75,5 +65,6 @@ public class nhanVienController {
 		model.addAttribute("capnhat","cap nhat thanh cong");
 		return "admin/chusohuu";
 	}
-
+	
+	
 }

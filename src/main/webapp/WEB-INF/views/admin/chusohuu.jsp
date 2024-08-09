@@ -54,8 +54,10 @@
 				<div class="col-sm-10 container border">
 					<div class="row">
 						<h2 class="text-center">Thông tin chủ sở hữu</h2>
+						<h3>${message}</h3>
 						<div class="container">
-							<form:form action="${csh.ma_chu_so_huu}" method="post" modelAttribute="csh">
+							<form:form action="/admin/csh/${csh.ma_chu_so_huu}" 
+							modelAttribute="csh" enctype="multipart/form-data">
 							<table class="table table-striped mt-3">
 								<thead>
 									<tr>
@@ -107,14 +109,12 @@
 								</tbody>
 								
 							</table>
-<%-- 							<div class="row text-center">${capnhat}</div>
- --%>							<div class="col text-center mb-3">
-								<form:button type="submit" class="btn btn-primary">Cập nhật</form:button>
+							<div class="col text-center mb-3">
+								<button class="btn btn-primary">Chỉnh sửa</button>
 							</div>
 							</form:form>
 						</div>
 					</div>
-
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
@@ -156,6 +156,7 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-1"></div>
 			</div>
 
 			<!-- End of Main Content -->

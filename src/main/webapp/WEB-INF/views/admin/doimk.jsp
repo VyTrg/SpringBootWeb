@@ -49,12 +49,42 @@
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-11">
+					<h2>ĐỔI MẬT KHẨU</h2>
+					<h4 style="color: red;">${message}</h4>
+					<form action="/admin/doimk" method="post">
+						<div class="form-group">
+							<label>Tên đăng nhập</label> <input name="id" style="width: 50%"
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Mật khẩu hiện tại</label> <input name="pw"
+								style="width: 50%" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Mật khẩu mới</label> <input name="pw1" style="width: 50%"
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Nhập lại mật khẩu mới</label> <input name="pw2"
+								style="width: 50%" class="form-control">
+						</div>
 
-			<!-- End of Main Content -->
+						<div class="form-group">
+							<button class="btn btn-primary">Đổi mật
+								khẩu</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout_admin/footer.jsp"%>
 			<!-- End of Footer -->
-		</div>
+		
 		<!-- End of Content Wrapper -->
 	</div>
 </body>

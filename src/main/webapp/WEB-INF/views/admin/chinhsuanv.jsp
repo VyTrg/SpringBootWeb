@@ -49,7 +49,46 @@
 			<!-- End of Topbar -->
 
 			<!-- Main Content -->
-
+			<h2>CHỈNH SỬA THÔNG TIN</h2>
+			${message}
+			<form:form action="/account/edit" modelAttribute="form"
+				enctype="multipart/form-data">
+				<form:errors path="*" element="ul" cssClass="errors" />
+				<div class="form-group">
+					<label>Mã nhân viên</label>
+					<form:input path="ma_nhan_vien" style="width: 50%" cssClass="form-control"
+						readonly="true" />
+				</div>
+				<form:hidden path="password" cssClass="form-control" />
+				<div class="form-group">
+					<label>Họ và tên</label>
+					<form:input path="ho_ten" style="width: 50%"
+						cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Số điện thoại</label>
+					<form:input path="sdt" style="width: 50%" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Căn cước công dân</label>
+					<form:input path="cccd" style="width: 50%" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Ngày sinh</label>
+					<form:input path="ngay_sinh" style="width: 50%" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Giới tính</label>
+					<form:input path="Phai" style="width: 50%" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Mã phòng ban</label>
+					<form:input path="phongBan.ma_phong_ban" style="width: 50%" cssClass="form-control" />
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" onclick="location.href='admin/chinhsuanv'">Cập nhật</button>
+				</div>
+			</form:form>
 			<!-- End of Main Content -->
 			<!-- Footer -->
 			<%@ include file="../layout_admin/footer.jsp"%>
